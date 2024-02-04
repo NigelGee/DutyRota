@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ButtonView: View {
     @Binding var selectedDate: Date
-    @Binding var showAddAdHocDuty: Bool
 
     var body: some View {
         HStack(spacing: 50) {
@@ -54,5 +53,5 @@ struct ButtonView: View {
 }
 
 #Preview {
-    ButtonView(selectedDate: .constant(.now), showAddAdHocDuty: .constant(false))
+    ButtonView(selectedDate: .constant(.now))
 }

@@ -16,30 +16,18 @@ struct AdHocDutyView: View {
     @State private var selectedDuty: AdHocDuty?
 
     var body: some View {
-        if filteredDuties.isNotEmpty {
-            NavigationStack {
-
-                ForEach(filteredDuties) { duty in
-                    Button {
-                        selectedDuty = duty
-                    } label: {
-                        AdHocDutyRowView(duty: duty)
-                    }
-                    .buttonStyle(.plain)
+        NavigationStack {
+            ForEach(filteredDuties) { duty in
+                Button {
+                    selectedDuty = duty
+                } label: {
+                    AdHocDutyRowView(duty: duty)
                 }
-                .onDelete(perform: deleteAdHocDuty)
-                .sheet(item: $selectedDuty) { duty in
-                    EditAdHocDutyView(adHocDuty: duty, isEditing: true)
-                }
+                .buttonStyle(.plain)
             }
-            .listRowBackground(Color.orange.opacity(0.7))
         }
-    }
-
-    func deleteAdHocDuty(_ indexSet: IndexSet) {
-        for item in indexSet {
-            let object = filteredDuties[item]
-            modelContext.delete(object)
+        .sheet(item: $selectedDuty) { duty in
+            EditAdHocDutyView(adHocDuty: duty, isEditing: true)
         }
     }
 }

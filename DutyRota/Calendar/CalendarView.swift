@@ -32,14 +32,17 @@ struct CalendarView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                ButtonView(selectedDate: $selectedDate, showAddAdHocDuty: $showAddAdHocDuty)
+                ButtonView(selectedDate: $selectedDate)
 
                 MonthView(selectedDate: $selectedDate, monthEvents: $monthEvents, duties: adHocDuties)
 
                 if events.isNotEmpty || filteredDuties.isNotEmpty {
                     List {
-                        AdHocDutyView(filteredDuties: filteredDuties)
-
+                        if filteredDuties.isNotEmpty {
+                            AdHocDutyView(filteredDuties: filteredDuties)
+                                .listRowBackground(Color.orange.opacity(0.7))
+                        }
+                        
                         EventView(events: $events)
                     }
                     .listStyle(.plain)
@@ -64,7 +67,6 @@ struct CalendarView: View {
                 if let newDuty {
                     EditAdHocDutyView(adHocDuty: newDuty, isEditing: false)
                 }
-
             }
             .sheet(isPresented: $showAddEvent) {
                 AddNewEventView(eventStore: eventStore, selectedDate: selectedDate, loadEvent: loadEvent)

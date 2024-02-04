@@ -62,6 +62,8 @@ struct EditAdHocDutyView: View {
 
                 ToolbarItem(placement: .cancellationAction) {
                     Button(isEditing ? "Delete" : "Cancel", action: deleteDuty)
+                        .foregroundStyle(.red)
+                        .bold()
                 }
             }
         }
