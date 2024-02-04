@@ -1,0 +1,449 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8B12FD1E2B6D972600A22940 /* MonthRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FD1D2B6D972600A22940 /* MonthRowView.swift */; };
+		8B6F5BC32B67C803003B54F5 /* AdHocDuty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5BC22B67C803003B54F5 /* AdHocDuty.swift */; };
+		8B6F5BC52B67CA48003B54F5 /* AdHocDutyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5BC42B67CA48003B54F5 /* AdHocDutyView.swift */; };
+		8B6F5BC92B692160003B54F5 /* Collection - isNotEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5BC82B692160003B54F5 /* Collection - isNotEmpty.swift */; };
+		8B6F5BCB2B696B8B003B54F5 /* AddNewEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5BCA2B696B8B003B54F5 /* AddNewEventView.swift */; };
+		8B6F5C032B6ABC5A003B54F5 /* EditAdHocDutyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5C022B6ABC5A003B54F5 /* EditAdHocDutyView.swift */; };
+		8B6F5C232B6C2CB8003B54F5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5C222B6C2CB8003B54F5 /* SettingsView.swift */; };
+		8B6F5C252B6C30E9003B54F5 /* WeekDay - Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5C242B6C30E9003B54F5 /* WeekDay - Enum.swift */; };
+		8B6F5C282B6D5915003B54F5 /* AdHocDutyRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5C272B6D5915003B54F5 /* AdHocDutyRowView.swift */; };
+		8B7137E42B66D31700627BF6 /* DutyRotaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137E32B66D31700627BF6 /* DutyRotaApp.swift */; };
+		8B7137E62B66D31700627BF6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137E52B66D31700627BF6 /* ContentView.swift */; };
+		8B7137E82B66D31800627BF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B7137E72B66D31800627BF6 /* Assets.xcassets */; };
+		8B7137EB2B66D31800627BF6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B7137EA2B66D31800627BF6 /* Preview Assets.xcassets */; };
+		8B7137F22B66D37A00627BF6 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137F12B66D37A00627BF6 /* CalendarView.swift */; };
+		8B7137F42B66D39800627BF6 /* Date-Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137F32B66D39800627BF6 /* Date-Helper.swift */; };
+		8B7137F62B66D3D900627BF6 /* CalendarDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137F52B66D3D900627BF6 /* CalendarDate.swift */; };
+		8B7137F82B66D41900627BF6 /* SelectedDateModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137F72B66D41900627BF6 /* SelectedDateModifier.swift */; };
+		8B7137FC2B66D5CF00627BF6 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137FB2B66D5CF00627BF6 /* MonthView.swift */; };
+		8B7137FE2B66D96D00627BF6 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137FD2B66D96D00627BF6 /* EventView.swift */; };
+		8B7138002B66DA6500627BF6 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137FF2B66DA6500627BF6 /* ButtonView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		8B12FD1D2B6D972600A22940 /* MonthRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthRowView.swift; sourceTree = "<group>"; };
+		8B6F5BC22B67C803003B54F5 /* AdHocDuty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocDuty.swift; sourceTree = "<group>"; };
+		8B6F5BC42B67CA48003B54F5 /* AdHocDutyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocDutyView.swift; sourceTree = "<group>"; };
+		8B6F5BC82B692160003B54F5 /* Collection - isNotEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection - isNotEmpty.swift"; sourceTree = "<group>"; };
+		8B6F5BCA2B696B8B003B54F5 /* AddNewEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewEventView.swift; sourceTree = "<group>"; };
+		8B6F5C022B6ABC5A003B54F5 /* EditAdHocDutyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAdHocDutyView.swift; sourceTree = "<group>"; };
+		8B6F5C222B6C2CB8003B54F5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		8B6F5C242B6C30E9003B54F5 /* WeekDay - Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeekDay - Enum.swift"; sourceTree = "<group>"; };
+		8B6F5C272B6D5915003B54F5 /* AdHocDutyRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocDutyRowView.swift; sourceTree = "<group>"; };
+		8B7137E02B66D31700627BF6 /* DutyRota.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DutyRota.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B7137E32B66D31700627BF6 /* DutyRotaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutyRotaApp.swift; sourceTree = "<group>"; };
+		8B7137E52B66D31700627BF6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8B7137E72B66D31800627BF6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8B7137EA2B66D31800627BF6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8B7137F12B66D37A00627BF6 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		8B7137F32B66D39800627BF6 /* Date-Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date-Helper.swift"; sourceTree = "<group>"; };
+		8B7137F52B66D3D900627BF6 /* CalendarDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDate.swift; sourceTree = "<group>"; };
+		8B7137F72B66D41900627BF6 /* SelectedDateModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedDateModifier.swift; sourceTree = "<group>"; };
+		8B7137FA2B66D52200627BF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8B7137FB2B66D5CF00627BF6 /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
+		8B7137FD2B66D96D00627BF6 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
+		8B7137FF2B66DA6500627BF6 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8B7137DD2B66D31700627BF6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8B6F5C262B6C3146003B54F5 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				8B6F5C222B6C2CB8003B54F5 /* SettingsView.swift */,
+				8B6F5C242B6C30E9003B54F5 /* WeekDay - Enum.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		8B6F5C292B6D902B003B54F5 /* iCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				8B7137FD2B66D96D00627BF6 /* EventView.swift */,
+				8B6F5BCA2B696B8B003B54F5 /* AddNewEventView.swift */,
+			);
+			path = iCalendar;
+			sourceTree = "<group>";
+		};
+		8B6F5C2A2B6D9059003B54F5 /* AdHocDuty */ = {
+			isa = PBXGroup;
+			children = (
+				8B6F5BC42B67CA48003B54F5 /* AdHocDutyView.swift */,
+				8B6F5C272B6D5915003B54F5 /* AdHocDutyRowView.swift */,
+				8B6F5C022B6ABC5A003B54F5 /* EditAdHocDutyView.swift */,
+				8B6F5BC22B67C803003B54F5 /* AdHocDuty.swift */,
+			);
+			path = AdHocDuty;
+			sourceTree = "<group>";
+		};
+		8B7137D72B66D31700627BF6 = {
+			isa = PBXGroup;
+			children = (
+				8B7137E22B66D31700627BF6 /* DutyRota */,
+				8B7137E12B66D31700627BF6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8B7137E12B66D31700627BF6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8B7137E02B66D31700627BF6 /* DutyRota.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8B7137E22B66D31700627BF6 /* DutyRota */ = {
+			isa = PBXGroup;
+			children = (
+				8B7137FA2B66D52200627BF6 /* Info.plist */,
+				8B7137E32B66D31700627BF6 /* DutyRotaApp.swift */,
+				8B7137E52B66D31700627BF6 /* ContentView.swift */,
+				8B7137F92B66D4D800627BF6 /* Calendar */,
+				8B6F5C262B6C3146003B54F5 /* Settings */,
+				8B7137F72B66D41900627BF6 /* SelectedDateModifier.swift */,
+				8B7137F32B66D39800627BF6 /* Date-Helper.swift */,
+				8B6F5BC82B692160003B54F5 /* Collection - isNotEmpty.swift */,
+				8B7137E72B66D31800627BF6 /* Assets.xcassets */,
+				8B7137E92B66D31800627BF6 /* Preview Content */,
+			);
+			path = DutyRota;
+			sourceTree = "<group>";
+		};
+		8B7137E92B66D31800627BF6 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				8B7137EA2B66D31800627BF6 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8B7137F92B66D4D800627BF6 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				8B7137F12B66D37A00627BF6 /* CalendarView.swift */,
+				8B7137FF2B66DA6500627BF6 /* ButtonView.swift */,
+				8B7137FB2B66D5CF00627BF6 /* MonthView.swift */,
+				8B12FD1D2B6D972600A22940 /* MonthRowView.swift */,
+				8B7137F52B66D3D900627BF6 /* CalendarDate.swift */,
+				8B6F5C292B6D902B003B54F5 /* iCalendar */,
+				8B6F5C2A2B6D9059003B54F5 /* AdHocDuty */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8B7137DF2B66D31700627BF6 /* DutyRota */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8B7137EE2B66D31800627BF6 /* Build configuration list for PBXNativeTarget "DutyRota" */;
+			buildPhases = (
+				8B7137DC2B66D31700627BF6 /* Sources */,
+				8B7137DD2B66D31700627BF6 /* Frameworks */,
+				8B7137DE2B66D31700627BF6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DutyRota;
+			productName = DutyRota;
+			productReference = 8B7137E02B66D31700627BF6 /* DutyRota.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8B7137D82B66D31700627BF6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					8B7137DF2B66D31700627BF6 = {
+						CreatedOnToolsVersion = 15.2;
+					};
+				};
+			};
+			buildConfigurationList = 8B7137DB2B66D31700627BF6 /* Build configuration list for PBXProject "DutyRota" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8B7137D72B66D31700627BF6;
+			productRefGroup = 8B7137E12B66D31700627BF6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8B7137DF2B66D31700627BF6 /* DutyRota */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8B7137DE2B66D31700627BF6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B7137EB2B66D31800627BF6 /* Preview Assets.xcassets in Resources */,
+				8B7137E82B66D31800627BF6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8B7137DC2B66D31700627BF6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B6F5C232B6C2CB8003B54F5 /* SettingsView.swift in Sources */,
+				8B6F5BC92B692160003B54F5 /* Collection - isNotEmpty.swift in Sources */,
+				8B7137E62B66D31700627BF6 /* ContentView.swift in Sources */,
+				8B7137E42B66D31700627BF6 /* DutyRotaApp.swift in Sources */,
+				8B7137F62B66D3D900627BF6 /* CalendarDate.swift in Sources */,
+				8B7137F22B66D37A00627BF6 /* CalendarView.swift in Sources */,
+				8B12FD1E2B6D972600A22940 /* MonthRowView.swift in Sources */,
+				8B7137F42B66D39800627BF6 /* Date-Helper.swift in Sources */,
+				8B6F5BCB2B696B8B003B54F5 /* AddNewEventView.swift in Sources */,
+				8B6F5BC32B67C803003B54F5 /* AdHocDuty.swift in Sources */,
+				8B7137F82B66D41900627BF6 /* SelectedDateModifier.swift in Sources */,
+				8B6F5C282B6D5915003B54F5 /* AdHocDutyRowView.swift in Sources */,
+				8B7137FC2B66D5CF00627BF6 /* MonthView.swift in Sources */,
+				8B6F5C252B6C30E9003B54F5 /* WeekDay - Enum.swift in Sources */,
+				8B7137FE2B66D96D00627BF6 /* EventView.swift in Sources */,
+				8B7138002B66DA6500627BF6 /* ButtonView.swift in Sources */,
+				8B6F5C032B6ABC5A003B54F5 /* EditAdHocDutyView.swift in Sources */,
+				8B6F5BC52B67CA48003B54F5 /* AdHocDutyView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		8B7137EC2B66D31800627BF6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8B7137ED2B66D31800627BF6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8B7137EF2B66D31800627BF6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DutyRota/Preview Content\"";
+				DEVELOPMENT_TEAM = 5SYZQ266RF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DutyRota/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.uk.theappforest.DutyRota;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8B7137F02B66D31800627BF6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DutyRota/Preview Content\"";
+				DEVELOPMENT_TEAM = 5SYZQ266RF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DutyRota/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.uk.theappforest.DutyRota;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8B7137DB2B66D31700627BF6 /* Build configuration list for PBXProject "DutyRota" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B7137EC2B66D31800627BF6 /* Debug */,
+				8B7137ED2B66D31800627BF6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8B7137EE2B66D31800627BF6 /* Build configuration list for PBXNativeTarget "DutyRota" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B7137EF2B66D31800627BF6 /* Debug */,
+				8B7137F02B66D31800627BF6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8B7137D82B66D31700627BF6 /* Project object */;
+}
