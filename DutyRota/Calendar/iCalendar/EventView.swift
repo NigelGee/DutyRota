@@ -10,40 +10,23 @@ import SwiftUI
 
 struct EventView: View {
     @Binding var events: [EKEvent]
+    var eventStore: EKEventStore
+    @State private var event: EKEvent?
+    var loadEvent: () -> Void
 
     var body: some View {
-        ForEach(events, id: \.eventIdentifier) { event in
-            HStack {
-                Rectangle()
-                    .frame(maxWidth: 3, maxHeight: .infinity)
-                    .padding(.vertical, 5)
-                    .foregroundStyle(Color(cgColor: event.calendar.cgColor))
-
-                VStack(alignment: .leading) {
-                    Text(event.title)
-                        .font(.headline)
-                    if let location = event.location {
-                        Text(location)
-                            .foregroundStyle(.secondary)
-                            .lineLimit(1)
+        NavigationStack {
+            ForEach(events) { event in
+                Button {
+                    if event.birthdayContactIdentifier == nil {
+                        self.event = event
                     }
+                } label: {
+                    EventRowView(event: event)
                 }
-
-                Spacer()
-
-                if event.hasAlarms {
-                    Image(systemName: "alarm")
-                }
-
-                VStack {
-                    if event.isAllDay {
-                        Text("all-day")
-                    } else {
-                        Text(event.startDate, format: .dateTime.hour().minute())
-                        Text(event.endDate, format: .dateTime.hour().minute())
-                            .foregroundStyle(.secondary)
-                    }
-                }
+            }
+            .sheet(item: $event, onDismiss: loadEvent) { event in
+                EventEditViewController(event: event, eventStore: eventStore)
             }
         }
     }

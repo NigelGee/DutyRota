@@ -16,7 +16,7 @@ struct EditAdHocDutyView: View {
     var isEditing: Bool
 
     var disableSave: Bool {
-        if adHocDuty.start < adHocDuty.end && adHocDuty.duty.isNotEmpty {
+        if adHocDuty.start < adHocDuty.end && adHocDuty.title.isNotEmpty {
             return false
         }
         return true
@@ -28,7 +28,7 @@ struct EditAdHocDutyView: View {
                 HStack {
                     Text("Duty:")
                     
-                    TextField("Duty", text: $adHocDuty.duty)
+                    TextField("Duty", text: $adHocDuty.title)
                         .textFieldStyle(.roundedBorder)
                         .multilineTextAlignment(.center)
                 }
@@ -80,7 +80,7 @@ struct EditAdHocDutyView: View {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
     let container = try! ModelContainer(for: AdHocDuty.self, configurations: config)
 
-    let duty = AdHocDuty(duty: "717", route: "321", start: .now, end: .now.addingTimeInterval(6400), breakTime: .now)
+    let duty = AdHocDuty(title: "717", route: "321", start: .now, end: .now.addingTimeInterval(6400), breakTime: .now)
 
     return EditAdHocDutyView(adHocDuty: duty, isEditing: false)
         .modelContainer(container)

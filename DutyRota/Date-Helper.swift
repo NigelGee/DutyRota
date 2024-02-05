@@ -8,6 +8,8 @@
 import Foundation
 
 extension Date {
+
+    /// Return start of day of a give date
     var startOfDay: Date {
         let calendar = Calendar.current
         guard let date = calendar.date(from: calendar.dateComponents([.day, .month, .year], from: self)) else {
@@ -15,7 +17,8 @@ extension Date {
         }
         return date
     }
-
+    
+    /// Return end of day of a give date
     var endOfDay: Date {
         let calendar = Calendar.current
         guard let date = calendar.date(byAdding: DateComponents(day: 1, second: -1), to: self.startOfDay) else {
@@ -24,6 +27,7 @@ extension Date {
 
         return date
     }
+    
     /// Returns  the start date of the month from a given date.
     /// - Returns:A `Date` from a given `Date`
     ///
@@ -47,8 +51,11 @@ extension Date {
         }
         return date
     }
-
-    public func datesOfMonth(with weekStart: Int = 0) -> [Date] {
+    
+    /// A method that give all the days in a month
+    /// - Parameter weekStart: Start of the week
+    /// - Returns: An Array of dates in a month + dates preceding the first of month
+    public func datesOfMonth(with weekStart: Int) -> [Date] {
         let calendar = Calendar.current
         var dates = [Date]()
 
@@ -60,7 +67,7 @@ extension Date {
         if weekStart < firstDayOfWeek {
             firstDayOfWeek -= weekStart
         } else {
-            firstDayOfWeek -= (firstDayOfWeek - weekStart)
+            firstDayOfWeek += 7 - weekStart
         }
 
         for i in 1 ..< firstDayOfWeek {
@@ -78,6 +85,10 @@ extension Date {
         return dates
     }
 
+
+    /// a method to check if a day is the same as another day
+    /// - Parameter date: Comparison date use `.now` for today
+    /// - Returns: `true` if in the same day
     func sameDay(as date: Date) -> Bool {
         let calendar = Calendar.current
         return calendar.isDate(self, inSameDayAs: date)

@@ -11,7 +11,6 @@ import SwiftUI
 
 struct CalendarView: View {
     @Environment(\.modelContext) var modelContext
-    @Environment(\.scenePhase) var scenePhase
 
     @State private var showDialog = false
     @State private var showAddAdHocDuty = false
@@ -43,7 +42,7 @@ struct CalendarView: View {
                                 .listRowBackground(Color.orange.opacity(0.7))
                         }
                         
-                        EventView(events: $events)
+                        EventView(events: $events, eventStore: eventStore, loadEvent: loadEvent)
                     }
                     .listStyle(.plain)
                 } else {
@@ -100,6 +99,7 @@ struct CalendarView: View {
                 events = eventStore.events(matching: predicateDay)
 
                 monthEvents = eventStore.events(matching: predicateMonth)
+
             } else {
                 print("Error")
             }
@@ -114,7 +114,7 @@ struct CalendarView: View {
             return Calendar.current.date(from: components) ?? Date.now
         }
 
-        let newDuty = AdHocDuty(duty: "", route: "", start: selectedDate, end: selectedDate.addingTimeInterval(30_960), breakTime: defaultBreakTime)
+        let newDuty = AdHocDuty(title: "", route: "", start: selectedDate, end: selectedDate.addingTimeInterval(30_960), breakTime: defaultBreakTime)
         modelContext.insert(newDuty)
 
         self.newDuty = newDuty
@@ -124,7 +124,7 @@ struct CalendarView: View {
 
     func onDismiss() {
         if let newDuty {
-            if newDuty.duty.isEmpty {
+            if newDuty.title.isEmpty {
                 let object = newDuty
                 modelContext.delete(object)
             }

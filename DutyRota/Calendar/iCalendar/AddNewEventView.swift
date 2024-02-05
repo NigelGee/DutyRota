@@ -48,7 +48,7 @@ struct AddNewEventView: View {
                 Section {
                     TextField("Notes", text: $notes, axis: .vertical)
                 } footer: {
-                    Text("Event can be edited or deleted in Calendar App. Event are created with your default setting.")
+                    Text("Event are created with your default setting.")
                 }
 
             }

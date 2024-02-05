@@ -19,7 +19,7 @@ struct AdHocDutyRowView: View {
 
             VStack(alignment: .leading) {
                 HStack(spacing: 0) {
-                    Text(duty.duty)
+                    Text(duty.title)
                         .font(.headline)
                     if duty.route != "" {
                         Text(" - \(duty.route)")

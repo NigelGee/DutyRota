@@ -16,7 +16,7 @@ struct ContentView: View {
             Text("Rota")
                 .tabItem { Label("Rota", systemImage: "calendar.badge.clock") }
 
-            Text("Duty")
+            DutyView()
                 .tabItem { Label("Duty", systemImage: "filemenu.and.selection") }
 
             SettingsView()

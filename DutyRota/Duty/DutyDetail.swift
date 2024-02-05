@@ -1,27 +1,27 @@
 //
-//  AdHocDuty.swift
+//  DutyDetail.swift
 //  DutyRota
 //
-//  Created by Nigel Gee on 29/01/2024.
+//  Created by Nigel Gee on 04/02/2024.
 //
 
-import SwiftData
 import Foundation
+import SwiftData
 
 @Model
-class AdHocDuty {
+class DutyDetail {
     var title: String
     var route: String
     var start: Date
     var end: Date
-    var breakTime: Date
+    var tod: Date
 
-    init(title: String, route: String, start: Date, end: Date, breakTime: Date) {
+    init(title: String, route: String, start: Date, end: Date, tod: Date) {
         self.title = title
         self.route = route
         self.start = start
         self.end = end
-        self.breakTime = breakTime
+        self.tod = tod
     }
 
     var spread: String {
@@ -33,10 +33,10 @@ class AdHocDuty {
         return formatter.string(from: newSpread) ?? "Spread"
     }
 
-    var tod: String {
+    var breakTime: String {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute]
-        let components = Calendar.current.dateComponents([.hour, .minute], from: breakTime)
+        let components = Calendar.current.dateComponents([.hour, .minute], from: tod)
         let hour = (components.hour ?? 0) * 60 * 60
         let minute = (components.minute ?? 0) * 60
 
