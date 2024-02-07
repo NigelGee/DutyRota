@@ -54,5 +54,5 @@ struct MonthRowView: View {
 }
 
 //#Preview {
-//    MonthRowView()
+//    MonthRowView(monthEvents: <#[EKEvent]#>, duties: AdHocDuty.sampleAdHocDuties, day: CalendarDate(date: .now), selectedDate: .constant(.now))
 //}

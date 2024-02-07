@@ -54,5 +54,5 @@ struct EventRowView: View {
 }
 
 //#Preview {
-//    EventRowView()
+//    EventRowView(event: <#EKEvent#>)
 //}

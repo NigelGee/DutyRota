@@ -15,6 +15,10 @@
 		8B12FD662B70BBE700A22940 /* EventRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FD652B70BBE700A22940 /* EventRowView.swift */; };
 		8B12FD6C2B7155ED00A22940 /* DutyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FD6B2B7155ED00A22940 /* DutyView.swift */; };
 		8B12FD6E2B71725B00A22940 /* DutyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FD6D2B71725B00A22940 /* DutyDetailView.swift */; };
+		8B12FD702B7273D100A22940 /* PreviewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FD6F2B7273D100A22940 /* PreviewContainer.swift */; };
+		8B12FD722B72771600A22940 /* AdHocDutySamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FD712B72771600A22940 /* AdHocDutySamples.swift */; };
+		8B12FD762B7303E100A22940 /* SampleDuty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FD752B7303E100A22940 /* SampleDuty.swift */; };
+		8B12FD782B73809800A22940 /* EditDutyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FD772B73809800A22940 /* EditDutyView.swift */; };
 		8B6F5BC32B67C803003B54F5 /* AdHocDuty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5BC22B67C803003B54F5 /* AdHocDuty.swift */; };
 		8B6F5BC52B67CA48003B54F5 /* AdHocDutyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5BC42B67CA48003B54F5 /* AdHocDutyView.swift */; };
 		8B6F5BC92B692160003B54F5 /* Collection - isNotEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5BC82B692160003B54F5 /* Collection - isNotEmpty.swift */; };
@@ -45,6 +49,10 @@
 		8B12FD652B70BBE700A22940 /* EventRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRowView.swift; sourceTree = "<group>"; };
 		8B12FD6B2B7155ED00A22940 /* DutyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutyView.swift; sourceTree = "<group>"; };
 		8B12FD6D2B71725B00A22940 /* DutyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutyDetailView.swift; sourceTree = "<group>"; };
+		8B12FD6F2B7273D100A22940 /* PreviewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContainer.swift; sourceTree = "<group>"; };
+		8B12FD712B72771600A22940 /* AdHocDutySamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocDutySamples.swift; sourceTree = "<group>"; };
+		8B12FD752B7303E100A22940 /* SampleDuty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleDuty.swift; sourceTree = "<group>"; };
+		8B12FD772B73809800A22940 /* EditDutyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDutyView.swift; sourceTree = "<group>"; };
 		8B6F5BC22B67C803003B54F5 /* AdHocDuty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocDuty.swift; sourceTree = "<group>"; };
 		8B6F5BC42B67CA48003B54F5 /* AdHocDutyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocDutyView.swift; sourceTree = "<group>"; };
 		8B6F5BC82B692160003B54F5 /* Collection - isNotEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection - isNotEmpty.swift"; sourceTree = "<group>"; };
@@ -83,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				8B12FD6B2B7155ED00A22940 /* DutyView.swift */,
+				8B12FD772B73809800A22940 /* EditDutyView.swift */,
 				8B12FD6D2B71725B00A22940 /* DutyDetailView.swift */,
 				8B12FD1F2B6FF4B500A22940 /* Duty.swift */,
 				8B12FD5C2B70125900A22940 /* DutyDetail.swift */,
@@ -160,6 +169,9 @@
 			isa = PBXGroup;
 			children = (
 				8B7137EA2B66D31800627BF6 /* Preview Assets.xcassets */,
+				8B12FD6F2B7273D100A22940 /* PreviewContainer.swift */,
+				8B12FD712B72771600A22940 /* AdHocDutySamples.swift */,
+				8B12FD752B7303E100A22940 /* SampleDuty.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -254,18 +266,22 @@
 				8B7137E62B66D31700627BF6 /* ContentView.swift in Sources */,
 				8B7137E42B66D31700627BF6 /* DutyRotaApp.swift in Sources */,
 				8B7137F62B66D3D900627BF6 /* CalendarDate.swift in Sources */,
+				8B12FD722B72771600A22940 /* AdHocDutySamples.swift in Sources */,
 				8B12FD202B6FF4B500A22940 /* Duty.swift in Sources */,
 				8B7137F22B66D37A00627BF6 /* CalendarView.swift in Sources */,
 				8B12FD1E2B6D972600A22940 /* MonthRowView.swift in Sources */,
 				8B7137F42B66D39800627BF6 /* Date-Helper.swift in Sources */,
+				8B12FD762B7303E100A22940 /* SampleDuty.swift in Sources */,
 				8B12FD6E2B71725B00A22940 /* DutyDetailView.swift in Sources */,
 				8B12FD6C2B7155ED00A22940 /* DutyView.swift in Sources */,
+				8B12FD782B73809800A22940 /* EditDutyView.swift in Sources */,
 				8B6F5BCB2B696B8B003B54F5 /* AddNewEventView.swift in Sources */,
 				8B6F5BC32B67C803003B54F5 /* AdHocDuty.swift in Sources */,
 				8B7137F82B66D41900627BF6 /* SelectedDateModifier.swift in Sources */,
 				8B6F5C282B6D5915003B54F5 /* AdHocDutyRowView.swift in Sources */,
 				8B7137FC2B66D5CF00627BF6 /* MonthView.swift in Sources */,
 				8B6F5C252B6C30E9003B54F5 /* WeekDay - Enum.swift in Sources */,
+				8B12FD702B7273D100A22940 /* PreviewContainer.swift in Sources */,
 				8B12FD662B70BBE700A22940 /* EventRowView.swift in Sources */,
 				8B7137FE2B66D96D00627BF6 /* EventView.swift in Sources */,
 				8B12FD642B70B35800A22940 /* EKEvent-Extension.swift in Sources */,

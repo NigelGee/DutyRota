@@ -77,11 +77,5 @@ struct EditAdHocDutyView: View {
 }
 
 #Preview {
-    let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try! ModelContainer(for: AdHocDuty.self, configurations: config)
-
-    let duty = AdHocDuty(title: "717", route: "321", start: .now, end: .now.addingTimeInterval(6400), breakTime: .now)
-
-    return EditAdHocDutyView(adHocDuty: duty, isEditing: false)
-        .modelContainer(container)
+    return EditAdHocDutyView(adHocDuty: AdHocDuty.sampleAdHocDuties[1], isEditing: false)
 }

@@ -105,5 +105,5 @@ struct AddNewEventView: View {
 }
 
 //#Preview {
-//    AddNewEventView() { }
+//    AddNewEventView(eventStore: <#T##EKEventStore#>, selectedDate: .now) { }
 //}

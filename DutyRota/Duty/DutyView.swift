@@ -9,8 +9,13 @@ import SwiftData
 import SwiftUI
 
 struct DutyView: View {
-    @Query var duties: [Duty]
+    @Query(sort: \Duty.periodStart) var duties: [Duty]
     @Environment(\.modelContext) var modelContext
+
+    @State private var duty: Duty?
+    @State private var isEnd = true
+    @State private var isEdit = false
+    @State private var isPeriodStartDateError = false
 
     var body: some View {
         NavigationStack {
@@ -27,18 +32,65 @@ struct DutyView: View {
                             }
                         }
                     }
+                    .onLongPressGesture {
+                        if duty.periodEnd == .distantFuture {
+                            isEnd = true
+                        } else {
+                            isEnd = false
+                        }
+                        isEdit = true
+                        self.duty = duty
+                    }
                 }
+                .onDelete(perform: deleteDuty)
             }
             .toolbar {
-                Button(action: addSamples) {
-                    Label("Add Sample", systemImage: "plus")
+                Button(action: addNewDuty) {
+                    Label("Add Duty", systemImage: "plus")
                 }
             }
-            .navigationTitle("Duty")
+            .navigationTitle("Duty Period")
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: Duty.self) { duty in
                 DutyDetailView(duty: duty)
             }
+            .sheet(item: $duty) { duty in
+                EditDutyView(duty: duty, isEnd: $isEnd, isEdit: $isEdit)
+                    .presentationDetents([.medium])
+            }
+            .alert("A Current Duty End Date", isPresented: $isPeriodStartDateError) {
+                Button("Ok") { }
+            } message: {
+                Text("One of the duties does not have a Period End Date. Amend this by tap and hold on the duty and amend it to the date that it ends.")
+            }
+        }
+    }
+
+    func addNewDuty() {
+        var startDate = Date.now
+
+        let maxEndDate = duties.map { $0.periodEnd }.max()
+
+        if maxEndDate != nil {
+            if maxEndDate == .distantFuture {
+                isPeriodStartDateError = true
+                return
+            } else {
+                startDate = Calendar.current.date(byAdding: .day, value: 1, to: startDate)!
+            }
+        }
+
+        isEnd = true
+        isEdit = false
+        let object = Duty(periodStart: startDate, periodEnd: .distantFuture)
+        modelContext.insert(object)
+        duty = object
+    }
+
+    func deleteDuty(_ indexSet: IndexSet) {
+        for item in indexSet {
+            let object = duties[item]
+            modelContext.delete(object)
         }
     }
 
@@ -49,5 +101,7 @@ struct DutyView: View {
 }
 
 #Preview {
-    DutyView()
+    let preview = PreviewContainer(Duty.self)
+    return DutyView()
+            .modelContainer(preview.container)
 }

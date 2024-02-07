@@ -18,12 +18,13 @@ struct EventView: View {
         NavigationStack {
             ForEach(events) { event in
                 Button {
-                    if event.birthdayContactIdentifier == nil {
+                    if event.calendar.type == .calDAV || event.calendar.type == .local {
                         self.event = event
                     }
                 } label: {
                     EventRowView(event: event)
                 }
+                .buttonStyle(.plain)
             }
             .sheet(item: $event, onDismiss: loadEvent) { event in
                 EventEditViewController(event: event, eventStore: eventStore)
@@ -33,5 +34,5 @@ struct EventView: View {
 }
 
 //#Preview {
-//    EventView()
+//    EventView(events: <#Binding<[EKEvent]>#>, eventStore: <#EKEventStore#>) { }
 //}

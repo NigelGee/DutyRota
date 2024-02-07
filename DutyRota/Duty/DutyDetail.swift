@@ -9,22 +9,20 @@ import Foundation
 import SwiftData
 
 @Model
-class DutyDetail {
+class DutyDetail: Comparable {
     var title: String
-    var route: String
     var start: Date
     var end: Date
     var tod: Date
 
-    init(title: String, route: String, start: Date, end: Date, tod: Date) {
+    init(title: String, start: Date, end: Date, tod: Date) {
         self.title = title
-        self.route = route
         self.start = start
         self.end = end
         self.tod = tod
     }
 
-    var spread: String {
+    var dutySpread: String {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute]
 
@@ -33,7 +31,7 @@ class DutyDetail {
         return formatter.string(from: newSpread) ?? "Spread"
     }
 
-    var breakTime: String {
+    var dutyBreakTime: String {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute]
         let components = Calendar.current.dateComponents([.hour, .minute], from: tod)
@@ -43,5 +41,9 @@ class DutyDetail {
         let newTOD = end.timeIntervalSinceReferenceDate - start.timeIntervalSinceReferenceDate - Double(hour + minute)
 
         return formatter.string(from: newTOD) ?? "Time"
+    }
+
+    static func <(lhs: DutyDetail, rhs: DutyDetail) -> Bool {
+        lhs.title < rhs.title /*&& lhs.start < rhs.start*/
     }
 }

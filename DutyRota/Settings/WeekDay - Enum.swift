@@ -34,4 +34,6 @@ enum WeekDay: Int, CaseIterable {
             "Saturday"
         }
     }
+
+    static let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 }

@@ -10,7 +10,6 @@ import SwiftData
 import SwiftUI
 
 struct MonthView: View {
-    let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
     @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.sunday
 
     @Binding var selectedDate: Date
@@ -22,15 +21,15 @@ struct MonthView: View {
     }
 
     var wrappedWeekDays: [String] {
-        guard startDayOfWeek.rawValue != 0 else { return days }
+        guard startDayOfWeek.rawValue != 0 else { return WeekDay.days }
         var newDays = [String]()
 
-        for i in startDayOfWeek.rawValue..<days.count {
-            newDays.append(days[i])
+        for i in startDayOfWeek.rawValue ..< WeekDay.days.count {
+            newDays.append(WeekDay.days[i])
         }
 
-        for i in 0..<startDayOfWeek.rawValue {
-            newDays.append(days[i])
+        for i in 0 ..< startDayOfWeek.rawValue {
+            newDays.append(WeekDay.days[i])
         }
 
         return newDays
@@ -62,10 +61,5 @@ struct MonthView: View {
 }
 
 //#Preview {
-//    let config = ModelConfiguration(isStoredInMemoryOnly: true)
-//    let container = try! ModelContainer(for: AdHocDuty.self, configurations: config)
-//
-//    let duty = AdHocDuty(duty: "717", route: "321", start: .now, end: .now.addingTimeInterval(6400), breakTime: .now)
-//    return MonthView(selectedDate: .constant(.now), monthEvents: <#Binding<[EKEvent]>#>, duties: [duty])
-//        .modelContainer(container)
+//    MonthView(selectedDate: .constant(.now), monthEvents: <#Binding<[EKEvent]>#>, duties: AdHocDuty.sampleAdHocDuties)
 //}

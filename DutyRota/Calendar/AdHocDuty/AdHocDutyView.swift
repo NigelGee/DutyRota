@@ -32,6 +32,7 @@ struct AdHocDutyView: View {
     }
 }
 
-//#Preview {
-//    AdHocDutyView(selectedDate: .constant(.now))
-//}
+#Preview {
+    AdHocDutyView(filteredDuties: AdHocDuty.sampleAdHocDuties)
+        .padding(.horizontal)
+}

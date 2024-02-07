@@ -133,5 +133,7 @@ struct CalendarView: View {
 }
 
 #Preview {
-    CalendarView()
+    let preview = PreviewContainer(AdHocDuty.self)
+    return CalendarView()
+        .modelContainer(preview.container)
 }
