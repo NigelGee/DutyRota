@@ -56,12 +56,12 @@ struct DutyView: View {
             }
             .sheet(item: $duty) { duty in
                 EditDutyView(duty: duty, isEnd: $isEnd, isEdit: $isEdit)
-                    .presentationDetents([.medium])
+                    .presentationDetents([.height(210)])
             }
             .alert("A Current Duty End Date", isPresented: $isPeriodStartDateError) {
                 Button("Ok") { }
             } message: {
-                Text("One of the duties does not have a Period End Date. Amend this by tap and hold on the duty and amend it to the date that it ends.")
+                Text("One of the duties does not have a Period End Date. To amend this by tap and hold on the duty and change the end date.")
             }
         }
     }
@@ -76,7 +76,7 @@ struct DutyView: View {
                 isPeriodStartDateError = true
                 return
             } else {
-                startDate = Calendar.current.date(byAdding: .day, value: 1, to: startDate)!
+                startDate = Calendar.current.date(byAdding: .day, value: 1, to: maxEndDate ?? .now)!
             }
         }
 

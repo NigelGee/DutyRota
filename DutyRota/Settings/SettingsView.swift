@@ -13,11 +13,17 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Picker("Start Week On", selection: $startDayOfWeek) {
-                    ForEach(WeekDay.allCases, id: \.self) {
-                        Text($0.name)
-                            .id($0.rawValue)
+                Section("Week Start") {
+                    Picker("Start Week On", selection: $startDayOfWeek) {
+                        ForEach(WeekDay.allCases, id: \.self) {
+                            Text($0.name)
+                                .id($0.rawValue)
+                        }
                     }
+                }
+
+                Section("More") {
+                    Text("Hello World!")
                 }
             }
             .navigationTitle("Settings")
