@@ -51,7 +51,20 @@ extension Date {
         }
         return date
     }
-    
+
+    var formattedTime: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter.string(from: self)
+    }
+
+    static var zeroTime: Date {
+        var components = DateComponents()
+        components.hour = 0
+        components.minute = 0
+        return Calendar.current.date(from: components)!
+    }
+
     /// A method that give all the days in a month
     /// - Parameter weekStart: Start of the week
     /// - Returns: An Array of dates in a month + dates preceding the first of month
@@ -105,5 +118,17 @@ extension Date {
         guard start < end else { return false }
         let range = start...end
         return range.contains(self)
+    }
+}
+
+extension String {
+    var formattedDate: Date {
+        var string = self
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        if string.isEmpty {
+            string = "00:00"
+        }
+        return dateFormatter.date(from: string) ?? .now
     }
 }

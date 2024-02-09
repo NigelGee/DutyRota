@@ -11,7 +11,6 @@ struct EditDutyView: View {
     @Bindable var duty: Duty
 
     @Binding var isEnd: Bool
-
     @Binding var isEdit: Bool
 
     var body: some View {

@@ -19,6 +19,7 @@
 		8B12FD722B72771600A22940 /* AdHocDutySamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FD712B72771600A22940 /* AdHocDutySamples.swift */; };
 		8B12FD762B7303E100A22940 /* SampleDuty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FD752B7303E100A22940 /* SampleDuty.swift */; };
 		8B12FD782B73809800A22940 /* EditDutyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FD772B73809800A22940 /* EditDutyView.swift */; };
+		8B12FD7A2B74BEF200A22940 /* EditDutyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FD792B74BEF200A22940 /* EditDutyDetailView.swift */; };
 		8B6F5BC32B67C803003B54F5 /* AdHocDuty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5BC22B67C803003B54F5 /* AdHocDuty.swift */; };
 		8B6F5BC52B67CA48003B54F5 /* AdHocDutyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5BC42B67CA48003B54F5 /* AdHocDutyView.swift */; };
 		8B6F5BC92B692160003B54F5 /* Collection - isNotEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5BC82B692160003B54F5 /* Collection - isNotEmpty.swift */; };
@@ -53,6 +54,7 @@
 		8B12FD712B72771600A22940 /* AdHocDutySamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocDutySamples.swift; sourceTree = "<group>"; };
 		8B12FD752B7303E100A22940 /* SampleDuty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleDuty.swift; sourceTree = "<group>"; };
 		8B12FD772B73809800A22940 /* EditDutyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDutyView.swift; sourceTree = "<group>"; };
+		8B12FD792B74BEF200A22940 /* EditDutyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDutyDetailView.swift; sourceTree = "<group>"; };
 		8B6F5BC22B67C803003B54F5 /* AdHocDuty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocDuty.swift; sourceTree = "<group>"; };
 		8B6F5BC42B67CA48003B54F5 /* AdHocDutyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocDutyView.swift; sourceTree = "<group>"; };
 		8B6F5BC82B692160003B54F5 /* Collection - isNotEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection - isNotEmpty.swift"; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				8B12FD6B2B7155ED00A22940 /* DutyView.swift */,
 				8B12FD772B73809800A22940 /* EditDutyView.swift */,
 				8B12FD6D2B71725B00A22940 /* DutyDetailView.swift */,
+				8B12FD792B74BEF200A22940 /* EditDutyDetailView.swift */,
 				8B12FD1F2B6FF4B500A22940 /* Duty.swift */,
 				8B12FD5C2B70125900A22940 /* DutyDetail.swift */,
 			);
@@ -273,6 +276,7 @@
 				8B7137F42B66D39800627BF6 /* Date-Helper.swift in Sources */,
 				8B12FD762B7303E100A22940 /* SampleDuty.swift in Sources */,
 				8B12FD6E2B71725B00A22940 /* DutyDetailView.swift in Sources */,
+				8B12FD7A2B74BEF200A22940 /* EditDutyDetailView.swift in Sources */,
 				8B12FD6C2B7155ED00A22940 /* DutyView.swift in Sources */,
 				8B12FD782B73809800A22940 /* EditDutyView.swift in Sources */,
 				8B6F5BCB2B696B8B003B54F5 /* AddNewEventView.swift in Sources */,

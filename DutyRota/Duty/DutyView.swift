@@ -58,7 +58,7 @@ struct DutyView: View {
                 EditDutyView(duty: duty, isEnd: $isEnd, isEdit: $isEdit)
                     .presentationDetents([.height(210)])
             }
-            .alert("A Current Duty End Date", isPresented: $isPeriodStartDateError) {
+            .alert("Error in Duty End Date!", isPresented: $isPeriodStartDateError) {
                 Button("Ok") { }
             } message: {
                 Text("One of the duties does not have a Period End Date. To amend this by tap and hold on the duty and change the end date.")
@@ -92,11 +92,6 @@ struct DutyView: View {
             let object = duties[item]
             modelContext.delete(object)
         }
-    }
-
-    func addSamples() {
-        let object = Duty(periodStart: .now, periodEnd: .distantFuture)
-        modelContext.insert(object)
     }
 }
 

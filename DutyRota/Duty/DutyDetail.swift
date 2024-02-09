@@ -25,10 +25,18 @@ class DutyDetail: Comparable {
     var dutySpread: String {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute]
-
-        let newSpread = end.timeIntervalSinceReferenceDate - start.timeIntervalSinceReferenceDate
-
-        return formatter.string(from: newSpread) ?? "Spread"
+        let newSpread: Double
+        if end == start {
+            newSpread = 0
+        } else if end > start {
+            newSpread = end.timeIntervalSinceReferenceDate - start.timeIntervalSinceReferenceDate
+        } else {
+            let before = start.endOfDay.timeIntervalSinceReferenceDate - start.timeIntervalSinceReferenceDate + 1
+            let after = end.timeIntervalSinceReferenceDate - end.startOfDay.timeIntervalSinceReferenceDate
+            newSpread = after + before
+        }
+        let time = formatter.string(from: newSpread) ?? "Spread"
+        return time == "0" ? "00:00" : time
     }
 
     var dutyBreakTime: String {
@@ -38,12 +46,30 @@ class DutyDetail: Comparable {
         let hour = (components.hour ?? 0) * 60 * 60
         let minute = (components.minute ?? 0) * 60
 
-        let newTOD = end.timeIntervalSinceReferenceDate - start.timeIntervalSinceReferenceDate - Double(hour + minute)
+        let newTOD: Double
 
-        return formatter.string(from: newTOD) ?? "Time"
+        if end == start {
+            newTOD = 0
+        } else if end > start {
+            newTOD = end.timeIntervalSinceReferenceDate - start.timeIntervalSinceReferenceDate - Double(hour + minute)
+        } else {
+            let before = start.endOfDay.timeIntervalSinceReferenceDate - start.timeIntervalSinceReferenceDate + 1
+            let after = end.timeIntervalSinceReferenceDate - end.startOfDay.timeIntervalSinceReferenceDate
+            newTOD = before + after - Double(hour + minute)
+        }
+        
+        let time = formatter.string(from: newTOD) ?? "Time"
+
+        return time == "0" ? "00:00" : time
     }
 
     static func <(lhs: DutyDetail, rhs: DutyDetail) -> Bool {
-        lhs.title < rhs.title /*&& lhs.start < rhs.start*/
+        if lhs.title == "" {
+            return false
+        } else if rhs.title == "" {
+            return true
+        }
+
+        return lhs.title < rhs.title
     }
 }
