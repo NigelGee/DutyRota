@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EditDutyDetailView: View {
+struct AddDutyDetailView: View {
     @Bindable var duty: Duty
 
     @State private var title = ""
@@ -15,6 +15,13 @@ struct EditDutyDetailView: View {
     @State private var end = Date.zeroTime
     @State private var tod = Date.zeroTime
     @State private var showAlert = false
+    @State private var selectedColor: String
+    @State private var showColorPicker = false
+
+    init(duty: Duty, selectedColor: String) {
+        self.duty = duty
+        _selectedColor = State(wrappedValue: selectedColor)
+    }
 
     var body: some View {
         NavigationStack {
@@ -29,6 +36,23 @@ struct EditDutyDetailView: View {
                 DatePicker("Sign On:", selection: $start, displayedComponents: .hourAndMinute)
                 DatePicker("Sign Off:", selection: $end, displayedComponents: .hourAndMinute)
                 DatePicker("Time On Duty:", selection: $tod, displayedComponents: .hourAndMinute)
+
+                HStack {
+                    Text("Duty Colour:")
+                    Spacer()
+                    Button {
+                        showColorPicker = true
+                    } label: {
+                        Color(selectedColor)
+                            .frame(width: 30, height: 30)
+                            .clipShape(RoundedRectangle(cornerRadius: 5))
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 5)
+                                    .strokeBorder(.primary, lineWidth: 1)
+                            }
+                    }
+                }
+
                 Button("Add", action: addDuty)
                     .buttonStyle(.borderedProminent)
                     .disabled(title.isEmpty)
@@ -58,7 +82,10 @@ struct EditDutyDetailView: View {
             } message: {
                 Text("This duty already exist. Check to see if you want to delete existing duty or keep it.")
             }
-
+            .sheet(isPresented: $showColorPicker) {
+                ColorPickerView(selectedColor: $selectedColor)
+                    .presentationDetents([.height(250)])
+            }
         }
     }
 
@@ -69,7 +96,7 @@ struct EditDutyDetailView: View {
             return
         }
 
-        let newDuty = DutyDetail(title: title, start: start, end: end, tod: tod)
+        let newDuty = DutyDetail(title: title, start: start, end: end, tod: tod, color: selectedColor)
         duty.dutyDetails.append(newDuty)
         
         title = ""
@@ -81,6 +108,6 @@ struct EditDutyDetailView: View {
 
 #Preview {
     let preview = PreviewContainer(Duty.self)
-    return EditDutyDetailView(duty: Duty.sampleDuties[0])
+    return AddDutyDetailView(duty: Duty.sampleDuties[0], selectedColor: "dutyGreen")
         .modelContainer(preview.container)
 }

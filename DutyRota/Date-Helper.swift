@@ -65,6 +65,21 @@ extension Date {
         return Calendar.current.date(from: components)!
     }
 
+    /// Returns a date by add a number of days to given date.
+    /// - Parameter day: A number to advance the date by.
+    /// - Returns: A `Date` with  number of day(s) added.
+    ///
+    /// `let fiveDayFromToday = Date.now.add(day: 5)`.
+    ///
+    /// By using minus number will return a date before given date.
+    public func add(day: Int) -> Date {
+        let calendar = Calendar.current
+        guard let date = calendar.date(byAdding: DateComponents(day: day), to: self) else {
+            fatalError("Unable to get start date from date")
+        }
+        return date
+    }
+
     /// A method that give all the days in a month
     /// - Parameter weekStart: Start of the week
     /// - Returns: An Array of dates in a month + dates preceding the first of month

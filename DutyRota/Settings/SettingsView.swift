@@ -9,6 +9,9 @@ import SwiftUI
 
 struct SettingsView: View {
     @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.sunday
+    @AppStorage("defaultColor") var defaultColor = "dutyGreen"
+
+    @State private var showColorPicker = false
 
     var body: some View {
         NavigationStack {
@@ -22,12 +25,30 @@ struct SettingsView: View {
                     }
                 }
 
-                Section("More") {
-                    Text("Hello World!")
+                Section("Colours") {
+                    HStack {
+                        Text("Default Duty Colour:")
+                        Spacer()
+                        Button {
+                            showColorPicker = true
+                        } label: {
+                            Color(defaultColor)
+                                .frame(width: 30, height: 30)
+                                .clipShape(RoundedRectangle(cornerRadius: 5))
+                        }
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 5)
+                                .strokeBorder(.primary, lineWidth: 1)
+                        }
+                    }
                 }
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
+            .sheet(isPresented: $showColorPicker) {
+                ColorPickerView(selectedColor: $defaultColor)
+                    .presentationDetents([.height(250)])
+            }
         }
     }
 }

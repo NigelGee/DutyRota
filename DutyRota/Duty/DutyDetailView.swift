@@ -9,13 +9,19 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct DutyDetailView: View {
+    @AppStorage("defaultColor") var defaultColor = "dutyGreen"
     @Environment(\.modelContext) var modelContext
-    var duty: Duty
+    @Bindable var duty: Duty
 
     @State private var showAddNewDuty = false
+
     @State private var isImporting = false
+    @State private var isExporting: Bool = false
 
     @State private var search = ""
+
+    @State private var showErrorImporting = false
+    @State private var message = ""
 
     var navigationTitle: String {
         let start = "\(duty.periodStart.formatted(date: .abbreviated, time: .omitted))"
@@ -30,10 +36,10 @@ struct DutyDetailView: View {
 
     var filteredDutyDetails: [DutyDetail] {
         if search.isNotEmpty {
-            return duty.dutyDetails.filter { $0.title.localizedCaseInsensitiveContains(search) }
+            return duty.dutyDetails.filter { $0.title.localizedCaseInsensitiveContains(search) }.sorted()
         }
 
-        return duty.dutyDetails
+        return duty.dutyDetails.sorted()
     }
 
     var body: some View {
@@ -58,8 +64,10 @@ struct DutyDetailView: View {
                         }
                     }
                     .font(.callout)
+                    .listRowBackground(Color(dutyDetail.color))
                 }
                 .onDelete(perform: deleteDutyDetail)
+
             } else {
                 ContentUnavailableView.search
             }
@@ -72,26 +80,23 @@ struct DutyDetailView: View {
                 Label("Add Duty", systemImage: "plus")
             }
 
-            Menu {
+            Menu("More", systemImage: "tray") {
                 Button {
                     isImporting = true
                 } label: {
-                    Label("Import", systemImage: "tray.and.arrow.down.fill")
+                    Label("Import", systemImage: "tray.and.arrow.down")
                 }
 
                 Button {
-
+                    isExporting = true
                 } label: {
-                    Label("Export", systemImage: "tray.and.arrow.up.fill")
+                    Label("Export", systemImage: "tray.and.arrow.up")
                 }
-            } label: {
-                Label("More", systemImage: "tray")
             }
         }
         .onAppear(perform: onAppearDefault)
-        .sheet(isPresented: $showAddNewDuty) {
-            EditDutyDetailView(duty: duty)
-        }
+        .sheet(isPresented: $showAddNewDuty) { AddDutyDetailView(duty: duty, selectedColor: defaultColor) }
+        .searchable(text: $search)
         .fileImporter(
             isPresented: $isImporting,
             allowedContentTypes: [UTType.plainText],
@@ -107,22 +112,43 @@ struct DutyDetailView: View {
 
                 selectedFile.stopAccessingSecurityScopedResource()
             } catch {
-                Swift.print(error.localizedDescription)
+                message = "\(error.localizedDescription)"
+                showErrorImporting = true
             }
         }
-        .searchable(text: $search)
+        .fileExporter(
+            isPresented: $isExporting,
+            document: DutyDetail.makeExportFile(from: duty.dutyDetails),
+            contentType: UTType.commaSeparatedText,
+            defaultFilename: "Duties"
+        ) { result in
+            if case .success = result {
+                Swift.print("Success!")
+            } else {
+                Swift.print("Something went wrong…")
+            }
+        }
+        .alert("Error in Importing file", isPresented: $showErrorImporting) {
+            Button("Ok") { }
+        } message: {
+            Text(message)
+        }
     }
 
-    func deleteDutyDetail(at offSets: IndexSet) {
-        duty.dutyDetails.remove(atOffsets: offSets)
+    func deleteDutyDetail(_ indexSets: IndexSet) {
+        for item in indexSets {
+            let object = filteredDutyDetails[item]
+            modelContext.delete(object)
+            duty.dutyDetails.removeAll(where: { $0 == object })
+        }
     }
 
     func onAppearDefault() {
         guard duty.dutyDetails.isEmpty else { return }
        
-        let emptyDetail = DutyDetail(title: "", start: Date.zeroTime, end: Date.zeroTime, tod: Date.zeroTime)
-        let restDetail = DutyDetail(title: "Rest", start: Date.zeroTime, end: Date.zeroTime, tod: Date.zeroTime)
-        let spareDetail = DutyDetail(title: "Spare", start: Date.zeroTime, end: Date.zeroTime, tod: Date.zeroTime)
+        let emptyDetail = DutyDetail(title: "", start: Date.zeroTime, end: Date.zeroTime, tod: Date.zeroTime, color: "dutySilver")
+        let restDetail = DutyDetail(title: "Rest", start: Date.zeroTime, end: Date.zeroTime, tod: Date.zeroTime, color: "dutySilver")
+        let spareDetail = DutyDetail(title: "Spare", start: Date.zeroTime, end: Date.zeroTime, tod: Date.zeroTime, color: "dutyYellow")
         duty.dutyDetails.append(emptyDetail)
         duty.dutyDetails.append(restDetail)
         duty.dutyDetails.append(spareDetail)
@@ -150,15 +176,16 @@ struct DutyDetailView: View {
 
         for row in rows {
             let columns = row.components(separatedBy: ",")
-            let newDuty = DutyDetail(title: columns[0], start: columns[1].formattedDate, end: columns[2].formattedDate, tod: columns[3].formattedDate)
+            guard columns.count >= 4 else { continue }
+            if columns[0] == "Spare" || columns[0] == "Rest" || columns[0] == "" { continue }
+            let newDuty = DutyDetail(title: columns[0], start: columns[1].formattedDate, end: columns[2].formattedDate, tod: columns[3].formattedDate, color: defaultColor)
             duty.dutyDetails.append(newDuty)
         }
     }
 }
 
 //#Preview {
-//    let preview = PreviewContainer(DutyDetail.self)
-//    preview.addExamples(of: Duty.sampleDuties)
+//    let preview = PreviewContainer(DutyDetail.self, DutyDetail.self)
 //    return DutyDetailView(duty: Duty.sampleDuties[0])
 //        .modelContainer(preview.container)
 //}

@@ -28,8 +28,10 @@ struct MonthRowView: View {
                     VStack {
                         Text(day.date, format: .dateTime.day())
                             .selected(date: selectedDate, sameAs: day.date)
+                            .bold()
                     }
                 }
+                .buttonStyle(.plain)
                 .frame(width: 42, height: 42)
             }
 

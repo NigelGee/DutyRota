@@ -19,7 +19,8 @@
 		8B12FD722B72771600A22940 /* AdHocDutySamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FD712B72771600A22940 /* AdHocDutySamples.swift */; };
 		8B12FD762B7303E100A22940 /* SampleDuty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FD752B7303E100A22940 /* SampleDuty.swift */; };
 		8B12FD782B73809800A22940 /* EditDutyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FD772B73809800A22940 /* EditDutyView.swift */; };
-		8B12FD7A2B74BEF200A22940 /* EditDutyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FD792B74BEF200A22940 /* EditDutyDetailView.swift */; };
+		8B12FD7A2B74BEF200A22940 /* AddDutyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FD792B74BEF200A22940 /* AddDutyDetailView.swift */; };
+		8B12FDEA2B77A07600A22940 /* ExportDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FDE92B77A07600A22940 /* ExportDocument.swift */; };
 		8B6F5BC32B67C803003B54F5 /* AdHocDuty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5BC22B67C803003B54F5 /* AdHocDuty.swift */; };
 		8B6F5BC52B67CA48003B54F5 /* AdHocDutyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5BC42B67CA48003B54F5 /* AdHocDutyView.swift */; };
 		8B6F5BC92B692160003B54F5 /* Collection - isNotEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5BC82B692160003B54F5 /* Collection - isNotEmpty.swift */; };
@@ -39,6 +40,8 @@
 		8B7137FC2B66D5CF00627BF6 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137FB2B66D5CF00627BF6 /* MonthView.swift */; };
 		8B7137FE2B66D96D00627BF6 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137FD2B66D96D00627BF6 /* EventView.swift */; };
 		8B7138002B66DA6500627BF6 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137FF2B66DA6500627BF6 /* ButtonView.swift */; };
+		8BF7C8A32B79481C00346B7A /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7C8A22B79481C00346B7A /* ColorPickerView.swift */; };
+		8BF7C8A52B794B1B00346B7A /* ColorPickerDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7C8A42B794B1B00346B7A /* ColorPickerDisplayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,7 +57,8 @@
 		8B12FD712B72771600A22940 /* AdHocDutySamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocDutySamples.swift; sourceTree = "<group>"; };
 		8B12FD752B7303E100A22940 /* SampleDuty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleDuty.swift; sourceTree = "<group>"; };
 		8B12FD772B73809800A22940 /* EditDutyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDutyView.swift; sourceTree = "<group>"; };
-		8B12FD792B74BEF200A22940 /* EditDutyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDutyDetailView.swift; sourceTree = "<group>"; };
+		8B12FD792B74BEF200A22940 /* AddDutyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDutyDetailView.swift; sourceTree = "<group>"; };
+		8B12FDE92B77A07600A22940 /* ExportDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportDocument.swift; sourceTree = "<group>"; };
 		8B6F5BC22B67C803003B54F5 /* AdHocDuty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocDuty.swift; sourceTree = "<group>"; };
 		8B6F5BC42B67CA48003B54F5 /* AdHocDutyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocDutyView.swift; sourceTree = "<group>"; };
 		8B6F5BC82B692160003B54F5 /* Collection - isNotEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection - isNotEmpty.swift"; sourceTree = "<group>"; };
@@ -76,6 +80,8 @@
 		8B7137FB2B66D5CF00627BF6 /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
 		8B7137FD2B66D96D00627BF6 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		8B7137FF2B66DA6500627BF6 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		8BF7C8A22B79481C00346B7A /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
+		8BF7C8A42B794B1B00346B7A /* ColorPickerDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerDisplayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,9 +101,10 @@
 				8B12FD6B2B7155ED00A22940 /* DutyView.swift */,
 				8B12FD772B73809800A22940 /* EditDutyView.swift */,
 				8B12FD6D2B71725B00A22940 /* DutyDetailView.swift */,
-				8B12FD792B74BEF200A22940 /* EditDutyDetailView.swift */,
+				8B12FD792B74BEF200A22940 /* AddDutyDetailView.swift */,
 				8B12FD1F2B6FF4B500A22940 /* Duty.swift */,
 				8B12FD5C2B70125900A22940 /* DutyDetail.swift */,
+				8B12FDE92B77A07600A22940 /* ExportDocument.swift */,
 			);
 			path = Duty;
 			sourceTree = "<group>";
@@ -159,6 +166,8 @@
 				8B12FD5E2B70128A00A22940 /* Duty */,
 				8B6F5C262B6C3146003B54F5 /* Settings */,
 				8B7137F72B66D41900627BF6 /* SelectedDateModifier.swift */,
+				8BF7C8A22B79481C00346B7A /* ColorPickerView.swift */,
+				8BF7C8A42B794B1B00346B7A /* ColorPickerDisplayView.swift */,
 				8B7137F32B66D39800627BF6 /* Date-Helper.swift */,
 				8B6F5BC82B692160003B54F5 /* Collection - isNotEmpty.swift */,
 				8B12FD632B70B35800A22940 /* EKEvent-Extension.swift */,
@@ -263,20 +272,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BF7C8A52B794B1B00346B7A /* ColorPickerDisplayView.swift in Sources */,
 				8B6F5C232B6C2CB8003B54F5 /* SettingsView.swift in Sources */,
 				8B12FD622B704DF200A22940 /* EventEditViewController.swift in Sources */,
 				8B6F5BC92B692160003B54F5 /* Collection - isNotEmpty.swift in Sources */,
 				8B7137E62B66D31700627BF6 /* ContentView.swift in Sources */,
 				8B7137E42B66D31700627BF6 /* DutyRotaApp.swift in Sources */,
 				8B7137F62B66D3D900627BF6 /* CalendarDate.swift in Sources */,
+				8B12FDEA2B77A07600A22940 /* ExportDocument.swift in Sources */,
 				8B12FD722B72771600A22940 /* AdHocDutySamples.swift in Sources */,
+				8BF7C8A32B79481C00346B7A /* ColorPickerView.swift in Sources */,
 				8B12FD202B6FF4B500A22940 /* Duty.swift in Sources */,
 				8B7137F22B66D37A00627BF6 /* CalendarView.swift in Sources */,
 				8B12FD1E2B6D972600A22940 /* MonthRowView.swift in Sources */,
 				8B7137F42B66D39800627BF6 /* Date-Helper.swift in Sources */,
 				8B12FD762B7303E100A22940 /* SampleDuty.swift in Sources */,
 				8B12FD6E2B71725B00A22940 /* DutyDetailView.swift in Sources */,
-				8B12FD7A2B74BEF200A22940 /* EditDutyDetailView.swift in Sources */,
+				8B12FD7A2B74BEF200A22940 /* AddDutyDetailView.swift in Sources */,
 				8B12FD6C2B7155ED00A22940 /* DutyView.swift in Sources */,
 				8B12FD782B73809800A22940 /* EditDutyView.swift in Sources */,
 				8B6F5BCB2B696B8B003B54F5 /* AddNewEventView.swift in Sources */,

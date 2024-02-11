@@ -15,9 +15,9 @@ struct SelectedDate: ViewModifier {
         if date2.sameDay(as: .now) {
             return.red
         } else if date2 < .now {
-            return .secondary
+            return .secondary/*.black.opacity(0.4)*/
         } else {
-            return .primary
+            return .primary/*.black*/
         }
     }
 

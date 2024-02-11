@@ -14,12 +14,14 @@ class DutyDetail: Comparable {
     var start: Date
     var end: Date
     var tod: Date
+    var color: String
 
-    init(title: String, start: Date, end: Date, tod: Date) {
+    init(title: String, start: Date, end: Date, tod: Date, color: String = "dutyGreen") {
         self.title = title
         self.start = start
         self.end = end
         self.tod = tod
+        self.color = color
     }
 
     var dutySpread: String {
@@ -61,6 +63,15 @@ class DutyDetail: Comparable {
         let time = formatter.string(from: newTOD) ?? "Time"
 
         return time == "0" ? "00:00" : time
+    }
+
+    static func makeExportFile(from dutyDetails: [DutyDetail]) -> ExportDocument {
+        var payLoad = "Duty, Sign On, Sign Off, TOD\n"
+        for detail in dutyDetails {
+            payLoad += "\(detail.title), \(detail.start.formattedTime), \(detail.end.formattedTime), \(detail.tod.formattedTime)\n"
+        }
+
+        return ExportDocument(payLoad: payLoad)
     }
 
     static func <(lhs: DutyDetail, rhs: DutyDetail) -> Bool {
