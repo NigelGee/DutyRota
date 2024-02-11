@@ -31,8 +31,6 @@ struct CalendarView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                ButtonView(selectedDate: $selectedDate)
-
                 MonthView(selectedDate: $selectedDate, monthEvents: $monthEvents, duties: adHocDuties)
 
                 if events.isNotEmpty || filteredDuties.isNotEmpty {
@@ -56,10 +54,16 @@ struct CalendarView: View {
                 loadEvent()
             }
             .toolbar {
-                Button {
-                    showDialog = true
-                } label: {
-                    Label("Add AdHoc", systemImage: "calendar.badge.plus")
+                ToolbarItem(placement: .primaryAction) {
+                    Button {
+                        showDialog = true
+                    } label: {
+                        Label("Add AdHoc", systemImage: "calendar.badge.plus")
+                    }
+                }
+
+                ToolbarItem(placement: .principal) {
+                    ButtonView(selectedDate: $selectedDate)
                 }
             }
             .sheet(isPresented: $showAddAdHocDuty, onDismiss: onDismiss) {

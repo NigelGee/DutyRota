@@ -46,10 +46,10 @@ struct AddDutyDetailView: View {
                         Color(selectedColor)
                             .frame(width: 30, height: 30)
                             .clipShape(RoundedRectangle(cornerRadius: 5))
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 5)
-                                    .strokeBorder(.primary, lineWidth: 1)
-                            }
+                    }
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 5)
+                            .strokeBorder(.primary, lineWidth: 1)
                     }
                 }
 

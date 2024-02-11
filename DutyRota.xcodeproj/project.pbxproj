@@ -42,6 +42,7 @@
 		8B7138002B66DA6500627BF6 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137FF2B66DA6500627BF6 /* ButtonView.swift */; };
 		8BF7C8A32B79481C00346B7A /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7C8A22B79481C00346B7A /* ColorPickerView.swift */; };
 		8BF7C8A52B794B1B00346B7A /* ColorPickerDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7C8A42B794B1B00346B7A /* ColorPickerDisplayView.swift */; };
+		8BF7C8A72B796B6E00346B7A /* EditDutyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7C8A62B796B6E00346B7A /* EditDutyDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		8B7137FF2B66DA6500627BF6 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		8BF7C8A22B79481C00346B7A /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		8BF7C8A42B794B1B00346B7A /* ColorPickerDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerDisplayView.swift; sourceTree = "<group>"; };
+		8BF7C8A62B796B6E00346B7A /* EditDutyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDutyDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				8B12FD772B73809800A22940 /* EditDutyView.swift */,
 				8B12FD6D2B71725B00A22940 /* DutyDetailView.swift */,
 				8B12FD792B74BEF200A22940 /* AddDutyDetailView.swift */,
+				8BF7C8A62B796B6E00346B7A /* EditDutyDetailView.swift */,
 				8B12FD1F2B6FF4B500A22940 /* Duty.swift */,
 				8B12FD5C2B70125900A22940 /* DutyDetail.swift */,
 				8B12FDE92B77A07600A22940 /* ExportDocument.swift */,
@@ -283,6 +286,7 @@
 				8B12FD722B72771600A22940 /* AdHocDutySamples.swift in Sources */,
 				8BF7C8A32B79481C00346B7A /* ColorPickerView.swift in Sources */,
 				8B12FD202B6FF4B500A22940 /* Duty.swift in Sources */,
+				8BF7C8A72B796B6E00346B7A /* EditDutyDetailView.swift in Sources */,
 				8B7137F22B66D37A00627BF6 /* CalendarView.swift in Sources */,
 				8B12FD1E2B6D972600A22940 /* MonthRowView.swift in Sources */,
 				8B7137F42B66D39800627BF6 /* Date-Helper.swift in Sources */,

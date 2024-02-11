@@ -11,7 +11,7 @@ struct ButtonView: View {
     @Binding var selectedDate: Date
 
     var body: some View {
-        HStack(spacing: 50) {
+        HStack(spacing: 30) {
             Button {
                 withAnimation {
                     changeMonth(by: -1)

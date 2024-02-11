@@ -83,4 +83,6 @@ class DutyDetail: Comparable {
 
         return lhs.title < rhs.title
     }
+
+    static let example = DutyDetail(title: "701", start: .now, end: .now, tod: .now, color: "dutyGreen")
 }

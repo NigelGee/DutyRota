@@ -46,24 +46,26 @@ struct DutyDetailView: View {
         List {
             if filteredDutyDetails.isNotEmpty {
                 ForEach(filteredDutyDetails) { dutyDetail in
-                    VStack {
-                        HStack {
-                            Text("Duty: **\(dutyDetail.title)**")
-                            Spacer()
-                            Text("Start: **\(dutyDetail.start.formattedTime)**")
-                            Spacer()
-                            Text("Finish: **\(dutyDetail.end.formattedTime)**")
-                        }
+                    NavigationLink(value: dutyDetail) {
+                        VStack {
+                            HStack {
+                                Text("Duty: **\(dutyDetail.title)**")
+                                Spacer()
+                                Text("Start: **\(dutyDetail.start.formattedTime)**")
+                                Spacer()
+                                Text("Finish: **\(dutyDetail.end.formattedTime)**")
+                            }
 
-                        HStack {
-                            Text("TOD: **\(dutyDetail.tod.formattedTime)**")
-                            Spacer()
-                            Text("Break: **\(dutyDetail.dutyBreakTime)**")
-                            Spacer()
-                            Text("Spd: **\(dutyDetail.dutySpread)**")
+                            HStack {
+                                Text("TOD: **\(dutyDetail.tod.formattedTime)**")
+                                Spacer()
+                                Text("Break: **\(dutyDetail.dutyBreakTime)**")
+                                Spacer()
+                                Text("Spd: **\(dutyDetail.dutySpread)**")
+                            }
                         }
+                        .font(.system(size: 18))
                     }
-                    .font(.callout)
                     .listRowBackground(Color(dutyDetail.color))
                 }
                 .onDelete(perform: deleteDutyDetail)
@@ -93,6 +95,9 @@ struct DutyDetailView: View {
                     Label("Export", systemImage: "tray.and.arrow.up")
                 }
             }
+        }
+        .navigationDestination(for: DutyDetail.self) { dutyDetail in
+            EditDutyDetailView(dutyDetail: dutyDetail)
         }
         .onAppear(perform: onAppearDefault)
         .sheet(isPresented: $showAddNewDuty) { AddDutyDetailView(duty: duty, selectedColor: defaultColor) }
@@ -146,7 +151,7 @@ struct DutyDetailView: View {
     func onAppearDefault() {
         guard duty.dutyDetails.isEmpty else { return }
        
-        let emptyDetail = DutyDetail(title: "", start: Date.zeroTime, end: Date.zeroTime, tod: Date.zeroTime, color: "dutySilver")
+        let emptyDetail = DutyDetail(title: "", start: Date.zeroTime, end: Date.zeroTime, tod: Date.zeroTime, color: "dutyClear")
         let restDetail = DutyDetail(title: "Rest", start: Date.zeroTime, end: Date.zeroTime, tod: Date.zeroTime, color: "dutySilver")
         let spareDetail = DutyDetail(title: "Spare", start: Date.zeroTime, end: Date.zeroTime, tod: Date.zeroTime, color: "dutyYellow")
         duty.dutyDetails.append(emptyDetail)
