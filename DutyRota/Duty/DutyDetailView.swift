@@ -64,7 +64,7 @@ struct DutyDetailView: View {
                                 Text("Spd: **\(dutyDetail.dutySpread)**")
                             }
                         }
-                        .font(.system(size: 18))
+                        .font(.system(size: 16))
                     }
                     .listRowBackground(Color(dutyDetail.color))
                 }
@@ -182,8 +182,16 @@ struct DutyDetailView: View {
         for row in rows {
             let columns = row.components(separatedBy: ",")
             guard columns.count >= 4 else { continue }
-            if columns[0] == "Spare" || columns[0] == "Rest" || columns[0] == "" { continue }
-            let newDuty = DutyDetail(title: columns[0], start: columns[1].formattedDate, end: columns[2].formattedDate, tod: columns[3].formattedDate, color: defaultColor)
+            guard columns[0] != "Spare" || columns[0] != "Rest" || columns[0] != "" else { continue }
+            
+            let color: String
+            if columns.count > 4 {
+                color = columns[4]
+            } else {
+                color = defaultColor
+            }
+
+            let newDuty = DutyDetail(title: columns[0], start: columns[1].formattedDate, end: columns[2].formattedDate, tod: columns[3].formattedDate, color: color)
             duty.dutyDetails.append(newDuty)
         }
     }

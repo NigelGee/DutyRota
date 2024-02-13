@@ -68,7 +68,7 @@ class DutyDetail: Comparable {
     static func makeExportFile(from dutyDetails: [DutyDetail]) -> ExportDocument {
         var payLoad = "Duty, Sign On, Sign Off, TOD\n"
         for detail in dutyDetails {
-            payLoad += "\(detail.title), \(detail.start.formattedTime), \(detail.end.formattedTime), \(detail.tod.formattedTime)\n"
+            payLoad += "\(detail.title), \(detail.start.formattedTime), \(detail.end.formattedTime), \(detail.tod.formattedTime), \(detail.color)\n"
         }
 
         return ExportDocument(payLoad: payLoad)

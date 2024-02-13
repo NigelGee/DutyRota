@@ -6,21 +6,23 @@
 //
 
 import EventKit
+import SwiftData
 import SwiftUI
 
 struct MonthRowView: View {
     var monthEvents: [EKEvent]
-    var duties: [AdHocDuty]
+    var adHocDuties: [AdHocDuty]
     var day: CalendarDate
 
     @Binding var selectedDate: Date
+    var startOfCalendar: Date
 
     var filteredDuties: [AdHocDuty] {
-        duties.filter { $0.start > selectedDate.startDateOfMonth && $0.start < selectedDate.endDateOfMonth }
+        adHocDuties.filter { $0.start > selectedDate.startDateOfMonth && $0.start < selectedDate.endDateOfMonth }
     }
 
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             if day.date >= selectedDate.startDateOfMonth {
                 Button {
                     selectedDate = day.date
@@ -51,10 +53,13 @@ struct MonthRowView: View {
                         .frame(width: 5)
                 }
             }
+            .padding(.bottom, 10)
         }
     }
 }
 
 //#Preview {
-//    MonthRowView(monthEvents: <#[EKEvent]#>, duties: AdHocDuty.sampleAdHocDuties, day: CalendarDate(date: .now), selectedDate: .constant(.now))
+//    MonthRowView(monthEvents: <#[EKEvent]#>, adHocDuties: AdHocDuty.sampleAdHocDuties, day: CalendarDate(date: .now), selectedDate: .constant(.now))
 //}
+
+

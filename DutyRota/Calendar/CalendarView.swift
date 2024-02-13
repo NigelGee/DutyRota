@@ -31,7 +31,7 @@ struct CalendarView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                MonthView(selectedDate: $selectedDate, monthEvents: $monthEvents, duties: adHocDuties)
+                MonthView(selectedDate: $selectedDate, monthEvents: $monthEvents, adHocDuties: adHocDuties)
 
                 if events.isNotEmpty || filteredDuties.isNotEmpty {
                     List {
