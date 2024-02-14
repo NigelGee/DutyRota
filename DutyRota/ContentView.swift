@@ -13,7 +13,7 @@ struct ContentView: View {
             CalendarView()
                 .tabItem { Label("Calendar", systemImage: "calendar") }
 
-            Text("Rota")
+            RotaView()
                 .tabItem { Label("Rota", systemImage: "calendar.badge.clock") }
 
             DutyView()

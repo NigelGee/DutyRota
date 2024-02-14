@@ -13,7 +13,7 @@ struct DutyRotaApp: App {
     var container: ModelContainer
 
     init() {
-        let schema = Schema([AdHocDuty.self, Duty.self])
+        let schema = Schema([AdHocDuty.self, Duty.self, Rota.self])
         let config = ModelConfiguration("default", schema: schema)
         do {
             container = try ModelContainer(for: schema, configurations: config)

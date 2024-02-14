@@ -36,8 +36,7 @@ struct EditDutyView: View {
         if isEnd {
             duty.periodEnd = .distantFuture
         } else {
-            let newEnd = Calendar.current.date(byAdding: .month, value: 1, to: duty.periodStart)!
-            duty.periodEnd = newEnd
+            duty.periodEnd = Calendar.current.date(byAdding: .month, value: 1, to: duty.periodStart)!
         }
     }
 }

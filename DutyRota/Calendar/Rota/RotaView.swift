@@ -1,18 +1,18 @@
 //
-//  DutyView.swift
+//  RotaView.swift
 //  DutyRota
 //
-//  Created by Nigel Gee on 05/02/2024.
+//  Created by Nigel Gee on 13/02/2024.
 //
 
 import SwiftData
 import SwiftUI
 
-struct DutyView: View {
-    @Query(sort: \Duty.periodStart) var duties: [Duty]
+struct RotaView: View {
+    @Query(sort: \Rota.periodStart) var rotas: [Rota]
     @Environment(\.modelContext) var modelContext
 
-    @State private var duty: Duty?
+    @State private var rota: Rota?
     @State private var isEnd = true
     @State private var isEdit = false
     @State private var isPeriodEndDateError = false
@@ -20,56 +20,56 @@ struct DutyView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(duties) { duty in
-                    NavigationLink(value: duty) {
+                ForEach(rotas) { rota in
+                    NavigationLink(value: rota) {
                         HStack {
-                            Text(duty.periodStart.formatted(date: .abbreviated, time: .omitted))
+                            Text(rota.periodStart.formatted(date: .abbreviated, time: .omitted))
                             Text("-")
-                            if duty.periodEnd == .distantFuture {
+                            if rota.periodEnd == .distantFuture {
                                 Text("End")
                             } else {
-                                Text(duty.periodEnd.formatted(date: .abbreviated, time: .omitted))
+                                Text(rota.periodEnd.formatted(date: .abbreviated, time: .omitted))
                             }
                         }
                     }
                     .onLongPressGesture {
-                        if duty.periodEnd == .distantFuture {
+                        if rota.periodEnd == .distantFuture {
                             isEnd = true
                         } else {
                             isEnd = false
                         }
                         isEdit = true
-                        self.duty = duty
+                        self.rota = rota
                     }
                 }
-                .onDelete(perform: deleteDuty)
+                .onDelete(perform: deleteRota)
             }
             .toolbar {
-                Button(action: addNewDuty) {
-                    Label("Add Duty", systemImage: "plus")
+                Button(action: addNewRota) {
+                    Label("Add Rota", systemImage: "plus")
                 }
             }
-            .navigationTitle("Duty Period")
+            .navigationTitle("Rota Period")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationDestination(for: Duty.self) { duty in
-                DutyDetailView(duty: duty)
+            .navigationDestination(for: Rota.self) { rota in
+                Text("Rota Detail View")
             }
-            .sheet(item: $duty) { duty in
-                EditDutyView(duty: duty, isEnd: $isEnd, isEdit: $isEdit)
+            .sheet(item: $rota) { rota in
+                EditRotaView(rota: rota, isEnd: $isEnd, isEdit: $isEdit)
                     .presentationDetents([.height(210)])
             }
             .alert("Error in Duty End Date!", isPresented: $isPeriodEndDateError) {
                 Button("Ok") { }
             } message: {
-                Text("One of the duties does not have a Period End Date. To amend this by tap and hold on the duty and change the end date.")
+                Text("One of the rotas does not have a Period End Date. To amend this by tap and hold on the duty and change the end date.")
             }
         }
     }
 
-    func addNewDuty() {
+    func addNewRota() {
         var startDate = Date.now
 
-        if let maxEndDate = duties.map(\.periodEnd).max() {
+        if let maxEndDate = rotas.map(\.periodEnd).max() {
             if maxEndDate == .distantFuture {
                 isPeriodEndDateError = true
                 return
@@ -77,24 +77,21 @@ struct DutyView: View {
                 startDate = Calendar.current.date(byAdding: .day, value: 1, to: maxEndDate)!
             }
         }
-
         isEnd = true
         isEdit = false
-        let object = Duty(periodStart: startDate, periodEnd: .distantFuture)
+        let object = Rota(periodStart: startDate, periodEnd: .distantFuture)
         modelContext.insert(object)
-        duty = object
+        rota = object
     }
 
-    func deleteDuty(_ indexSet: IndexSet) {
+    func deleteRota(_ indexSet: IndexSet) {
         for item in indexSet {
-            let object = duties[item]
+            let object = rotas[item]
             modelContext.delete(object)
         }
     }
 }
 
 #Preview {
-    let preview = PreviewContainer(Duty.self)
-    return DutyView()
-            .modelContainer(preview.container)
+    RotaView()
 }

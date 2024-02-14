@@ -17,23 +17,15 @@ struct MonthView: View {
         "", "701", "701", "701", "703", "1703", "2702",
         "", "", "742", "722", "722", "1721", "2720",
         "3718", "722", "", "", "708", "1708"]
+    
     @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.sunday
 
     @Binding var selectedDate: Date
     @Binding var monthEvents: [EKEvent]
     var adHocDuties: [AdHocDuty]
 
-    @Query var duties: [Duty]
-
     var calendarDates: [CalendarDate] {
         selectedDate.datesOfMonth(with: startDayOfWeek.rawValue).map { CalendarDate(date: $0) }
-    }
-
-    var dutyDetails: [DutyDetail] {
-        if let currentDuty = duties.first(where: { selectedDate.isDateInRange(start: $0.periodStart, end: $0.periodEnd) }) {
-            return currentDuty.dutyDetails
-        }
-        return []
     }
 
     var wrappedWeekDays: [String] {
@@ -68,32 +60,18 @@ struct MonthView: View {
             ForEach(0..<calendarDates.count, id: \.self) { day in
                     MonthRowView(monthEvents: monthEvents,
                                  adHocDuties: adHocDuties, 
+                                 calendarDates: calendarDates,
+                                 rotas: rotaExamples,
                                  day: calendarDates[day],
-                                 selectedDate: $selectedDate,
-                                 startOfCalendar: calendarDates.first!.date
+                                 startDateOfCalendar: calendarDates.first!.date,
+                                 selectedDate: $selectedDate
                     )
-                    .background {
-                        DutyBackground(
-                            for: color(day),
-                            when: calendarDates[day].date >= selectedDate.startDateOfMonth
-                        )
-                    }
                 }
             }
             .padding(.horizontal)
 
         Divider()
             .padding(.horizontal)
-    }
-
-    func color(_ day: Int) -> String {
-        if let dutyDetail = (dutyDetails.first { $0.title == rotaExamples[day] }) {
-            return dutyDetail.color
-        } else if dutyDetails.isEmpty {
-            return "dutyClear"
-        } else {
-            return "dutyError"
-        }
     }
 }
 
