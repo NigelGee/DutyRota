@@ -12,7 +12,6 @@ import SwiftUI
 struct MonthRowView: View {
     var monthEvents: [EKEvent]
     var adHocDuties: [AdHocDuty]
-    var calendarDates: [CalendarDate]
     var rotas: [String]
     var day: CalendarDate
     var startDateOfCalendar: Date
@@ -30,14 +29,12 @@ struct MonthRowView: View {
     }
 
     var dutyDetails: [DutyDetail] {
-        if let startDateOfCalendar = calendarDates.first?.date {
-            if let currentDuty = duties.first(where: { startDateOfCalendar.isDateInRange(start: $0.periodStart, end: $0.periodEnd) }) {
-                if currentDuty.periodEnd > day.date {
-                    return currentDuty.dutyDetails
-                }
-                if let newDuty = duties.first(where: { day.date.isDateInRange(start: $0.periodStart, end: $0.periodEnd) }) {
-                    return newDuty.dutyDetails
-                }
+        if let currentDuty = duties.first(where: { startDateOfCalendar.isDateInRange(start: $0.periodStart, end: $0.periodEnd) }) {
+            if currentDuty.periodEnd >= day.date {
+                return currentDuty.dutyDetails
+            }
+            if let newDuty = duties.first(where: { day.date.isDateInRange(start: $0.periodStart.add(day: -1), end: $0.periodEnd) }) {
+                return newDuty.dutyDetails
             }
         }
         return []

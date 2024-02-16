@@ -35,5 +35,21 @@ enum WeekDay: Int, CaseIterable {
         }
     }
 
+    static func sortedWeekDays(startOn weekStart: WeekDay) -> [String] {
+        guard weekStart != self.sunday else { return days }
+
+        var newDays = [String]()
+
+        for i in weekStart.rawValue ..< WeekDay.days.count {
+            newDays.append(WeekDay.days[i])
+        }
+
+        for i in 0 ..< weekStart.rawValue {
+            newDays.append(WeekDay.days[i])
+        }
+
+        return newDays
+    }
+
     static let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 }

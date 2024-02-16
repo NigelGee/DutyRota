@@ -31,15 +31,14 @@ struct RotaView: View {
                                 Text(rota.periodEnd.formatted(date: .abbreviated, time: .omitted))
                             }
                         }
-                    }
-                    .onLongPressGesture {
-                        if rota.periodEnd == .distantFuture {
-                            isEnd = true
-                        } else {
-                            isEnd = false
+                        .swipeActions(edge: .leading) {
+                            Button {
+                                editRota(rota)
+                            } label: {
+                                Text("Edit")
+                            }
+                            .tint(.green)
                         }
-                        isEdit = true
-                        self.rota = rota
                     }
                 }
                 .onDelete(perform: deleteRota)
@@ -52,7 +51,7 @@ struct RotaView: View {
             .navigationTitle("Rota Period")
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: Rota.self) { rota in
-                Text("Rota Detail View")
+                RotaDetailView(rota: rota)
             }
             .sheet(item: $rota) { rota in
                 EditRotaView(rota: rota, isEnd: $isEnd, isEdit: $isEdit)
@@ -61,7 +60,7 @@ struct RotaView: View {
             .alert("Error in Duty End Date!", isPresented: $isPeriodEndDateError) {
                 Button("Ok") { }
             } message: {
-                Text("One of the rotas does not have a Period End Date. To amend this by tap and hold on the duty and change the end date.")
+                Text("One of the rotas does not have a Period End Date. To amend this by swipe to right on the rota and change the end date.")
             }
         }
     }
@@ -82,6 +81,16 @@ struct RotaView: View {
         let object = Rota(periodStart: startDate, periodEnd: .distantFuture)
         modelContext.insert(object)
         rota = object
+    }
+
+    func editRota(_ rota: Rota) {
+        if rota.periodEnd == .distantFuture {
+            isEnd = true
+        } else {
+            isEnd = false
+        }
+        isEdit = true
+        self.rota = rota
     }
 
     func deleteRota(_ indexSet: IndexSet) {

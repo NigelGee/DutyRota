@@ -32,14 +32,14 @@ struct DutyView: View {
                             }
                         }
                     }
-                    .onLongPressGesture {
-                        if duty.periodEnd == .distantFuture {
-                            isEnd = true
-                        } else {
-                            isEnd = false
+                    .buttonStyle(.plain)
+                    .swipeActions(edge: .leading) {
+                        Button {
+                            editDuty(duty)
+                        } label: {
+                            Text("Edit")
                         }
-                        isEdit = true
-                        self.duty = duty
+                        .tint(.green)
                     }
                 }
                 .onDelete(perform: deleteDuty)
@@ -61,7 +61,7 @@ struct DutyView: View {
             .alert("Error in Duty End Date!", isPresented: $isPeriodEndDateError) {
                 Button("Ok") { }
             } message: {
-                Text("One of the duties does not have a Period End Date. To amend this by tap and hold on the duty and change the end date.")
+                Text("One of the duties does not have a Period End Date. To amend this by swipe to the right on the duty and change the end date.")
             }
         }
     }
@@ -83,6 +83,16 @@ struct DutyView: View {
         let object = Duty(periodStart: startDate, periodEnd: .distantFuture)
         modelContext.insert(object)
         duty = object
+    }
+
+    func editDuty(_ duty: Duty) {
+        if duty.periodEnd == .distantFuture {
+            isEnd = true
+        } else {
+            isEnd = false
+        }
+        isEdit = true
+        self.duty = duty
     }
 
     func deleteDuty(_ indexSet: IndexSet) {

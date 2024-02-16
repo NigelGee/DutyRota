@@ -24,12 +24,12 @@ struct DutyDetailView: View {
     @State private var message = ""
 
     var navigationTitle: String {
-        let start = "\(duty.periodStart.formatted(date: .abbreviated, time: .omitted))"
+        let start = "\(duty.periodStart.formattedDayMonth)"
         var end = ""
         if duty.periodEnd == .distantFuture {
             end = "End"
         } else {
-            end = "\(duty.periodEnd.formatted(date: .abbreviated, time: .omitted))"
+            end = "\(duty.periodEnd.formattedDayMonth)"
         }
         return start + " - " + end
     }

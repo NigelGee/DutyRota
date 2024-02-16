@@ -36,7 +36,7 @@ struct EditRotaView: View {
         if isEnd {
             rota.periodEnd = .distantFuture
         } else {
-            rota.periodEnd = Calendar.current.date(byAdding: .month, value: 1, to: rota.periodStart)!
+            rota.periodEnd = .now
         }
     }
 }

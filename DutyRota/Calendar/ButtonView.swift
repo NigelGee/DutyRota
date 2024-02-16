@@ -22,12 +22,8 @@ struct ButtonView: View {
             }
             .frame(width: 42, height: 42)
 
-            Button {
-                selectedDate = .now
-            } label: {
-                Text(selectedDate, format: .dateTime.month().year())
-            }
-            .foregroundStyle(.primary)
+            DatePicker("Select Date", selection: $selectedDate, displayedComponents: .date)
+                .labelsHidden()
 
             Button {
                 withAnimation {

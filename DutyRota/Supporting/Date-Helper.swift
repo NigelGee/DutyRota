@@ -58,6 +58,11 @@ extension Date {
         return dateFormatter.string(from: self)
     }
 
+    var formattedDayMonth: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM"
+        return dateFormatter.string(from: self)
+    }
     static var zeroTime: Date {
         var components = DateComponents()
         components.hour = 0

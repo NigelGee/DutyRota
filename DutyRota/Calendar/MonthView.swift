@@ -11,11 +11,11 @@ import SwiftUI
 
 struct MonthView: View {
     let rotaExamples = [
-        "", "", "704", "704", "705", "1705", "2701",
+        "704", "", "", "704", "704", "705", "1705", "2701",
         "3701", "704", "", "", "723", "1724", "2723",
         "3719", "723", "723", "723", "", "", "", 
         "", "701", "701", "701", "703", "1703", "2702",
-        "", "", "742", "722", "722", "1721", "2720",
+        "", "", "722", "722", "722", "1721", "2720",
         "3718", "722", "", "", "708", "1708"]
     
     @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.sunday
@@ -28,24 +28,9 @@ struct MonthView: View {
         selectedDate.datesOfMonth(with: startDayOfWeek.rawValue).map { CalendarDate(date: $0) }
     }
 
-    var wrappedWeekDays: [String] {
-        guard startDayOfWeek.rawValue != 0 else { return WeekDay.days }
-        var newDays = [String]()
-
-        for i in startDayOfWeek.rawValue ..< WeekDay.days.count {
-            newDays.append(WeekDay.days[i])
-        }
-
-        for i in 0 ..< startDayOfWeek.rawValue {
-            newDays.append(WeekDay.days[i])
-        }
-
-        return newDays
-    }
-
     var body: some View {
         HStack {
-            ForEach(wrappedWeekDays, id: \.self) {
+            ForEach(WeekDay.sortedWeekDays(startOn: startDayOfWeek), id: \.self) {
                 Text($0)
                     .frame(maxWidth: .infinity)
                     .font(.caption)
@@ -60,7 +45,6 @@ struct MonthView: View {
             ForEach(0..<calendarDates.count, id: \.self) { day in
                     MonthRowView(monthEvents: monthEvents,
                                  adHocDuties: adHocDuties, 
-                                 calendarDates: calendarDates,
                                  rotas: rotaExamples,
                                  day: calendarDates[day],
                                  startDateOfCalendar: calendarDates.first!.date,
