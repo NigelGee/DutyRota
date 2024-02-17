@@ -58,12 +58,19 @@ struct CalendarView: View {
                     Button {
                         showDialog = true
                     } label: {
-                        Label("Add AdHoc", systemImage: "calendar.badge.plus")
+                        Label("Add New Event", systemImage: "calendar.badge.plus")
                     }
                 }
 
                 ToolbarItem(placement: .principal) {
-                    ButtonView(selectedDate: $selectedDate)
+                    DatePicker("Select Date", selection: $selectedDate, displayedComponents: .date)
+                        .labelsHidden()
+                }
+
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Today") {
+                        selectedDate = .now
+                    }
                 }
             }
             .sheet(isPresented: $showAddAdHocDuty, onDismiss: onDismiss) {

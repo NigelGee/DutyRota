@@ -10,6 +10,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct RotaDetailView: View {
+    @Environment(\.modelContext) var modelContext
     @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.sunday
     @Bindable var rota: Rota
 
@@ -50,26 +51,28 @@ struct RotaDetailView: View {
                         .keyboardType(.numberPad)
                         .multilineTextAlignment(.center)
                 }
-                HStack {
+                HStack(spacing: 0) {
                     Spacer()
                     ForEach(weekDays, id: \.self) {
                         Text($0)
-                            .font(.system(size: 17, weight: .bold))
+                            .font(.system(size: 15, weight: .bold))
+                            .frame(width: 35)
                         Spacer()
                     }
                 }
                 .frame(maxWidth: .infinity)
-
 
                 ForEach(wrappedRotaDetails) { rotaDetail in
-                    HStack {
-                        Spacer()
-                        Text(rotaDetail.line.formatted(.number))
-                        DayRotaView(rotaDetail: rotaDetail)
+                    NavigationLink(value: rotaDetail) {
+                        HStack {
+                            Text(rotaDetail.line.formatted(.number))
+                                .font(.system(size: 15))
+                                .frame(width: 32, height: 30)
+                            DayRotaView(rotaDetail: rotaDetail)
+                        }
                     }
-                    .font(.system(size: 15))
                 }
-                .frame(maxWidth: .infinity)
+                .onDelete(perform: deleteRotaLine)
             }
             .padding(.horizontal)
         }
@@ -78,6 +81,9 @@ struct RotaDetailView: View {
         }
         .navigationTitle(navigationTitle)
         .navigationBarTitleDisplayMode(.inline)
+        .navigationDestination(for: RotaDetail.self) { rotaDetail in
+            EditRotaDetailView(rotaDetail: rotaDetail)
+        }
         .toolbar {
             Button {
                 showAddNewRota = true
@@ -119,7 +125,32 @@ struct RotaDetailView: View {
                 showErrorImporting = true
             }
         }
+        .fileExporter(
+            isPresented: $isExporting,
+            document: RotaDetail.makeExportFile(from: rota.rotaDetails, weekDay: startDayOfWeek),
+            contentType: UTType.commaSeparatedText,
+            defaultFilename: "Rota"
+        ) { result in
+            if case .success = result {
+                Swift.print("Success!")
+            } else {
+                Swift.print("Something went wrong…")
+            }
+        }
+        .alert("Error in Importing file", isPresented: $showErrorImporting) {
+            Button("Ok") { }
+        } message: {
+            Text(message)
+        }
 
+    }
+
+    func deleteRotaLine(_ indexSet: IndexSet) {
+        for index in indexSet {
+            let object = wrappedRotaDetails[index]
+            modelContext.delete(object)
+            rota.rotaDetails.removeAll(where: { $0 == object })
+        }
     }
 
     func importDuties(of file: String) {

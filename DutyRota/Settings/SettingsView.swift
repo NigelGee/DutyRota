@@ -42,6 +42,12 @@ struct SettingsView: View {
                         }
                     }
                 }
+
+                Section {
+                    NavigationLink("How to Import/Export") {
+                        InstructionView()
+                    }
+                }
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)

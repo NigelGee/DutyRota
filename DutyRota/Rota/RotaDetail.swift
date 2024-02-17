@@ -66,6 +66,49 @@ class RotaDetail: Comparable {
         }
     }
 
+    static func makeExportFile(from rotaDetails: [RotaDetail], weekDay: WeekDay) -> ExportDocument {
+        var payload = ""
+        switch weekDay {
+        case .sunday:
+            payload = "Line, Sun, Mon, Tue, Wed, Thu, Fri, Sat\n"
+            for rotaDetail in rotaDetails {
+                payload += "\(rotaDetail.line), \(rotaDetail.sun), \(rotaDetail.mon), \(rotaDetail.tue), \(rotaDetail.wed), \(rotaDetail.thu), \(rotaDetail.fri), \(rotaDetail.sat)\n"
+            }
+        case .monday:
+            payload = "Line, Mon, Tue, Wed, Thu, Fri, Sat, Sun\n"
+            for rotaDetail in rotaDetails {
+                payload += "\(rotaDetail.line), \(rotaDetail.mon), \(rotaDetail.tue), \(rotaDetail.wed), \(rotaDetail.thu), \(rotaDetail.fri), \(rotaDetail.sat), \(rotaDetail.sun)\n"
+            }
+        case .tuesday:
+            payload = "Line, Tue, Wed, Thu, Fri, Sat, Sun, Mon\n"
+            for rotaDetail in rotaDetails {
+                payload += "\(rotaDetail.line), \(rotaDetail.tue), \(rotaDetail.wed), \(rotaDetail.thu), \(rotaDetail.fri), \(rotaDetail.sat), \(rotaDetail.sun), \(rotaDetail.mon)\n"
+            }
+        case .wedneday:
+            payload = "Line, Wed, Thu, Fri, Sat, Sun, Mon, Tue\n"
+            for rotaDetail in rotaDetails {
+                payload += "\(rotaDetail.line), \(rotaDetail.wed), \(rotaDetail.thu), \(rotaDetail.fri), \(rotaDetail.sat), \(rotaDetail.sun), \(rotaDetail.mon), \(rotaDetail.tue)\n"
+            }
+        case .thursday:
+            payload = "Line, Thu, Fri, Sat, Sun, Mon, Tue, Wed\n"
+            for rotaDetail in rotaDetails {
+                payload += "\(rotaDetail.line), \(rotaDetail.thu), \(rotaDetail.fri), \(rotaDetail.sat), \(rotaDetail.sun), \(rotaDetail.mon), \(rotaDetail.tue), \(rotaDetail.wed)\n"
+            }
+        case .friday:
+            payload = "Line, Fri, Sat, Sun, Mon, Tue, Wed, Thu\n"
+            for rotaDetail in rotaDetails {
+                payload += "\(rotaDetail.fri), \(rotaDetail.sat), \(rotaDetail.sun), \(rotaDetail.mon), \(rotaDetail.tue), \(rotaDetail.wed), \(rotaDetail.thu)\n"
+            }
+        case .saturday:
+            payload = "Line, Sat, Sun, Mon, Tue, Wed, Thu, Fri\n"
+            for rotaDetail in rotaDetails {
+                payload += "\(rotaDetail.sat), \(rotaDetail.sun), \(rotaDetail.mon), \(rotaDetail.tue), \(rotaDetail.wed), \(rotaDetail.thu), \(rotaDetail.fri)\n"
+            }
+        }
+
+        return ExportDocument(payLoad: payload)
+    }
+
     func switchOn(line: Int, for weekDay: WeekDay) -> [String] {
         var weekDuties = [String]()
         switch weekDay {
