@@ -19,6 +19,7 @@ struct MonthView: View {
     @Binding var selectedDate: Date
     @Binding var monthEvents: [EKEvent]
     var adHocDuties: [AdHocDuty]
+    var bankHolidays: [BankHolidayEvent]
 
     var calendarDates: [CalendarDate] {
         selectedDate.datesOfMonth(with: startDayOfWeek.rawValue).map { CalendarDate(date: $0) }
@@ -53,7 +54,8 @@ struct MonthView: View {
                                  rotas: rotaLines,
                                  day: calendarDates[day],
                                  startDateOfCalendar: calendarDates.first!.date,
-                                 selectedDate: $selectedDate
+                                 selectedDate: $selectedDate,
+                                 bankHolidays: bankHolidays
                     )
                 }
             }

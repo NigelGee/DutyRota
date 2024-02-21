@@ -22,6 +22,8 @@ struct CalendarView: View {
     @State private var monthEvents = [EKEvent]()
     @State private var newDuty: AdHocDuty?
 
+    @State private var bankHolidays = [BankHolidayEvent]()
+
     @Query(sort: \AdHocDuty.start) var adHocDuties: [AdHocDuty]
 
     var filteredDuties: [AdHocDuty] {
@@ -35,7 +37,11 @@ struct CalendarView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                MonthView(selectedDate: $selectedDate, monthEvents: $monthEvents, adHocDuties: adHocDuties)
+                MonthView(selectedDate: $selectedDate, 
+                          monthEvents: $monthEvents,
+                          adHocDuties: adHocDuties,
+                          bankHolidays: bankHolidays
+                )
 
                 if listsAreEmpty {
                     List {
@@ -100,6 +106,21 @@ struct CalendarView: View {
                     Label("New Event", systemImage: "calendar")
                 }
             }
+            .task { await fetch() }
+        }
+    }
+
+    /// Call for get JSON data from URL
+    /// requires `@State private var name = [Decodable]()`
+    /// and `.task { await fetch() }`
+    func fetch() async {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yy-MM-dd"
+        do  {
+            async let items = try await URLSession.shared.decode(BankHoliday.self, from: "https://www.gov.uk/bank-holidays.json", dateDecodingStrategy: .formatted(dateFormatter))
+            bankHolidays = try await items.englandAndWales.events
+        } catch {
+            print("Failed to fetch data!")
         }
     }
 

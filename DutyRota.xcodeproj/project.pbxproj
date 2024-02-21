@@ -24,6 +24,8 @@
 		8B346AEA2B7FB94600A29C3C /* DayRotaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B346AE92B7FB94600A29C3C /* DayRotaView.swift */; };
 		8B3FDF8A2B80C93100E2070F /* InstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FDF892B80C93100E2070F /* InstructionView.swift */; };
 		8B3FDF8C2B81168800E2070F /* EditRotaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FDF8B2B81168800E2070F /* EditRotaDetailView.swift */; };
+		8B3FDFE52B86800300E2070F /* BankHoliday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FDFE42B86800300E2070F /* BankHoliday.swift */; };
+		8B3FDFE72B86804000E2070F /* URLSession-Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FDFE62B86804000E2070F /* URLSession-Codable.swift */; };
 		8B5FB8F52B7F76F700B736ED /* RotaTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5FB8F42B7F76F700B736ED /* RotaTextField.swift */; };
 		8B6F5BC32B67C803003B54F5 /* AdHocDuty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5BC22B67C803003B54F5 /* AdHocDuty.swift */; };
 		8B6F5BC52B67CA48003B54F5 /* AdHocDutyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5BC42B67CA48003B54F5 /* AdHocDutyView.swift */; };
@@ -75,6 +77,8 @@
 		8B346AE92B7FB94600A29C3C /* DayRotaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRotaView.swift; sourceTree = "<group>"; };
 		8B3FDF892B80C93100E2070F /* InstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
 		8B3FDF8B2B81168800E2070F /* EditRotaDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRotaDetailView.swift; sourceTree = "<group>"; };
+		8B3FDFE42B86800300E2070F /* BankHoliday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankHoliday.swift; sourceTree = "<group>"; };
+		8B3FDFE62B86804000E2070F /* URLSession-Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession-Codable.swift"; sourceTree = "<group>"; };
 		8B5FB8F42B7F76F700B736ED /* RotaTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotaTextField.swift; sourceTree = "<group>"; };
 		8B6F5BC22B67C803003B54F5 /* AdHocDuty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocDuty.swift; sourceTree = "<group>"; };
 		8B6F5BC42B67CA48003B54F5 /* AdHocDutyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocDutyView.swift; sourceTree = "<group>"; };
@@ -133,6 +137,14 @@
 				8B12FD5C2B70125900A22940 /* DutyDetail.swift */,
 			);
 			path = Duty;
+			sourceTree = "<group>";
+		};
+		8B3FDFE32B867FDF00E2070F /* BankHoliday */ = {
+			isa = PBXGroup;
+			children = (
+				8B3FDFE42B86800300E2070F /* BankHoliday.swift */,
+			);
+			path = BankHoliday;
 			sourceTree = "<group>";
 		};
 		8B6F5C262B6C3146003B54F5 /* Settings */ = {
@@ -221,6 +233,7 @@
 				8B7137F52B66D3D900627BF6 /* CalendarDate.swift */,
 				8B6F5C292B6D902B003B54F5 /* iCalendar */,
 				8B6F5C2A2B6D9059003B54F5 /* AdHocDuty */,
+				8B3FDFE32B867FDF00E2070F /* BankHoliday */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -236,6 +249,7 @@
 				8B6F5BC82B692160003B54F5 /* Collection - isNotEmpty.swift */,
 				8B12FD632B70B35800A22940 /* EKEvent-Extension.swift */,
 				8B7137E72B66D31800627BF6 /* Assets.xcassets */,
+				8B3FDFE62B86804000E2070F /* URLSession-Codable.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -344,6 +358,7 @@
 				8BF7C8A72B796B6E00346B7A /* EditDutyDetailView.swift in Sources */,
 				8BF7C8D12B7B9D1200346B7A /* EditRotaView.swift in Sources */,
 				8BF7C8CF2B7B76EC00346B7A /* RotaDetail.swift in Sources */,
+				8B3FDFE72B86804000E2070F /* URLSession-Codable.swift in Sources */,
 				8B7137F22B66D37A00627BF6 /* CalendarView.swift in Sources */,
 				8B12FD1E2B6D972600A22940 /* MonthRowView.swift in Sources */,
 				8B7137F42B66D39800627BF6 /* Date-Helper.swift in Sources */,
@@ -358,6 +373,7 @@
 				8B6F5BC32B67C803003B54F5 /* AdHocDuty.swift in Sources */,
 				8B7137F82B66D41900627BF6 /* SelectedDateModifier.swift in Sources */,
 				8B6F5C282B6D5915003B54F5 /* AdHocDutyRowView.swift in Sources */,
+				8B3FDFE52B86800300E2070F /* BankHoliday.swift in Sources */,
 				8BF7C8D32B7CE00400346B7A /* RotaDetailView.swift in Sources */,
 				8B7137FC2B66D5CF00627BF6 /* MonthView.swift in Sources */,
 				8B6F5C252B6C30E9003B54F5 /* WeekDay - Enum.swift in Sources */,

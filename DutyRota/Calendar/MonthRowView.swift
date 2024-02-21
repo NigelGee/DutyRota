@@ -18,6 +18,8 @@ struct MonthRowView: View {
 
     @Binding var selectedDate: Date
 
+    var bankHolidays: [BankHolidayEvent]
+
     @Query var duties: [Duty]
 
     var filteredDuties: [AdHocDuty] {
@@ -81,8 +83,13 @@ struct MonthRowView: View {
                 when: day.date >= selectedDate.startDateOfMonth
             )
             if day.date >= selectedDate.startDateOfMonth {
-                RoundedRectangle(cornerRadius: 5)
-                    .stroke(.clear, lineWidth: 2)
+                if bankHolidays.contains(where: { $0.date == day.date }) {
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(.yellow, lineWidth: 3)
+                } else {
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(.clear, lineWidth: 3)
+                }
             }
         }
     }
