@@ -5,6 +5,8 @@
 //  Created by Nigel Gee on 28/01/2024.
 //
 
+// https://www.gov.uk/bank-holidays.json
+
 import SwiftData
 import SwiftUI
 

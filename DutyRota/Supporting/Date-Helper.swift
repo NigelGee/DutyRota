@@ -142,10 +142,22 @@ extension Date {
 
     /// Returns the day difference between a date and given date is the ending date.
     /// - Parameter date: The starting date components.
-    /// - Returns: A `Double` of calculating the difference from start to given date.
+    /// - Returns: A `Int` of calculating the difference from start to given date.
     public func dayDifference(from date: Date) -> Int {
         let calendar = Calendar.current
         let component = calendar.dateComponents([.day], from: date, to: self)
+        guard let day = component.day else {
+            fatalError("Unable to get start date from date")
+        }
+        return day
+    }
+
+    /// Returns the day difference between a date and given date is the ending date.
+    /// - Parameter date: The starting date components.
+    /// - Returns: A `Int` of calculating the difference from start to given date.
+    public func weekDifference(from date: Date) -> Int {
+        let calendar = Calendar.current
+        let component = calendar.dateComponents([.weekOfMonth], from: date, to: self)
         guard let day = component.day else {
             fatalError("Unable to get start date from date")
         }
@@ -162,5 +174,9 @@ extension String {
             string = "00:00"
         }
         return dateFormatter.date(from: string) ?? .now
+    }
+
+    var trimmed: String {
+        self.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }

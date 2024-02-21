@@ -18,7 +18,7 @@ struct DutyBackground: View {
     var body: some View {
         if isValid {
             Color(color)
-                .clipShape(RoundedRectangle(cornerRadius: 5))
+                .clipShape(.rect(cornerRadius: 5))
         }
     }
 }

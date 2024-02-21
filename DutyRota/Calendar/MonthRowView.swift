@@ -72,6 +72,7 @@ struct MonthRowView: View {
                         .frame(width: 5)
                 }
             }
+            .padding(.top, 5)
             .padding(.bottom, 10)
         }
         .background {
@@ -79,6 +80,10 @@ struct MonthRowView: View {
                 for: color(dayCount),
                 when: day.date >= selectedDate.startDateOfMonth
             )
+            if day.date >= selectedDate.startDateOfMonth {
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(.clear, lineWidth: 2)
+            }
         }
     }
 

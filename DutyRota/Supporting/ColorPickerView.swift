@@ -21,7 +21,7 @@ struct ColorPickerView: View {
                 ForEach(colors, id:\.self) { color in
                     Color(color)
                         .frame(width: 30, height: 30)
-                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                        .clipShape(.rect(cornerRadius: 5))
                         .overlay {
                             RoundedRectangle(cornerRadius: 5)
                                 .strokeBorder(.primary, lineWidth: 1)

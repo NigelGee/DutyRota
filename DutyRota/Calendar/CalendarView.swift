@@ -28,19 +28,25 @@ struct CalendarView: View {
         adHocDuties.filter { $0.start.sameDay(as: selectedDate) }
     }
 
+    var listsAreEmpty: Bool {
+        events.isNotEmpty || filteredDuties.isNotEmpty
+    }
+
     var body: some View {
         NavigationStack {
             VStack {
                 MonthView(selectedDate: $selectedDate, monthEvents: $monthEvents, adHocDuties: adHocDuties)
 
-                if events.isNotEmpty || filteredDuties.isNotEmpty {
+                if listsAreEmpty {
                     List {
                         if filteredDuties.isNotEmpty {
                             AdHocDutyView(filteredDuties: filteredDuties)
                                 .listRowBackground(Color.orange.opacity(0.7))
                         }
-                        
-                        EventView(events: $events, eventStore: eventStore, loadEvent: loadEvent)
+
+                        if events.isNotEmpty {
+                            EventView(events: $events, eventStore: eventStore, loadEvent: loadEvent)
+                        }
                     }
                     .listStyle(.plain)
                 } else {
@@ -143,8 +149,8 @@ struct CalendarView: View {
     }
 }
 
-#Preview {
-    let preview = PreviewContainer(AdHocDuty.self)
-    return CalendarView()
-        .modelContainer(preview.container)
-}
+//#Preview {
+//    let preview = PreviewContainer(AdHocDuty.self)
+//    return CalendarView()
+//        .modelContainer(preview.container)
+//}

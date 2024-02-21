@@ -51,23 +51,24 @@ struct RotaDetailView: View {
                         .keyboardType(.numberPad)
                         .multilineTextAlignment(.center)
                 }
-                HStack(spacing: 0) {
+                HStack(spacing: 1) {
                     Spacer()
                     ForEach(weekDays, id: \.self) {
                         Text($0)
-                            .font(.system(size: 15, weight: .bold))
-                            .frame(width: 35)
+                            .font(.system(size: 13, weight: .bold))
+                            .frame(width: 33)
                         Spacer()
                     }
                 }
+                .padding(.trailing, 7)
                 .frame(maxWidth: .infinity)
 
                 ForEach(wrappedRotaDetails) { rotaDetail in
                     NavigationLink(value: rotaDetail) {
                         HStack {
                             Text(rotaDetail.line.formatted(.number))
-                                .font(.system(size: 15))
-                                .frame(width: 32, height: 30)
+                                .font(.system(size: 13))
+                                .frame(width: 31, height: 30)
                             DayRotaView(rotaDetail: rotaDetail)
                         }
                     }

@@ -181,17 +181,17 @@ struct DutyDetailView: View {
 
         for row in rows {
             let columns = row.components(separatedBy: ",")
-            guard columns.count >= 4 else { continue }
-            guard columns[0] != "Spare" || columns[0] != "Rest" || columns[0] != "" else { continue }
-            
+            guard columns.count >= 4 && columns.count <= 6 else { continue }
+            if columns[0] == "Spare" || columns[0] == "Rest" || columns[0] == "" { continue }
+
             let color: String
-            if columns.count > 4 {
-                color = columns[4]
+            if columns.count >= 4 {
+                color = columns[4].trimmed
             } else {
                 color = defaultColor
             }
 
-            let newDuty = DutyDetail(title: columns[0], start: columns[1].formattedDate, end: columns[2].formattedDate, tod: columns[3].formattedDate, color: color)
+            let newDuty = DutyDetail(title: columns[0].trimmed, start: columns[1].formattedDate, end: columns[2].formattedDate, tod: columns[3].formattedDate, color: color)
             duty.dutyDetails.append(newDuty)
         }
     }
