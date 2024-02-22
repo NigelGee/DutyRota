@@ -80,24 +80,16 @@ struct MonthRowView: View {
         .background {
             DutyBackground(
                 for: color(dayCount),
-                when: day.date >= selectedDate.startDateOfMonth
+                isDay: day.date >= selectedDate.startDateOfMonth,
+                isBankHoliday: bankHolidays.contains(where: { $0.date == day.date })
             )
-            if day.date >= selectedDate.startDateOfMonth {
-                if bankHolidays.contains(where: { $0.date == day.date }) {
-                    RoundedRectangle(cornerRadius: 5)
-                        .stroke(.yellow, lineWidth: 3)
-                } else {
-                    RoundedRectangle(cornerRadius: 5)
-                        .stroke(.clear, lineWidth: 3)
-                }
-            }
         }
     }
 
-    func color(_ dayCount: Int) -> String {
+    func color(_ dayIndex: Int) -> String {
         guard rotas.isNotEmpty, dutyDetails.isNotEmpty else { return "dutyClear" }
 
-        if let dutyDetail = (dutyDetails.first { $0.title == rotas[dayCount] }) {
+        if let dutyDetail = (dutyDetails.first { $0.title == rotas[dayIndex] }) {
             return dutyDetail.color
         } else {
             return "dutyError"

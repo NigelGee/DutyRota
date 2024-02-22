@@ -26,6 +26,7 @@
 		8B3FDF8C2B81168800E2070F /* EditRotaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FDF8B2B81168800E2070F /* EditRotaDetailView.swift */; };
 		8B3FDFE52B86800300E2070F /* BankHoliday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FDFE42B86800300E2070F /* BankHoliday.swift */; };
 		8B3FDFE72B86804000E2070F /* URLSession-Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FDFE62B86804000E2070F /* URLSession-Codable.swift */; };
+		8B3FE0072B873CF600E2070F /* CalendarRotaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FE0062B873CF600E2070F /* CalendarRotaView.swift */; };
 		8B5FB8F52B7F76F700B736ED /* RotaTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5FB8F42B7F76F700B736ED /* RotaTextField.swift */; };
 		8B6F5BC32B67C803003B54F5 /* AdHocDuty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5BC22B67C803003B54F5 /* AdHocDuty.swift */; };
 		8B6F5BC52B67CA48003B54F5 /* AdHocDutyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5BC42B67CA48003B54F5 /* AdHocDutyView.swift */; };
@@ -79,6 +80,7 @@
 		8B3FDF8B2B81168800E2070F /* EditRotaDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRotaDetailView.swift; sourceTree = "<group>"; };
 		8B3FDFE42B86800300E2070F /* BankHoliday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankHoliday.swift; sourceTree = "<group>"; };
 		8B3FDFE62B86804000E2070F /* URLSession-Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession-Codable.swift"; sourceTree = "<group>"; };
+		8B3FE0062B873CF600E2070F /* CalendarRotaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarRotaView.swift; sourceTree = "<group>"; };
 		8B5FB8F42B7F76F700B736ED /* RotaTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotaTextField.swift; sourceTree = "<group>"; };
 		8B6F5BC22B67C803003B54F5 /* AdHocDuty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocDuty.swift; sourceTree = "<group>"; };
 		8B6F5BC42B67CA48003B54F5 /* AdHocDutyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocDutyView.swift; sourceTree = "<group>"; };
@@ -145,6 +147,14 @@
 				8B3FDFE42B86800300E2070F /* BankHoliday.swift */,
 			);
 			path = BankHoliday;
+			sourceTree = "<group>";
+		};
+		8B3FE0052B873CC400E2070F /* Calendar Rota */ = {
+			isa = PBXGroup;
+			children = (
+				8B3FE0062B873CF600E2070F /* CalendarRotaView.swift */,
+			);
+			path = "Calendar Rota";
 			sourceTree = "<group>";
 		};
 		8B6F5C262B6C3146003B54F5 /* Settings */ = {
@@ -231,8 +241,9 @@
 				8B12FD1D2B6D972600A22940 /* MonthRowView.swift */,
 				8BF7C8A82B79F8F700346B7A /* DutyBackgroundColor.swift */,
 				8B7137F52B66D3D900627BF6 /* CalendarDate.swift */,
-				8B6F5C292B6D902B003B54F5 /* iCalendar */,
+				8B3FE0052B873CC400E2070F /* Calendar Rota */,
 				8B6F5C2A2B6D9059003B54F5 /* AdHocDuty */,
+				8B6F5C292B6D902B003B54F5 /* iCalendar */,
 				8B3FDFE32B867FDF00E2070F /* BankHoliday */,
 			);
 			path = Calendar;
@@ -364,6 +375,7 @@
 				8B7137F42B66D39800627BF6 /* Date-Helper.swift in Sources */,
 				8B12FD762B7303E100A22940 /* SampleDuty.swift in Sources */,
 				8B12FD6E2B71725B00A22940 /* DutyDetailView.swift in Sources */,
+				8B3FE0072B873CF600E2070F /* CalendarRotaView.swift in Sources */,
 				8B12FD7A2B74BEF200A22940 /* AddDutyDetailView.swift in Sources */,
 				8B12FD6C2B7155ED00A22940 /* DutyView.swift in Sources */,
 				8B346AEA2B7FB94600A29C3C /* DayRotaView.swift in Sources */,

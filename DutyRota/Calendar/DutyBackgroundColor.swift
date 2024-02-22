@@ -9,20 +9,34 @@ import SwiftUI
 
 struct DutyBackground: View {
     let color: String
-    let isValid: Bool
+    let isDay: Bool
+    let isBankHoliday: Bool
 
-    init(for color: String, when isValid: Bool) {
+    init(for color: String, isDay: Bool, isBankHoliday: Bool) {
         self.color = color
-        self.isValid = isValid
+        self.isDay = isDay
+        self.isBankHoliday = isBankHoliday
     }
+    
     var body: some View {
-        if isValid {
+        if isDay {
             Color(color)
                 .clipShape(.rect(cornerRadius: 5))
+
+            if isBankHoliday {
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(.yellow, lineWidth: 3)
+            } else {
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(.clear, lineWidth: 3)
+            }
         }
     }
 }
 
 #Preview {
-    DutyBackground(for: "dutyBlue", when: true)
+    ZStack {
+        DutyBackground(for: "dutyBlue", isDay: true, isBankHoliday: true)
+    }
+    .frame(width: 100, height: 100)
 }

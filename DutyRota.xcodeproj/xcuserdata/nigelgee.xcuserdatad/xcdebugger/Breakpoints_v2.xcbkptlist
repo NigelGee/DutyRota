@@ -3,4 +3,54 @@
    uuid = "93F1B95C-8F25-4D04-AC02-9834113A205A"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F32F1DAC-1317-479C-8AC0-F6E038DC5BDA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DutyRota/Calendar/MonthView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "monthRotasDuties()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F32F1DAC-1317-479C-8AC0-F6E038DC5BDA - e7f39ca6b17d55e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DutyRota.MonthView.monthRotasDuties() -&gt; Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "DutyRota"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nigelgee/Desktop/DutyRota/DutyRota/Calendar/MonthView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "116"
+                  endingLineNumber = "116"
+                  offsetFromSymbolStart = "5260">
+               </Location>
+               <Location
+                  uuid = "F32F1DAC-1317-479C-8AC0-F6E038DC5BDA - e7f39ca6b17d55e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DutyRota.MonthView.monthRotasDuties() -&gt; Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "DutyRota"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nigelgee/Desktop/DutyRota/DutyRota/Calendar/MonthView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "116"
+                  endingLineNumber = "116"
+                  offsetFromSymbolStart = "5416">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
