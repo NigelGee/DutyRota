@@ -21,12 +21,25 @@ struct MonthRowView: View {
     var bankHolidays: [BankHolidayEvent]
 
     @Query var duties: [Duty]
+    @Query var holidays: [Holiday]
 
-    var filteredDuties: [AdHocDuty] {
-        adHocDuties.filter { $0.start > selectedDate.startDateOfMonth && $0.start < selectedDate.endDateOfMonth }
+    var holidayDates: [Date] {
+        var newHolidayDates = [Date]()
+        for holiday in holidays {
+            var newDate = holiday.start.startOfDay
+            while newDate <= holiday.end {
+                newHolidayDates.append(newDate)
+                newDate = newDate.add(day: 1)
+            }
+        }
+        return newHolidayDates
     }
 
-    var dayCount: Int {
+    var filteredDuties: [AdHocDuty] {
+        adHocDuties.filter { $0.start.isDateInRange(start: selectedDate.startDateOfMonth, end: selectedDate.endDateOfMonth) }
+    }
+
+    var dayIndex: Int {
         day.date.startOfDay.dayDifference(from: startDateOfCalendar)
     }
 
@@ -38,6 +51,8 @@ struct MonthRowView: View {
             if let newDuty = duties.first(where: { day.date.isDateInRange(start: $0.periodStart.add(day: -1), end: $0.periodEnd) }) {
                 return newDuty.dutyDetails
             }
+        } else if let currentDuty = duties.first(where: { $0.periodStart.isDateInRange(start: selectedDate.startDateOfMonth, end: selectedDate.endDateOfMonth) }) {
+            return currentDuty.dutyDetails
         }
         return []
     }
@@ -79,9 +94,10 @@ struct MonthRowView: View {
         }
         .background {
             DutyBackground(
-                for: color(dayCount),
+                for: color(dayIndex),
                 isDay: day.date >= selectedDate.startDateOfMonth,
-                isBankHoliday: bankHolidays.contains(where: { $0.date == day.date })
+                isBankHoliday: bankHolidays.contains(where: { $0.date == day.date }),
+                isHoliday: holidayDates.contains(where: { $0 == day.date } )
             )
         }
     }

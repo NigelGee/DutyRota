@@ -120,7 +120,7 @@ struct CalendarView: View {
             async let items = try await URLSession.shared.decode(BankHoliday.self, from: "https://www.gov.uk/bank-holidays.json", dateDecodingStrategy: .formatted(dateFormatter))
             bankHolidays = try await items.englandAndWales.events
         } catch {
-            print("Failed to fetch data!")
+            print("Failed to fetch Bank Holiday data!")
         }
     }
 

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InstructionView: View {
+struct ImportExportView: View {
     var body: some View {
         VStack {
             Text("Export")
@@ -47,5 +47,5 @@ struct InstructionView: View {
 }
 
 #Preview {
-    InstructionView()
+    ImportExportView()
 }

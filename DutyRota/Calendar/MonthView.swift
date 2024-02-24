@@ -121,7 +121,6 @@ struct MonthView: View {
                     guard let rotaDetail = currentRota.rotaDetails.first(where: { $0.line == (currentLine + count) }) else { continue }
                     monthDuties.append(contentsOf: RotaDetail.weekDuties(of: rotaDetail, for: startDayOfWeek))
                     count += 1
-                    print(rotaDetail.line)
                 }
             }
         } else {
