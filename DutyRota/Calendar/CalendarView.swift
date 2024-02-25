@@ -22,6 +22,7 @@ struct CalendarView: View {
     @State private var events = [EKEvent]()
     @State private var monthEvents = [EKEvent]()
     @State private var newDuty: AdHocDuty?
+    @State private var dutiesForMonth = [String]()
 
     @State private var bankHolidays = [BankHolidayEvent]()
 
@@ -58,9 +59,10 @@ struct CalendarView: View {
     }
 
     var dayDutyDetails: [DutyDetail] {
+        guard dutiesForMonth.isNotEmpty else { return [] }
         let selectedIndex = selectedDate.dayDifference(from: calendarDates.first!.date)
-        if monthRotasDuties[selectedIndex] != "" {
-            return dutyDetails.filter { $0.title == monthRotasDuties[selectedIndex] }
+        if dutiesForMonth[selectedIndex] != "" {
+            return dutyDetails.filter { $0.title == dutiesForMonth[selectedIndex] }
         }
         return []
     }
@@ -68,7 +70,7 @@ struct CalendarView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                MonthView(rotaLines: monthRotasDuties,
+                MonthView(rotaLines: dutiesForMonth,
                           selectedDate: $selectedDate,
                           monthEvents: $monthEvents,
                           adHocDuties: adHocDuties,
@@ -145,7 +147,13 @@ struct CalendarView: View {
                     Label("New Event", systemImage: "calendar")
                 }
             }
-            .task { await fetch() }
+            .task {
+                await fetch()
+                monthRotasDuties()
+            }
+            .onChange(of: selectedDate) {
+                monthRotasDuties()
+            }
         }
     }
 
@@ -208,11 +216,11 @@ struct CalendarView: View {
         }
     }
 
-    var monthRotasDuties: [String] {
+    func monthRotasDuties() {
         var monthDuties = [String]()
         var count = 0
-        guard let calendarFirst = calendarDates.first else { return [] }
-        guard let calendarLast = calendarDates.last else { return [] }
+        guard let calendarFirst = calendarDates.first else { return }
+        guard let calendarLast = calendarDates.last else { return }
         if let currentRota = rota.first(where: { calendarFirst.date.isDateInRange(start: $0.periodStart, end: $0.periodEnd) }) {
             let weeksToStartDate = Int((calendarFirst.date.dayDifference(from: currentRota.periodStart)) / 7) + 1
             var currentLine = currentRota.startRotaLine + weeksToStartDate
@@ -229,6 +237,7 @@ struct CalendarView: View {
                     count = i
                     guard let rotaDetail = currentRota.rotaDetails.first(where: { $0.line == currentLine }) else { continue }
                     monthDuties.append(contentsOf: RotaDetail.weekDuties(of: rotaDetail, for: startDayOfWeek))
+                    print(currentLine)
                     if currentLine == maxLineNumber {
                         currentLine = minLineNumber
                     } else {
@@ -260,9 +269,9 @@ struct CalendarView: View {
                 }
             }
         } else {
-            return []
+            return
         }
-        return monthDuties
+        dutiesForMonth = monthDuties
     }
 }
 
