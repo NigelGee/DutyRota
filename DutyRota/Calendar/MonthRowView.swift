@@ -13,6 +13,7 @@ struct MonthRowView: View {
     var monthEvents: [EKEvent]
     var adHocDuties: [AdHocDuty]
     var rotas: [String]
+    var dutyDetails: [DutyDetail]
     var day: CalendarDate
     var startDateOfCalendar: Date
 
@@ -43,19 +44,19 @@ struct MonthRowView: View {
         day.date.startOfDay.dayDifference(from: startDateOfCalendar)
     }
 
-    var dutyDetails: [DutyDetail] {
-        if let currentDuty = duties.first(where: { startDateOfCalendar.isDateInRange(start: $0.periodStart, end: $0.periodEnd) }) {
-            if currentDuty.periodEnd >= day.date {
-                return currentDuty.dutyDetails
-            }
-            if let newDuty = duties.first(where: { day.date.isDateInRange(start: $0.periodStart.add(day: -1), end: $0.periodEnd) }) {
-                return newDuty.dutyDetails
-            }
-        } else if let currentDuty = duties.first(where: { $0.periodStart.isDateInRange(start: selectedDate.startDateOfMonth, end: selectedDate.endDateOfMonth) }) {
-            return currentDuty.dutyDetails
-        }
-        return []
-    }
+//    var dutyDetails: [DutyDetail] {
+//        if let currentDuty = duties.first(where: { startDateOfCalendar.isDateInRange(start: $0.periodStart, end: $0.periodEnd) }) {
+//            if currentDuty.periodEnd >= day.date {
+//                return currentDuty.dutyDetails
+//            }
+//            if let newDuty = duties.first(where: { day.date.isDateInRange(start: $0.periodStart.add(day: -1), end: $0.periodEnd) }) {
+//                return newDuty.dutyDetails
+//            }
+//        } else if let currentDuty = duties.first(where: { $0.periodStart.isDateInRange(start: selectedDate.startDateOfMonth, end: selectedDate.endDateOfMonth) }) {
+//            return currentDuty.dutyDetails
+//        }
+//        return []
+//    }
 
     var body: some View {
         VStack(spacing: 0) {

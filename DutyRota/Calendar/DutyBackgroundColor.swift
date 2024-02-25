@@ -24,11 +24,7 @@ struct DutyBackground: View {
         if isDay {
             Color(color)
                 .clipShape(.rect(cornerRadius: 5))
-                .overlay {
-                    if isHoliday {
-                        Color(color == "dutyClear" ? .clear : .red).opacity(0.4)
-                    }
-                }
+                .opacity(isHoliday ? 0.4 : 1)
 
             if isBankHoliday {
                 RoundedRectangle(cornerRadius: 5)

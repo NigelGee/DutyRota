@@ -29,7 +29,7 @@ struct AdHocDutyRowView: View {
                 HStack {
                     Text("TOD: **\(duty.tod)**")
                     Text("Spread: **\(duty.spread)**")
-                    Text("Break: **\(duty.breakTime.formatted(date: .omitted, time: .shortened))**")
+                    Text("Break: **\(duty.breakTime.formattedTime)**")
                 }
                 .font(.footnote)
                 .foregroundStyle(.secondary)
@@ -38,8 +38,8 @@ struct AdHocDutyRowView: View {
             Spacer()
 
             VStack {
-                Text(duty.start, format: .dateTime.hour().minute())
-                Text(duty.end, format: .dateTime.hour().minute())
+                Text(duty.start.formattedTime)
+                Text(duty.end.formattedTime)
                     .foregroundStyle(.secondary)
             }
         }

@@ -30,6 +30,7 @@
 		8B3FE0232B88CE8F00E2070F /* Holiday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FE0222B88CE8F00E2070F /* Holiday.swift */; };
 		8B3FE0252B88D2C000E2070F /* SetUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FE0242B88D2C000E2070F /* SetUpView.swift */; };
 		8B3FE0272B89FFC700E2070F /* EditHolidayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FE0262B89FFC700E2070F /* EditHolidayView.swift */; };
+		8B3FE0292B8A513B00E2070F /* DutyDetailRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FE0282B8A513B00E2070F /* DutyDetailRowView.swift */; };
 		8B5FB8F52B7F76F700B736ED /* RotaTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5FB8F42B7F76F700B736ED /* RotaTextField.swift */; };
 		8B6F5BC32B67C803003B54F5 /* AdHocDuty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5BC22B67C803003B54F5 /* AdHocDuty.swift */; };
 		8B6F5BC52B67CA48003B54F5 /* AdHocDutyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5BC42B67CA48003B54F5 /* AdHocDutyView.swift */; };
@@ -87,6 +88,7 @@
 		8B3FE0222B88CE8F00E2070F /* Holiday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Holiday.swift; sourceTree = "<group>"; };
 		8B3FE0242B88D2C000E2070F /* SetUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpView.swift; sourceTree = "<group>"; };
 		8B3FE0262B89FFC700E2070F /* EditHolidayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHolidayView.swift; sourceTree = "<group>"; };
+		8B3FE0282B8A513B00E2070F /* DutyDetailRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutyDetailRowView.swift; sourceTree = "<group>"; };
 		8B5FB8F42B7F76F700B736ED /* RotaTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotaTextField.swift; sourceTree = "<group>"; };
 		8B6F5BC22B67C803003B54F5 /* AdHocDuty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocDuty.swift; sourceTree = "<group>"; };
 		8B6F5BC42B67CA48003B54F5 /* AdHocDutyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocDutyView.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				8B7137F12B66D37A00627BF6 /* CalendarView.swift */,
+				8B3FE0282B8A513B00E2070F /* DutyDetailRowView.swift */,
 				8B7137FF2B66DA6500627BF6 /* ButtonView.swift */,
 				8B7137FB2B66D5CF00627BF6 /* MonthView.swift */,
 				8B12FD1D2B6D972600A22940 /* MonthRowView.swift */,
@@ -392,6 +395,7 @@
 				8B346AEA2B7FB94600A29C3C /* DayRotaView.swift in Sources */,
 				8B12FD782B73809800A22940 /* EditDutyView.swift in Sources */,
 				8BF7C8A92B79F8F700346B7A /* DutyBackgroundColor.swift in Sources */,
+				8B3FE0292B8A513B00E2070F /* DutyDetailRowView.swift in Sources */,
 				8B6F5BCB2B696B8B003B54F5 /* AddNewEventView.swift in Sources */,
 				8B6F5BC32B67C803003B54F5 /* AdHocDuty.swift in Sources */,
 				8B7137F82B66D41900627BF6 /* SelectedDateModifier.swift in Sources */,
