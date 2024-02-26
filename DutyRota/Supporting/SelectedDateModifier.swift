@@ -35,6 +35,7 @@ struct SelectedDate: ViewModifier {
 
     func body(content: Content) -> some View {
         content
+            .font(.system(size: 20))
             .foregroundStyle(foreGroundColor)
             .padding(5)
             .background(backgroundColor)

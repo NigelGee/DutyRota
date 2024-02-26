@@ -11,7 +11,7 @@ import UniformTypeIdentifiers
 
 struct RotaDetailView: View {
     @Environment(\.modelContext) var modelContext
-    @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.sunday
+    @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.saturday
     @Bindable var rota: Rota
 
     @State private var showAddNewRota = false
@@ -51,6 +51,7 @@ struct RotaDetailView: View {
                         .keyboardType(.numberPad)
                         .multilineTextAlignment(.center)
                 }
+
                 HStack(spacing: 1) {
                     Spacer()
                     ForEach(weekDays, id: \.self) {

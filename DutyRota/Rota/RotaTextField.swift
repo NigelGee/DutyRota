@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RotaTextField: View {
-    @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.sunday
+    @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.saturday
     var dayTextfield: [DayTextField]
     @Binding var sunRota: String
     @Binding var monRota: String

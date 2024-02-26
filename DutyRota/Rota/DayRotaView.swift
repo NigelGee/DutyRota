@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DayRotaView: View {
-    @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.sunday
+    @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.saturday
     var rotaDetail: RotaDetail
     let fontSize = 13.0
     let frameWidth = 35.0

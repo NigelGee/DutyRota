@@ -10,7 +10,7 @@ import SwiftData
 import SwiftUI
 
 struct CalendarView: View {
-    @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.sunday
+    @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.saturday
     @Environment(\.modelContext) var modelContext
 
     @State private var showDialog = false

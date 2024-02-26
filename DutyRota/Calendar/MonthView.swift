@@ -12,7 +12,7 @@ import SwiftUI
 struct MonthView: View {
     var rotaLines: [String]
 
-    @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.sunday
+    @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.saturday
 
     @Query var rota: [Rota]
 
@@ -40,7 +40,7 @@ struct MonthView: View {
                 ForEach(WeekDay.sortedWeekDays(startOn: startDayOfWeek), id: \.self) {
                     Text($0)
                         .frame(maxWidth: .infinity)
-                        .font(.caption)
+                        .font(.system(size: 15))
                 }
             }
             .padding(.horizontal)

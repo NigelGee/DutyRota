@@ -10,7 +10,8 @@ import SwiftUI
 
 struct SettingsView: View {
     @Environment(\.modelContext) var modelContext
-    @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.sunday
+    @Environment(\.dynamicTypeSize) var dynamicTypeSize
+    @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.saturday
     @AppStorage("defaultColor") var defaultColor = "dutyGreen"
 
     @State private var showColorPicker = false
@@ -24,7 +25,7 @@ struct SettingsView: View {
         NavigationStack(path: $path) {
             Form {
                 Section {
-                    Picker("Start Week On", selection: $startDayOfWeek) {
+                    Picker("Start Week On:", selection: $startDayOfWeek) {
                         ForEach(WeekDay.allCases, id: \.self) {
                             Text($0.name)
                                 .id($0.rawValue)
@@ -50,7 +51,14 @@ struct SettingsView: View {
                     if holidays.isNotEmpty {
                         ForEach(holidays) { holiday in
                             NavigationLink(value: holiday) {
-                                Text("\(holiday.start.formatted(date: .abbreviated, time: .omitted)) to \(holiday.end.formatted(date: .abbreviated, time: .omitted))")
+                                if dynamicTypeSize < .xxxLarge {
+                                    Text("\(holiday.start.formatted(date: .abbreviated, time: .omitted)) to \(holiday.end.formatted(date: .abbreviated, time: .omitted))")
+                                } else {
+                                    VStack {
+                                        Text(holiday.start.formatted(date: .abbreviated, time: .omitted))
+                                        Text(holiday.end.formatted(date: .abbreviated, time: .omitted))
+                                    }
+                                }
                             }
                         }
                         .onDelete(perform: deleteHoliday)
