@@ -103,8 +103,8 @@ struct DutyView: View {
     }
 }
 
-#Preview {
-    let preview = PreviewContainer(Duty.self)
-    return DutyView()
-            .modelContainer(preview.container)
-}
+//#Preview {
+//    let preview = PreviewContainer(Duty.self)
+//    return DutyView()
+//            .modelContainer(preview.container)
+//}

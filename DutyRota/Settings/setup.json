@@ -1,0 +1,38 @@
+[
+    {
+        "id": "1 .",
+        "text": "Allow 'Full Access' to your Calendar to show your calendar events in this calendar. If you do not want your personal calendars then do not allow but you will not be able to add or change them from the app!"
+    },
+    {
+        "id": "1a.",
+        "text": "To change Settings>Privacy Services>Calendars change to 'Full Access'"
+    },
+    {
+        "id": "2 .",
+        "text": "Set the Start Day of Week you require in 'Settings' tab. Note that when you add a rota period this can not be changed without deleting all the rota periods."
+    },
+    {
+        "id": "3 .",
+        "text": "On 'Rota' tab, Tap the + and set the date for this period from the first day of the rota start."
+    },
+    {
+        "id": "4 .",
+        "text": "Add all the lines of the rota and enter the first line of this rota period, or import a rota 'csv' file."
+    },
+    {
+        "id": "5 .",
+        "text": "On 'Duty' tab, Tap the + and set the date for this period."
+    },
+    {
+        "id": "6 .",
+        "text": "Add all the duty required, or import a duty 'csv' file."
+    },
+    {
+        "id": "7 .",
+        "text": "Enter your holidays in Settings tab."
+    },
+    {
+        "id": "8 .",
+        "text": "Check out www.appforest.co.uk for more detail descriptions and diagrams."
+    },
+]

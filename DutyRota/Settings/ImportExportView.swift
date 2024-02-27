@@ -33,12 +33,14 @@ struct ImportExportView: View {
                     Text("1. Tap on \(Image(systemName: "tray"))")
                     Text("2. Select file to import where you saved it.")
                     Text("3. **Important**")
-                    Text("Use save file for duty to Duty and file for rota to Rota.\n **Import files must be in the same day as the app days. Check that the first day on import file is the same as app day!")
+                    Text("Use save file for duty to Duty and file for rota to Rota.\n **Import files must be in the same days as the app days. Check that the first day on import file is the same as app day!")
                 }
                 Spacer()
             }
             .padding()
             Spacer()
+            Text("Check out [www.theappforest.co.uk](https://www.theappforest.co.uk) for more detail description and diagrams.")
+                .padding(.horizontal)
 
         }
         .navigationTitle("How To Import/Export files")

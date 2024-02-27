@@ -17,6 +17,8 @@ struct SettingsView: View {
     @State private var showColorPicker = false
 
     @Query(sort: \Holiday.start) var holidays: [Holiday]
+    @Query var rotas: [Rota]
+
     @State private var holiday: Holiday?
 
     @State private var path = NavigationPath()
@@ -31,6 +33,7 @@ struct SettingsView: View {
                                 .id($0.rawValue)
                         }
                     }
+                    .disabled(rotas.isNotEmpty)
 
                     LabeledContent("Default Duty Colour:") {
                         Button {
@@ -45,6 +48,8 @@ struct SettingsView: View {
                                 .strokeBorder(.primary, lineWidth: 1)
                         }
                     }
+                } footer: {
+                    Text("You need to have no Rotas set to able to change the Start of Week.")
                 }
 
                 Section {

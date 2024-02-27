@@ -41,8 +41,8 @@ struct EditDutyView: View {
     }
 }
 
-#Preview {
-    let preview = PreviewContainer(Duty.self)
-    return EditDutyView(duty: Duty.sampleDuties[0],isEnd: .constant(true) ,isEdit: .constant(false))
-        .modelContainer(preview.container)
-}
+//#Preview {
+//    let preview = PreviewContainer(Duty.self)
+//    return EditDutyView(duty: Duty.sampleDuties[0],isEnd: .constant(true) ,isEdit: .constant(false))
+//        .modelContainer(preview.container)
+//}

@@ -32,7 +32,7 @@ struct AdHocDutyView: View {
     }
 }
 
-#Preview {
-    AdHocDutyView(filteredDuties: AdHocDuty.sampleAdHocDuties)
-        .padding(.horizontal)
-}
+//#Preview {
+//    AdHocDutyView(filteredDuties: AdHocDuty.sampleAdHocDuties)
+//        .padding(.horizontal)
+//}

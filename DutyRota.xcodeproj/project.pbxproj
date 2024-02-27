@@ -51,6 +51,9 @@
 		8B7137FC2B66D5CF00627BF6 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137FB2B66D5CF00627BF6 /* MonthView.swift */; };
 		8B7137FE2B66D96D00627BF6 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137FD2B66D96D00627BF6 /* EventView.swift */; };
 		8B7138002B66DA6500627BF6 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137FF2B66DA6500627BF6 /* ButtonView.swift */; };
+		8BA6FB4F2B8E021700DAD23D /* setup.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BA6FB4E2B8E021700DAD23D /* setup.json */; };
+		8BA6FB512B8E02D400DAD23D /* SetUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6FB502B8E02D400DAD23D /* SetUp.swift */; };
+		8BA6FB532B8E030800DAD23D /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6FB522B8E030800DAD23D /* Bundle-Decodable.swift */; };
 		8BF7C8A32B79481C00346B7A /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7C8A22B79481C00346B7A /* ColorPickerView.swift */; };
 		8BF7C8A52B794B1B00346B7A /* ColorPickerDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7C8A42B794B1B00346B7A /* ColorPickerDisplayView.swift */; };
 		8BF7C8A72B796B6E00346B7A /* EditDutyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7C8A62B796B6E00346B7A /* EditDutyDetailView.swift */; };
@@ -111,6 +114,9 @@
 		8B7137FB2B66D5CF00627BF6 /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
 		8B7137FD2B66D96D00627BF6 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		8B7137FF2B66DA6500627BF6 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		8BA6FB4E2B8E021700DAD23D /* setup.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = setup.json; sourceTree = "<group>"; };
+		8BA6FB502B8E02D400DAD23D /* SetUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUp.swift; sourceTree = "<group>"; };
+		8BA6FB522B8E030800DAD23D /* Bundle-Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable.swift"; sourceTree = "<group>"; };
 		8BF7C8A22B79481C00346B7A /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		8BF7C8A42B794B1B00346B7A /* ColorPickerDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerDisplayView.swift; sourceTree = "<group>"; };
 		8BF7C8A62B796B6E00346B7A /* EditDutyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDutyDetailView.swift; sourceTree = "<group>"; };
@@ -173,6 +179,8 @@
 				8B6F5C242B6C30E9003B54F5 /* WeekDay - Enum.swift */,
 				8B3FDF892B80C93100E2070F /* ImportExportView.swift */,
 				8B3FE0242B88D2C000E2070F /* SetUpView.swift */,
+				8BA6FB4E2B8E021700DAD23D /* setup.json */,
+				8BA6FB502B8E02D400DAD23D /* SetUp.swift */,
 				8B3FE0222B88CE8F00E2070F /* Holiday.swift */,
 			);
 			path = Settings;
@@ -273,6 +281,7 @@
 				8B3FDFE62B86804000E2070F /* URLSession-Codable.swift */,
 				8B12FD632B70B35800A22940 /* EKEvent-Extension.swift */,
 				8B7137E72B66D31800627BF6 /* Assets.xcassets */,
+				8BA6FB522B8E030800DAD23D /* Bundle-Decodable.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -353,6 +362,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B7137EB2B66D31800627BF6 /* Preview Assets.xcassets in Resources */,
+				8BA6FB4F2B8E021700DAD23D /* setup.json in Resources */,
 				8B7137E82B66D31800627BF6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -381,6 +391,7 @@
 				8BF7C8A32B79481C00346B7A /* ColorPickerView.swift in Sources */,
 				8B12FD202B6FF4B500A22940 /* Duty.swift in Sources */,
 				8BF7C8A72B796B6E00346B7A /* EditDutyDetailView.swift in Sources */,
+				8BA6FB532B8E030800DAD23D /* Bundle-Decodable.swift in Sources */,
 				8BF7C8D12B7B9D1200346B7A /* EditRotaView.swift in Sources */,
 				8BF7C8CF2B7B76EC00346B7A /* RotaDetail.swift in Sources */,
 				8B3FDFE72B86804000E2070F /* URLSession-Codable.swift in Sources */,
@@ -399,6 +410,7 @@
 				8B6F5BCB2B696B8B003B54F5 /* AddNewEventView.swift in Sources */,
 				8B6F5BC32B67C803003B54F5 /* AdHocDuty.swift in Sources */,
 				8B7137F82B66D41900627BF6 /* SelectedDateModifier.swift in Sources */,
+				8BA6FB512B8E02D400DAD23D /* SetUp.swift in Sources */,
 				8B6F5C282B6D5915003B54F5 /* AdHocDutyRowView.swift in Sources */,
 				8B3FDFE52B86800300E2070F /* BankHoliday.swift in Sources */,
 				8BF7C8D32B7CE00400346B7A /* RotaDetailView.swift in Sources */,
@@ -475,7 +487,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -532,7 +544,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -548,7 +560,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"DutyRota/Preview Content\"";
 				DEVELOPMENT_TEAM = 5SYZQ266RF;
 				ENABLE_PREVIEWS = YES;
@@ -579,7 +591,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"DutyRota/Preview Content\"";
 				DEVELOPMENT_TEAM = 5SYZQ266RF;
 				ENABLE_PREVIEWS = YES;

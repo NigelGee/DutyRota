@@ -186,7 +186,7 @@ struct CalendarView: View {
                 monthEvents = eventStore.events(matching: predicateMonth)
 
             } else {
-                print("Error")
+                print("Error in loading Events")
             }
         }
     }

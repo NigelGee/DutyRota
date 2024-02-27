@@ -106,8 +106,8 @@ struct AddDutyDetailView: View {
     }
 }
 
-#Preview {
-    let preview = PreviewContainer(Duty.self)
-    return AddDutyDetailView(duty: Duty.sampleDuties[0], selectedColor: "dutyGreen")
-        .modelContainer(preview.container)
-}
+//#Preview {
+//    let preview = PreviewContainer(Duty.self)
+//    return AddDutyDetailView(duty: Duty.sampleDuties[0], selectedColor: "dutyGreen")
+//        .modelContainer(preview.container)
+//}

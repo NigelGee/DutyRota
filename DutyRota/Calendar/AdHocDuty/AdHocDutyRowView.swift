@@ -46,7 +46,7 @@ struct AdHocDutyRowView: View {
     }
 }
 
-#Preview {
-    AdHocDutyRowView(duty: AdHocDuty.sampleAdHocDuties[1])
-        .padding(.horizontal)
-}
+//#Preview {
+//    AdHocDutyRowView(duty: AdHocDuty.sampleAdHocDuties[1])
+//        .padding(.horizontal)
+//}

@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct SetUpView: View {
+    let setUp: [SetUp] = Bundle.main.decode(from: "setup.json")
+
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 15) {
-                Text("1. Allow 'Full Access' to your Calendar to show your calendar events in this calendar. If you do not want your personal calendars then do not allow but you will not be able to add or change them from the app!")
-                Text("1a. To change ***Settings>Privacy Services>Calendars*** change to 'Full Access'")
+        List(setUp) { value in
+            HStack(alignment: .top, spacing: 20) {
+                Text(value.id)
+                Text(value.text)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
-        .padding()
         .navigationTitle("How to Set up your Calendar")
         .navigationBarTitleDisplayMode(.inline)
     }
