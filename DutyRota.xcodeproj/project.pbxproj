@@ -26,7 +26,6 @@
 		8B3FDF8C2B81168800E2070F /* EditRotaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FDF8B2B81168800E2070F /* EditRotaDetailView.swift */; };
 		8B3FDFE52B86800300E2070F /* BankHoliday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FDFE42B86800300E2070F /* BankHoliday.swift */; };
 		8B3FDFE72B86804000E2070F /* URLSession-Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FDFE62B86804000E2070F /* URLSession-Codable.swift */; };
-		8B3FE0072B873CF600E2070F /* CalendarRotaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FE0062B873CF600E2070F /* CalendarRotaView.swift */; };
 		8B3FE0232B88CE8F00E2070F /* Holiday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FE0222B88CE8F00E2070F /* Holiday.swift */; };
 		8B3FE0252B88D2C000E2070F /* SetUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FE0242B88D2C000E2070F /* SetUpView.swift */; };
 		8B3FE0272B89FFC700E2070F /* EditHolidayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FE0262B89FFC700E2070F /* EditHolidayView.swift */; };
@@ -87,7 +86,6 @@
 		8B3FDF8B2B81168800E2070F /* EditRotaDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRotaDetailView.swift; sourceTree = "<group>"; };
 		8B3FDFE42B86800300E2070F /* BankHoliday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankHoliday.swift; sourceTree = "<group>"; };
 		8B3FDFE62B86804000E2070F /* URLSession-Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession-Codable.swift"; sourceTree = "<group>"; };
-		8B3FE0062B873CF600E2070F /* CalendarRotaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarRotaView.swift; sourceTree = "<group>"; };
 		8B3FE0222B88CE8F00E2070F /* Holiday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Holiday.swift; sourceTree = "<group>"; };
 		8B3FE0242B88D2C000E2070F /* SetUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpView.swift; sourceTree = "<group>"; };
 		8B3FE0262B89FFC700E2070F /* EditHolidayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHolidayView.swift; sourceTree = "<group>"; };
@@ -166,7 +164,7 @@
 		8B3FE0052B873CC400E2070F /* Calendar Rota */ = {
 			isa = PBXGroup;
 			children = (
-				8B3FE0062B873CF600E2070F /* CalendarRotaView.swift */,
+				8B3FE0282B8A513B00E2070F /* DutyDetailRowView.swift */,
 			);
 			path = "Calendar Rota";
 			sourceTree = "<group>";
@@ -255,7 +253,6 @@
 			isa = PBXGroup;
 			children = (
 				8B7137F12B66D37A00627BF6 /* CalendarView.swift */,
-				8B3FE0282B8A513B00E2070F /* DutyDetailRowView.swift */,
 				8B7137FF2B66DA6500627BF6 /* ButtonView.swift */,
 				8B7137FB2B66D5CF00627BF6 /* MonthView.swift */,
 				8B12FD1D2B6D972600A22940 /* MonthRowView.swift */,
@@ -280,8 +277,8 @@
 				8B6F5BC82B692160003B54F5 /* Collection - isNotEmpty.swift */,
 				8B3FDFE62B86804000E2070F /* URLSession-Codable.swift */,
 				8B12FD632B70B35800A22940 /* EKEvent-Extension.swift */,
-				8B7137E72B66D31800627BF6 /* Assets.xcassets */,
 				8BA6FB522B8E030800DAD23D /* Bundle-Decodable.swift */,
+				8B7137E72B66D31800627BF6 /* Assets.xcassets */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -400,7 +397,6 @@
 				8B7137F42B66D39800627BF6 /* Date-Helper.swift in Sources */,
 				8B12FD762B7303E100A22940 /* SampleDuty.swift in Sources */,
 				8B12FD6E2B71725B00A22940 /* DutyDetailView.swift in Sources */,
-				8B3FE0072B873CF600E2070F /* CalendarRotaView.swift in Sources */,
 				8B12FD7A2B74BEF200A22940 /* AddDutyDetailView.swift in Sources */,
 				8B12FD6C2B7155ED00A22940 /* DutyView.swift in Sources */,
 				8B346AEA2B7FB94600A29C3C /* DayRotaView.swift in Sources */,
@@ -560,7 +556,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"DutyRota/Preview Content\"";
 				DEVELOPMENT_TEAM = 5SYZQ266RF;
 				ENABLE_PREVIEWS = YES;
@@ -591,7 +587,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"DutyRota/Preview Content\"";
 				DEVELOPMENT_TEAM = 5SYZQ266RF;
 				ENABLE_PREVIEWS = YES;

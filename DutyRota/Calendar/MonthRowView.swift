@@ -44,20 +44,6 @@ struct MonthRowView: View {
         day.date.startOfDay.dayDifference(from: startDateOfCalendar)
     }
 
-//    var dutyDetails: [DutyDetail] {
-//        if let currentDuty = duties.first(where: { startDateOfCalendar.isDateInRange(start: $0.periodStart, end: $0.periodEnd) }) {
-//            if currentDuty.periodEnd >= day.date {
-//                return currentDuty.dutyDetails
-//            }
-//            if let newDuty = duties.first(where: { day.date.isDateInRange(start: $0.periodStart.add(day: -1), end: $0.periodEnd) }) {
-//                return newDuty.dutyDetails
-//            }
-//        } else if let currentDuty = duties.first(where: { $0.periodStart.isDateInRange(start: selectedDate.startDateOfMonth, end: selectedDate.endDateOfMonth) }) {
-//            return currentDuty.dutyDetails
-//        }
-//        return []
-//    }
-
     var body: some View {
         VStack(spacing: 0) {
             if day.date >= selectedDate.startDateOfMonth {
@@ -97,7 +83,7 @@ struct MonthRowView: View {
             DutyBackground(
                 for: color(dayIndex),
                 isDay: day.date >= selectedDate.startDateOfMonth,
-                isBankHoliday: bankHolidays.contains(where: { $0.date == day.date }),
+                isBankHoliday: bankHolidays.contains(where: { $0.date == day.date } ),
                 isHoliday: holidayDates.contains(where: { $0 == day.date } )
             )
         }
@@ -105,6 +91,7 @@ struct MonthRowView: View {
 
     func color(_ dayIndex: Int) -> String {
         guard rotas.isNotEmpty, dutyDetails.isNotEmpty else { return "dutyClear" }
+        guard dayIndex < rotas.count else { return "dutyClear"}
 
         if let dutyDetail = (dutyDetails.first { $0.title == rotas[dayIndex] }) {
             return dutyDetail.color

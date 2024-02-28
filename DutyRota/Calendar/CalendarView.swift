@@ -61,9 +61,16 @@ struct CalendarView: View {
     var dayDutyDetails: [DutyDetail] {
         guard dutiesForMonth.isNotEmpty else { return [] }
         let selectedIndex = selectedDate.dayDifference(from: calendarDates.first!.date)
+        guard selectedIndex < dutiesForMonth.count else { return [] }
         if dutiesForMonth[selectedIndex] != "" {
-            return dutyDetails.filter { $0.title == dutiesForMonth[selectedIndex] }
+            let dayDuties = dutyDetails.filter { $0.title == dutiesForMonth[selectedIndex] }
+            if dayDuties.isNotEmpty {
+                return dutyDetails.filter { $0.title == dutiesForMonth[selectedIndex] }
+            } else {
+                return [DutyDetail(title: "Error For '\(dutiesForMonth[selectedIndex])'", start: .zeroTime, end: .zeroTime, tod: .zeroTime, color: "dutyError")]
+            }
         }
+
         return []
     }
 
@@ -84,7 +91,6 @@ struct CalendarView: View {
                             DutyDetailRowView(dutyDetail: dayDutyDetail)
                                 .listRowBackground(Color(dayDutyDetail.color))
                         }
-
 
                         if filteredDuties.isNotEmpty {
                             AdHocDutyView(filteredDuties: filteredDuties)
@@ -237,7 +243,6 @@ struct CalendarView: View {
                     count = i
                     guard let rotaDetail = currentRota.rotaDetails.first(where: { $0.line == currentLine }) else { continue }
                     monthDuties.append(contentsOf: RotaDetail.weekDuties(of: rotaDetail, for: startDayOfWeek))
-                    print(currentLine)
                     if currentLine == maxLineNumber {
                         currentLine = minLineNumber
                     } else {
