@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct SelectedDate: ViewModifier {
+    @Environment(\.scenePhase) var scenePhase
+    @State private var today = Date.now
+
     let date1: Date
     let date2: Date
 
     var foreGroundColor: Color {
-        if date2.sameDay(as: .now) {
+        if date2.sameDay(as: today) {
             return.red
-        } else if date2 < .now {
+        } else if date2 < today {
             return .secondary/*.black.opacity(0.4)*/
         } else {
             return .primary/*.black*/
@@ -39,6 +42,11 @@ struct SelectedDate: ViewModifier {
             .foregroundStyle(foreGroundColor)
             .padding(5)
             .background(backgroundColor)
+            .onChange(of: scenePhase) { _, newPhase in
+                if newPhase == .active {
+                    today = .now
+                }
+            }
 
     }
 }
