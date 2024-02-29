@@ -47,7 +47,7 @@
 		8B7137F42B66D39800627BF6 /* Date-Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137F32B66D39800627BF6 /* Date-Helper.swift */; };
 		8B7137F62B66D3D900627BF6 /* CalendarDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137F52B66D3D900627BF6 /* CalendarDate.swift */; };
 		8B7137F82B66D41900627BF6 /* SelectedDateModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137F72B66D41900627BF6 /* SelectedDateModifier.swift */; };
-		8B7137FC2B66D5CF00627BF6 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137FB2B66D5CF00627BF6 /* MonthView.swift */; };
+		8B7137FC2B66D5CF00627BF6 /* CompactMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137FB2B66D5CF00627BF6 /* CompactMonthView.swift */; };
 		8B7137FE2B66D96D00627BF6 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137FD2B66D96D00627BF6 /* EventView.swift */; };
 		8B7138002B66DA6500627BF6 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137FF2B66DA6500627BF6 /* ButtonView.swift */; };
 		8BA6FB4F2B8E021700DAD23D /* setup.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BA6FB4E2B8E021700DAD23D /* setup.json */; };
@@ -109,7 +109,7 @@
 		8B7137F52B66D3D900627BF6 /* CalendarDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDate.swift; sourceTree = "<group>"; };
 		8B7137F72B66D41900627BF6 /* SelectedDateModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedDateModifier.swift; sourceTree = "<group>"; };
 		8B7137FA2B66D52200627BF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8B7137FB2B66D5CF00627BF6 /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
+		8B7137FB2B66D5CF00627BF6 /* CompactMonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactMonthView.swift; sourceTree = "<group>"; };
 		8B7137FD2B66D96D00627BF6 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		8B7137FF2B66DA6500627BF6 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		8BA6FB4E2B8E021700DAD23D /* setup.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = setup.json; sourceTree = "<group>"; };
@@ -254,7 +254,7 @@
 			children = (
 				8B7137F12B66D37A00627BF6 /* CalendarView.swift */,
 				8B7137FF2B66DA6500627BF6 /* ButtonView.swift */,
-				8B7137FB2B66D5CF00627BF6 /* MonthView.swift */,
+				8B7137FB2B66D5CF00627BF6 /* CompactMonthView.swift */,
 				8B12FD1D2B6D972600A22940 /* MonthRowView.swift */,
 				8BF7C8A82B79F8F700346B7A /* DutyBackgroundColor.swift */,
 				8B7137F52B66D3D900627BF6 /* CalendarDate.swift */,
@@ -410,7 +410,7 @@
 				8B6F5C282B6D5915003B54F5 /* AdHocDutyRowView.swift in Sources */,
 				8B3FDFE52B86800300E2070F /* BankHoliday.swift in Sources */,
 				8BF7C8D32B7CE00400346B7A /* RotaDetailView.swift in Sources */,
-				8B7137FC2B66D5CF00627BF6 /* MonthView.swift in Sources */,
+				8B7137FC2B66D5CF00627BF6 /* CompactMonthView.swift in Sources */,
 				8B6F5C252B6C30E9003B54F5 /* WeekDay - Enum.swift in Sources */,
 				8B12FD702B7273D100A22940 /* PreviewContainer.swift in Sources */,
 				8B12FD662B70BBE700A22940 /* EventRowView.swift in Sources */,

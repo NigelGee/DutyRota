@@ -13,6 +13,7 @@ struct SettingsView: View {
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
     @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.saturday
     @AppStorage("defaultColor") var defaultColor = "dutyGreen"
+    @AppStorage("bankHolidayRule") var bankHolidayRule = true
 
     @State private var showColorPicker = false
 
@@ -27,14 +28,6 @@ struct SettingsView: View {
         NavigationStack(path: $path) {
             Form {
                 Section {
-                    Picker("Start Week On:", selection: $startDayOfWeek) {
-                        ForEach(WeekDay.allCases, id: \.self) {
-                            Text($0.name)
-                                .id($0.rawValue)
-                        }
-                    }
-                    .disabled(rotas.isNotEmpty)
-
                     LabeledContent("Default Duty Colour:") {
                         Button {
                             showColorPicker = true
@@ -48,8 +41,22 @@ struct SettingsView: View {
                                 .strokeBorder(.primary, lineWidth: 1)
                         }
                     }
+
+                    Picker("Start Week On:", selection: $startDayOfWeek) {
+                        ForEach(WeekDay.allCases, id: \.self) {
+                            Text($0.name)
+                                .id($0.rawValue)
+                        }
+                    }
+                    .disabled(rotas.isNotEmpty)
                 } footer: {
                     Text("You need to have no Rotas set to able to change the Start of Week.")
+                }
+
+                Section {
+                    Toggle("Bank Holiday Rule", isOn: $bankHolidayRule)
+                } footer: {
+                    Text("This will change the duty on Bank Holidays by use Sunday duties on Bank Holiday Monday and Saturday Duties on Bank Holiday Friday. Please note that the colour of duty on Bank holiday will not change.")
                 }
 
                 Section {

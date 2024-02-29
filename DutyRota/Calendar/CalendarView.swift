@@ -30,14 +30,6 @@ struct CalendarView: View {
     @Query var duties: [Duty]
     @Query var rota: [Rota]
 
-    var filteredDuties: [AdHocDuty] {
-        adHocDuties.filter { $0.start.sameDay(as: selectedDate) }
-    }
-
-    var listsAreEmpty: Bool {
-        events.isNotEmpty || filteredDuties.isNotEmpty || dayDutyDetails.isNotEmpty
-    }
-
     var calendarDates: [CalendarDate] {
         selectedDate.datesOfMonth(with: startDayOfWeek.rawValue).map { CalendarDate(date: $0) }
     }
@@ -58,53 +50,20 @@ struct CalendarView: View {
         return []
     }
 
-    var dayDutyDetails: [DutyDetail] {
-        guard dutiesForMonth.isNotEmpty else { return [] }
-        let selectedIndex = selectedDate.dayDifference(from: calendarDates.first!.date)
-        guard selectedIndex < dutiesForMonth.count else { return [] }
-        if dutiesForMonth[selectedIndex] != "" {
-            let dayDuties = dutyDetails.filter { $0.title == dutiesForMonth[selectedIndex] }
-            if dayDuties.isNotEmpty {
-                return dutyDetails.filter { $0.title == dutiesForMonth[selectedIndex] }
-            } else {
-                return [DutyDetail(title: "Error For '\(dutiesForMonth[selectedIndex])'", start: .zeroTime, end: .zeroTime, tod: .zeroTime, color: "dutyError")]
-            }
-        }
-
-        return []
-    }
-
     var body: some View {
         NavigationStack {
             VStack {
-                MonthView(rotaLines: dutiesForMonth,
-                          selectedDate: $selectedDate,
-                          monthEvents: $monthEvents,
-                          adHocDuties: adHocDuties,
-                          bankHolidays: bankHolidays,
-                          dutyDetails: dutyDetails
+                CompactMonthView(
+                    rotaLines: dutiesForMonth,
+                    selectedDate: $selectedDate,
+                    monthEvents: $monthEvents,
+                    adHocDuties: adHocDuties,
+                    bankHolidays: bankHolidays,
+                    dutyDetails: dutyDetails,
+                    events: $events,
+                    eventStore: eventStore,
+                    loadEvent: loadEvent
                 )
-
-                if listsAreEmpty {
-                    List {
-                        ForEach(dayDutyDetails) { dayDutyDetail in
-                            DutyDetailRowView(dutyDetail: dayDutyDetail)
-                                .listRowBackground(Color(dayDutyDetail.color))
-                        }
-
-                        if filteredDuties.isNotEmpty {
-                            AdHocDutyView(filteredDuties: filteredDuties)
-                                .listRowBackground(Color.orange.opacity(0.7))
-                        }
-
-                        if events.isNotEmpty {
-                            EventView(events: $events, eventStore: eventStore, loadEvent: loadEvent)
-                        }
-                    }
-                    .listStyle(.plain)
-                } else {
-                    ContentUnavailableView("No Events", systemImage: "calendar")
-                }
             }
             .navigationTitle("Calendar")
             .navigationBarTitleDisplayMode(.inline)

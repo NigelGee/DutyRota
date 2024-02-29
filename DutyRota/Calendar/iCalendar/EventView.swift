@@ -23,8 +23,10 @@ struct EventView: View {
                     }
                 } label: {
                     EventRowView(event: event)
+                        .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
+
             }
             .sheet(item: $event, onDismiss: loadEvent) { event in
                 EventEditViewController(event: event, eventStore: eventStore)

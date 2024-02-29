@@ -70,6 +70,13 @@ extension Date {
         return Calendar.current.date(from: components)!
     }
 
+    func isBankHoliday(_ weekDay: WeekDay) -> Bool {
+        let calendar = Calendar.current
+        let dayOfWeek = calendar.component(.weekday, from: self)
+
+        return dayOfWeek == (weekDay.rawValue + 1)
+    }
+
     /// Returns a date by add a number of days to given date.
     /// - Parameter day: A number to advance the date by.
     /// - Returns: A `Date` with  number of day(s) added.
