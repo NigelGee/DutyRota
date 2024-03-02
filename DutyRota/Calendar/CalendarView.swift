@@ -25,6 +25,7 @@ struct CalendarView: View {
     @State private var dutiesForMonth = [String]()
 
     @State private var bankHolidays = [BankHolidayEvent]()
+    @State private var showErrorBH = false
 
     @Query(sort: \AdHocDuty.start) var adHocDuties: [AdHocDuty]
     @Query var duties: [Duty]
@@ -38,13 +39,13 @@ struct CalendarView: View {
         for day in calendarDates {
             if let currentDuty = duties.first(where: { calendarDates.first!.date.isDateInRange(start: $0.periodStart, end: $0.periodEnd) }) {
                 if currentDuty.periodEnd >= day.date {
-                    return currentDuty.dutyDetails
+                    return currentDuty.unwrappedDutyDetails
                 }
                 if let newDuty = duties.first(where: { day.date.isDateInRange(start: $0.periodStart.add(day: -1), end: $0.periodEnd) }) {
-                    return newDuty.dutyDetails
+                    return newDuty.unwrappedDutyDetails
                 }
             } else if let currentDuty = duties.first(where: { $0.periodStart.isDateInRange(start: selectedDate.startDateOfMonth, end: selectedDate.endDateOfMonth) }) {
-                return currentDuty.dutyDetails
+                return currentDuty.unwrappedDutyDetails
             }
         }
         return []
@@ -119,6 +120,11 @@ struct CalendarView: View {
             .onChange(of: selectedDate) {
                 monthRotasDuties()
             }
+            .alert("No Internet", isPresented: $showErrorBH) {
+                Button("OK") { }
+            } message: {
+                Text("Bank Holidays might not show correctly in calendar.")
+            }
         }
     }
 
@@ -132,6 +138,7 @@ struct CalendarView: View {
             async let items = try await URLSession.shared.decode(BankHoliday.self, from: "https://www.gov.uk/bank-holidays.json", dateDecodingStrategy: .formatted(dateFormatter))
             bankHolidays = try await items.englandAndWales.events
         } catch {
+            showErrorBH = true
             print("Failed to fetch Bank Holiday data!")
         }
     }
@@ -189,10 +196,10 @@ struct CalendarView: View {
         if let currentRota = rota.first(where: { calendarFirst.date.isDateInRange(start: $0.periodStart, end: $0.periodEnd) }) {
             let weeksToStartDate = Int((calendarFirst.date.dayDifference(from: currentRota.periodStart)) / 7) + 1
             var currentLine = currentRota.startRotaLine + weeksToStartDate
-            let maxLineNumber = currentRota.rotaDetails.map { $0.line }.max() ?? 0
-            let minLineNumber = currentRota.rotaDetails.map { $0.line }.min() ?? 0
+            let maxLineNumber = currentRota.unwrappedRotaDetails.map { $0.line }.max() ?? 0
+            let minLineNumber = currentRota.unwrappedRotaDetails.map { $0.line }.min() ?? 0
 
-            let remainder = (currentLine - minLineNumber) % currentRota.rotaDetails.count
+            let remainder = (currentLine - minLineNumber) % currentRota.unwrappedRotaDetails.count
             currentLine = minLineNumber + remainder
 
             var end = calendarFirst.date
@@ -200,7 +207,7 @@ struct CalendarView: View {
             for i in 0 ..< 6 {
                 if end <= currentRota.periodEnd {
                     count = i
-                    guard let rotaDetail = currentRota.rotaDetails.first(where: { $0.line == currentLine }) else { continue }
+                    guard let rotaDetail = currentRota.unwrappedRotaDetails.first(where: { $0.line == currentLine }) else { continue }
                     monthDuties.append(contentsOf: RotaDetail.weekDuties(of: rotaDetail, for: startDayOfWeek))
                     if currentLine == maxLineNumber {
                         currentLine = minLineNumber
@@ -213,7 +220,7 @@ struct CalendarView: View {
                     end = end.add(day: 7)
                     if let nextRota = rota.first(where: { end.isDateInRange(start: $0.periodStart, end: $0.periodEnd) }) {
                         currentLine = nextRota.startRotaLine - (count + 1) + i
-                        guard let nextRotaDetail = nextRota.rotaDetails.first(where: { $0.line == currentLine} ) else { continue }
+                        guard let nextRotaDetail = nextRota.unwrappedRotaDetails.first(where: { $0.line == currentLine} ) else { continue }
                         monthDuties.append(contentsOf: RotaDetail.weekDuties(of: nextRotaDetail, for: startDayOfWeek))
                     } else {
                         monthDuties.append(contentsOf: RotaDetail.emptyWeek)
@@ -227,7 +234,7 @@ struct CalendarView: View {
                     monthDuties.append(contentsOf: RotaDetail.emptyWeek)
                 } else {
                     let currentLine = currentRota.startRotaLine
-                    guard let rotaDetail = currentRota.rotaDetails.first(where: { $0.line == (currentLine + count) }) else { continue }
+                    guard let rotaDetail = currentRota.unwrappedRotaDetails.first(where: { $0.line == (currentLine + count) }) else { continue }
                     monthDuties.append(contentsOf: RotaDetail.weekDuties(of: rotaDetail, for: startDayOfWeek))
                     count += 1
                 }

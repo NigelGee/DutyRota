@@ -10,11 +10,12 @@ import SwiftData
 
 @Model
 class DutyDetail: Comparable {
-    var title: String
-    var start: Date
-    var end: Date
-    var tod: Date
-    var color: String
+    var title: String = ""
+    var start: Date = Date.now
+    var end: Date = Date.now
+    var tod: Date = Date.now
+    var color: String = "dutyGreen"
+    var duty: Duty?
 
     init(title: String, start: Date, end: Date, tod: Date, color: String = "dutyGreen") {
         self.title = title

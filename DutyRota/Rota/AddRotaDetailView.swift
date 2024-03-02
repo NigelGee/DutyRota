@@ -77,7 +77,7 @@ struct AddRotaDetailView: View {
 
     func addNewRota() {
         guard let lineRota else { return }
-        guard !rota.rotaDetails.contains (where: { $0.line == lineRota }) else {
+        guard !rota.unwrappedRotaDetails.contains (where: { $0.line == lineRota }) else {
             self.lineRota = nil
             alertTitle = "ERROR!"
             alertMessage = "This rota line already exists."
@@ -85,7 +85,7 @@ struct AddRotaDetailView: View {
             return
         }
         let rotaDetail = RotaDetail(line: lineRota, sun: sunRota, mon: monRota, tue: tueRota, wed: wedRota, thu: thuRota, fri: friRota, sat: satRota)
-        rota.rotaDetails.append(rotaDetail)
+        rota.rotaDetails?.append(rotaDetail)
         self.lineRota = nil
         sunRota = ""
         monRota = ""

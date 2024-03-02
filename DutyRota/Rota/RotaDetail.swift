@@ -14,14 +14,16 @@ enum ImportError: Error {
 
 @Model
 class RotaDetail: Comparable {
-    var line: Int
-    var sun: String
-    var mon: String
-    var tue: String
-    var wed: String
-    var thu: String
-    var fri: String
-    var sat: String
+    var line: Int = 0
+    var sun: String = ""
+    var mon: String = ""
+    var tue: String = ""
+    var wed: String = ""
+    var thu: String = ""
+    var fri: String = ""
+    var sat: String = ""
+
+    var rota: Rota?
 
     init(line: Int, sun: String, mon: String, tue: String, wed: String, thu: String, fri: String, sat: String) {
         self.line = line

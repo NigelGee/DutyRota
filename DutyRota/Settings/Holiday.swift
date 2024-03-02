@@ -10,8 +10,8 @@ import SwiftData
 
 @Model
 class Holiday {
-    var start: Date
-    var end: Date
+    var start: Date = Date.now
+    var end: Date = Date.now
 
     init(start: Date, end: Date) {
         self.start = start

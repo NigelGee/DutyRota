@@ -10,13 +10,17 @@ import SwiftData
 
 @Model
 class Duty {
-    var periodStart: Date
-    var periodEnd: Date
-    @Relationship(deleteRule: .cascade) var dutyDetails: [DutyDetail]
+    var periodStart: Date = Date.now
+    var periodEnd: Date = Date.now
+    @Relationship(deleteRule: .cascade, inverse: \DutyDetail.duty) var dutyDetails: [DutyDetail]?
 
     init(periodStart: Date, periodEnd: Date) {
         self.periodStart = periodStart
         self.periodEnd = periodEnd
         self.dutyDetails = []
+    }
+
+    var unwrappedDutyDetails: [DutyDetail] {
+        dutyDetails ?? []
     }
 }

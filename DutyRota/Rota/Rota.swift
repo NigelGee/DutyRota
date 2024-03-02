@@ -10,16 +10,20 @@ import SwiftData
 
 @Model
 class Rota {
-    var periodStart: Date
-    var periodEnd: Date
-    var startRotaLine: Int
-    var rotaDetails: [RotaDetail]
+    var periodStart: Date = Date.now
+    var periodEnd: Date = Date.now
+    var startRotaLine: Int = 0
+    @Relationship(deleteRule: .cascade, inverse: \RotaDetail.rota) var rotaDetails: [RotaDetail]?
 
     init(periodStart: Date, periodEnd: Date, startRotaLine: Int = 0, rotaDetails: [RotaDetail] = []) {
         self.periodStart = periodStart
         self.periodEnd = periodEnd
         self.startRotaLine = startRotaLine
         self.rotaDetails = rotaDetails
+    }
+
+    var unwrappedRotaDetails: [RotaDetail] {
+        rotaDetails ?? []
     }
 
     static var example = Rota(periodStart: .now, periodEnd: .distantFuture,

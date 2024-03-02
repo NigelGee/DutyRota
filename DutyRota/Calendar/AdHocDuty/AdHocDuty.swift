@@ -10,11 +10,11 @@ import SwiftData
 
 @Model
 class AdHocDuty {
-    var title: String
-    var route: String
-    var start: Date
-    var end: Date
-    var breakTime: Date
+    var title: String = ""
+    var route: String = ""
+    var start: Date = Date.now
+    var end: Date = Date.now
+    var breakTime: Date = Date.now
 
     init(title: String, route: String, start: Date, end: Date, breakTime: Date) {
         self.title = title

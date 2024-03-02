@@ -59,7 +59,7 @@ struct AddDutyDetailView: View {
 
                 Divider()
                 
-                List(duty.dutyDetails.sorted()) { dutyDetail in
+                List(duty.unwrappedDutyDetails.sorted()) { dutyDetail in
                     HStack {
                         Text("**\(dutyDetail.title)**")
                         Spacer()
@@ -90,14 +90,14 @@ struct AddDutyDetailView: View {
     }
 
     func addDuty() {
-        guard !duty.dutyDetails.map(\.title).contains(title) else {
+        guard !duty.unwrappedDutyDetails.map(\.title).contains(title) else {
             showAlert = true
             title = ""
             return
         }
 
         let newDuty = DutyDetail(title: title, start: start, end: end, tod: tod, color: selectedColor)
-        duty.dutyDetails.append(newDuty)
+        duty.dutyDetails?.append(newDuty)
         
         title = ""
         start = Date.zeroTime

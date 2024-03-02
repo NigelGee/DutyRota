@@ -4,5 +4,9 @@
 <dict>
 	<key>NSCalendarsFullAccessUsageDescription</key>
 	<string>Would like to import your calendar events to the app</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 </dict>
 </plist>

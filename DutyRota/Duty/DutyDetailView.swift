@@ -36,10 +36,10 @@ struct DutyDetailView: View {
 
     var filteredDutyDetails: [DutyDetail] {
         if search.isNotEmpty {
-            return duty.dutyDetails.filter { $0.title.localizedCaseInsensitiveContains(search) }.sorted()
+            return duty.unwrappedDutyDetails.filter { $0.title.localizedCaseInsensitiveContains(search) }.sorted()
         }
 
-        return duty.dutyDetails.sorted()
+        return duty.unwrappedDutyDetails.sorted()
     }
 
     var body: some View {
@@ -123,7 +123,7 @@ struct DutyDetailView: View {
         }
         .fileExporter(
             isPresented: $isExporting,
-            document: DutyDetail.makeExportFile(from: duty.dutyDetails),
+            document: DutyDetail.makeExportFile(from: duty.unwrappedDutyDetails),
             contentType: UTType.commaSeparatedText,
             defaultFilename: "Duties"
         ) { result in
@@ -144,19 +144,19 @@ struct DutyDetailView: View {
         for item in indexSets {
             let object = filteredDutyDetails[item]
             modelContext.delete(object)
-            duty.dutyDetails.removeAll(where: { $0 == object })
+            duty.dutyDetails?.removeAll(where: { $0 == object })
         }
     }
 
     func onAppearDefault() {
-        guard duty.dutyDetails.isEmpty else { return }
-       
+        guard duty.unwrappedDutyDetails.isEmpty else { return }
+
         let emptyDetail = DutyDetail(title: "", start: Date.zeroTime, end: Date.zeroTime, tod: Date.zeroTime, color: "dutyClear")
         let restDetail = DutyDetail(title: "Rest", start: Date.zeroTime, end: Date.zeroTime, tod: Date.zeroTime, color: "dutySilver")
         let spareDetail = DutyDetail(title: "Spare", start: Date.zeroTime, end: Date.zeroTime, tod: Date.zeroTime, color: "dutyYellow")
-        duty.dutyDetails.append(emptyDetail)
-        duty.dutyDetails.append(restDetail)
-        duty.dutyDetails.append(spareDetail)
+        duty.dutyDetails?.append(emptyDetail)
+        duty.dutyDetails?.append(restDetail)
+        duty.dutyDetails?.append(spareDetail)
     }
 
     func addSample() {
@@ -168,7 +168,7 @@ struct DutyDetailView: View {
         }
 
         let dutyDetail = DutyDetail(title: "101", start: .now, end: .now.addingTimeInterval(10800), tod: todTime)
-        duty.dutyDetails.append(dutyDetail)
+        duty.dutyDetails?.append(dutyDetail)
     }
 
     func importDuties(of file: String) {
@@ -192,7 +192,7 @@ struct DutyDetailView: View {
             }
 
             let newDuty = DutyDetail(title: columns[0].trimmed, start: columns[1].formattedDate, end: columns[2].formattedDate, tod: columns[3].formattedDate, color: color)
-            duty.dutyDetails.append(newDuty)
+            duty.dutyDetails?.append(newDuty)
         }
     }
 }

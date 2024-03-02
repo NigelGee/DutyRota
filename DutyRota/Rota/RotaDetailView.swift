@@ -28,7 +28,7 @@ struct RotaDetailView: View {
     }
 
     var wrappedRotaDetails: [RotaDetail] {
-        rota.rotaDetails.sorted()
+        rota.unwrappedRotaDetails.sorted()
     }
 
     var navigationTitle: String {
@@ -129,7 +129,7 @@ struct RotaDetailView: View {
         }
         .fileExporter(
             isPresented: $isExporting,
-            document: RotaDetail.makeExportFile(from: rota.rotaDetails, weekDay: startDayOfWeek),
+            document: RotaDetail.makeExportFile(from: rota.unwrappedRotaDetails, weekDay: startDayOfWeek),
             contentType: UTType.commaSeparatedText,
             defaultFilename: "Rota"
         ) { result in
@@ -151,7 +151,7 @@ struct RotaDetailView: View {
         for index in indexSet {
             let object = wrappedRotaDetails[index]
             modelContext.delete(object)
-            rota.rotaDetails.removeAll(where: { $0 == object })
+            rota.rotaDetails?.removeAll(where: { $0 == object })
         }
     }
 
@@ -168,7 +168,7 @@ struct RotaDetailView: View {
             
             do {
                 let newRota = try RotaDetail.importDuties(for: columns, on: startDayOfWeek)
-                rota.rotaDetails.append(newRota)
+                rota.rotaDetails?.append(newRota)
             } catch {
                 continue
             }
