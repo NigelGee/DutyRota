@@ -35,21 +35,31 @@ enum WeekDay: Int, CaseIterable {
         }
     }
 
-    static func sortedWeekDays(startOn weekStart: WeekDay) -> [String] {
-        guard weekStart != self.sunday else { return days }
+    static func sortedWeekDays(startOn weekStart: WeekDay, full: Bool = false) -> [String] {
+        guard weekStart != self.sunday else { return days(full: full) }
 
         var newDays = [String]()
 
-        for i in weekStart.rawValue ..< WeekDay.days.count {
-            newDays.append(WeekDay.days[i])
+        for i in weekStart.rawValue ..< WeekDay.days(full: full).count {
+            newDays.append(WeekDay.days(full: full)[i])
         }
 
         for i in 0 ..< weekStart.rawValue {
-            newDays.append(WeekDay.days[i])
+            newDays.append(WeekDay.days(full: full)[i])
         }
 
         return newDays
     }
 
-    static let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+//    static let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+
+    static func days(full: Bool) -> [String] {
+        let calendar = Calendar.current
+
+        if full {
+            return calendar.weekdaySymbols
+        }
+
+        return calendar.shortWeekdaySymbols
+    }
 }

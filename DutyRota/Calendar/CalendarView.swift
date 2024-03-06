@@ -12,6 +12,7 @@ import SwiftUI
 struct CalendarView: View {
     @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.saturday
     @Environment(\.modelContext) var modelContext
+    @Environment(\.horizontalSizeClass) var sizeClass
 
     @State private var showDialog = false
     @State private var showAddAdHocDuty = false
@@ -54,17 +55,26 @@ struct CalendarView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                CompactMonthView(
-                    rotaLines: dutiesForMonth,
-                    selectedDate: $selectedDate,
-                    monthEvents: $monthEvents,
-                    adHocDuties: adHocDuties,
-                    bankHolidays: bankHolidays,
-                    dutyDetails: dutyDetails,
-                    events: $events,
-                    eventStore: eventStore,
-                    loadEvent: loadEvent
-                )
+                if sizeClass == .compact {
+                    CompactMonthView(
+                        rotaLines: dutiesForMonth,
+                        selectedDate: $selectedDate,
+                        monthEvents: $monthEvents,
+                        adHocDuties: adHocDuties,
+                        bankHolidays: bankHolidays,
+                        dutyDetails: dutyDetails,
+                        events: $events,
+                        eventStore: eventStore,
+                        loadEvent: loadEvent
+                    )
+                } else {
+                    MonthView(
+                        selectedDate: $selectedDate,
+                        dutyForMonth: dutiesForMonth,
+                        dutyDetails: dutyDetails,
+                        bankHolidays: bankHolidays
+                    )
+                }
             }
             .navigationTitle("Calendar")
             .navigationBarTitleDisplayMode(.inline)
@@ -199,7 +209,10 @@ struct CalendarView: View {
             let maxLineNumber = currentRota.unwrappedRotaDetails.map { $0.line }.max() ?? 0
             let minLineNumber = currentRota.unwrappedRotaDetails.map { $0.line }.min() ?? 0
 
-            let remainder = (currentLine - minLineNumber) % currentRota.unwrappedRotaDetails.count
+            var remainder = 0
+            if currentRota.unwrappedRotaDetails.count > 0 {
+                remainder = (currentLine - minLineNumber) % currentRota.unwrappedRotaDetails.count
+            }
             currentLine = minLineNumber + remainder
 
             var end = calendarFirst.date
@@ -239,9 +252,8 @@ struct CalendarView: View {
                     count += 1
                 }
             }
-        } else {
-            return
-        }
+        } 
+
         dutiesForMonth = monthDuties
     }
 }

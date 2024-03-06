@@ -55,16 +55,16 @@ struct CompactMonthView: View {
                             if dayDuties.isNotEmpty {
                                 return dayDuties
                             } else {
-                                return [DutyDetail(title: "Error For '\(rotaLines[selectedIndex])'", start: .zeroTime, end: .zeroTime, tod: .zeroTime, color: "dutyError")]
+                                return [DutyDetail.dutyError(for: rotaLines[selectedIndex])]
                             }
                         } else {
-                            return [DutyDetail(title: "Spare", start: .zeroTime, end: .zeroTime, tod: .zeroTime)]
+                            return [DutyDetail.spare]
                         }
                     } else {
                         return []
                     }
                 } else {
-                    return [DutyDetail(title: "Check", start: .zeroTime, end: .zeroTime, tod: .zeroTime)]
+                    return [DutyDetail.dutyError(for: "Check")]
                 }
             } else if selectedDate.isBankHoliday(.friday) {
                 if selectedIndex + 1 < rotaLines.count {
@@ -74,16 +74,16 @@ struct CompactMonthView: View {
                             if dayDuties.isNotEmpty {
                                 return dayDuties
                             } else {
-                                return [DutyDetail(title: "Error For '\(rotaLines[selectedIndex])'", start: .zeroTime, end: .zeroTime, tod: .zeroTime, color: "dutyError")]
+                                return [DutyDetail.dutyError(for: rotaLines[selectedIndex])]
                             }
                         } else {
-                            return [DutyDetail(title: "Spare", start: .zeroTime, end: .zeroTime, tod: .zeroTime)]
+                            return [DutyDetail.spare]
                         }
                     } else {
                         return []
                     }
                 } else {
-                    return [DutyDetail(title: "Check", start: .zeroTime, end: .zeroTime, tod: .zeroTime)]
+                    return [DutyDetail.dutyError(for: "Check")]
                 }
             } else {
                 if rotaLines[selectedIndex] != "" {
@@ -91,7 +91,7 @@ struct CompactMonthView: View {
                     if dayDuties.isNotEmpty {
                         return dayDuties
                     } else {
-                        return [DutyDetail(title: "Error For '\(rotaLines[selectedIndex])'", start: .zeroTime, end: .zeroTime, tod: .zeroTime, color: "dutyError")]
+                        return [DutyDetail.dutyError(for: rotaLines[selectedIndex])]
                     }
                 }
             }
@@ -101,7 +101,7 @@ struct CompactMonthView: View {
                 if dayDuties.isNotEmpty {
                     return dayDuties
                 } else {
-                    return [DutyDetail(title: "Error For '\(rotaLines[selectedIndex])'", start: .zeroTime, end: .zeroTime, tod: .zeroTime, color: "dutyError")]
+                    return [DutyDetail.dutyError(for: rotaLines[selectedIndex])]
                 }
             }
         }

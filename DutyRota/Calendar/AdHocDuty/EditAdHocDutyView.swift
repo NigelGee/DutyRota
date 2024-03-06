@@ -46,6 +46,13 @@ struct EditAdHocDutyView: View {
                     
                     DatePicker("Break", selection: $adHocDuty.breakTime, displayedComponents: .hourAndMinute)
                 }
+                
+                if isEditing {
+                    Section {
+                        LabeledContent("Time On Duty:", value: adHocDuty.tod)
+                        LabeledContent("Spread", value: adHocDuty.spread)
+                    }
+                }
             }
             .navigationTitle(isEditing ? "Edit Ad-Hoc Duty" : "Add Ad-Hoc Duty")
             .navigationBarTitleDisplayMode(.inline)

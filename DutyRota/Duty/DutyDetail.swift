@@ -86,4 +86,9 @@ class DutyDetail: Comparable {
     }
 
     static let example = DutyDetail(title: "701", start: .now, end: .now, tod: .now, color: "dutyGreen")
+    static let spare = DutyDetail(title: "Spare", start: .zeroTime, end: .zeroTime, tod: .zeroTime)
+
+    static func dutyError(for dutyNumber: String) -> DutyDetail {
+        DutyDetail(title: "'\(dutyNumber)' Error", start: .zeroTime, end: .zeroTime, tod: .zeroTime, color: "dutyError")
+    }
 }

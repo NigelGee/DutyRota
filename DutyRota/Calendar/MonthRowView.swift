@@ -83,7 +83,7 @@ struct MonthRowView: View {
             DutyBackground(
                 for: color(dayIndex),
                 isDay: day.date >= selectedDate.startDateOfMonth,
-                isBankHoliday: bankHolidays.contains(where: { $0.date == day.date } ),
+                isBankHoliday: bankHolidays.contains(where: { $0.date == day.date }),
                 isHoliday: holidayDates.contains(where: { $0 == day.date } )
             )
         }
