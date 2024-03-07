@@ -32,6 +32,7 @@ struct DayAdHocDutiesRowView: View {
             .clipShape(.rect(cornerRadius: 5))
         }
         .buttonStyle(.plain)
+        .hoverEffect()
     }
 }
 

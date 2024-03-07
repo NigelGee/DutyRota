@@ -23,7 +23,6 @@ struct MonthView: View {
     var loadEvent: () -> Void
 
     @State private var event: EKEvent?
-
     @State private var selectedDuty: AdHocDuty?
 
     @Query var adHocDuties: [AdHocDuty]
@@ -109,14 +108,16 @@ struct MonthView: View {
                                 if dayEvents.isNotEmpty {
                                     ForEach(dayEvents) { dayEvent in
                                         Button {
-                                            event = dayEvent
+                                            if dayEvent.calendar.type == .calDAV || dayEvent.calendar.type == .local {
+                                                event = dayEvent
+                                            }
                                         } label: {
                                             DayEventView(event: dayEvent)
                                         }
                                         .buttonStyle(.plain)
+                                        .hoverEffect()
                                     }
                                 }
-
                             } else {
                                 Text("")
                             }

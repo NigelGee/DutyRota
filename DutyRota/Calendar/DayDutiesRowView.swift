@@ -43,6 +43,7 @@ struct DayDutiesRowView: View {
             .clipShape(.rect(cornerRadius: 5))
         }
         .buttonStyle(.plain)
+        .hoverEffect()
         .sheet(isPresented: $showDetail) {
             DutySheetView(dutyDetail: dutyDetail)
         }

@@ -15,10 +15,10 @@ struct DayEventView: View {
         HStack {
             if event.isAllDay {
                 HStack {
-//                    if event.birthdayContactIdentifier != nil {
-//                        Image(systemName: "birthday.cake")
-//                            .foregroundStyle(.red)
-//                    }
+                    if event.birthdayContactIdentifier != nil {
+                        Image(systemName: "birthday.cake")
+                            .foregroundStyle(.red)
+                    }
                     
                     Text(event.title)
                         .padding(5)
