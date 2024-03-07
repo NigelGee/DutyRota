@@ -5,6 +5,8 @@
 //  Created by Nigel Gee on 03/03/2024.
 //
 
+import EventKit
+import EventKitUI
 import SwiftData
 import SwiftUI
 
@@ -16,6 +18,11 @@ struct MonthView: View {
     var dutyForMonth: [String]
     var dutyDetails: [DutyDetail]
     var bankHolidays: [BankHolidayEvent]
+    @Binding var monthEvents: [EKEvent]
+    var eventStore: EKEventStore
+    var loadEvent: () -> Void
+
+    @State private var event: EKEvent?
 
     @State private var selectedDuty: AdHocDuty?
 
@@ -58,6 +65,7 @@ struct MonthView: View {
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
                     ForEach(0..<calendarDates.count, id: \.self) { dayIndex in
+                        let dayEvents = monthEvents.filter { $0.startDate.sameDay(as: calendarDates[dayIndex].date)}
                         VStack(spacing: 2) {
                             if calendarDates[dayIndex].date >= selectedDate.startDateOfMonth {
                                 Button {
@@ -84,7 +92,7 @@ struct MonthView: View {
                                     } else {
                                         DayDutiesRowView(dutyNumber: dutyForMonth[dayIndex], dutyDetails: dutyDetails)
                                     }
-                                } else if filteredDuties.isEmpty {
+                                } else if filteredDuties.isEmpty, dayEvents.isEmpty {
                                     Rectangle()
                                         .fill(Color.clear)
                                 }
@@ -97,6 +105,18 @@ struct MonthView: View {
                                         }
                                     }
                                 }
+
+                                if dayEvents.isNotEmpty {
+                                    ForEach(dayEvents) { dayEvent in
+                                        Button {
+                                            event = dayEvent
+                                        } label: {
+                                            DayEventView(event: dayEvent)
+                                        }
+                                        .buttonStyle(.plain)
+                                    }
+                                }
+
                             } else {
                                 Text("")
                             }
@@ -129,13 +149,16 @@ struct MonthView: View {
         .sheet(item: $selectedDuty) { duty in
             EditAdHocDutyView(adHocDuty: duty, isEditing: true)
         }
+        .sheet(item: $event, onDismiss: loadEvent) { event in
+            EventEditViewController(event: event, eventStore: eventStore)
+        }
     }
 }
 
-#Preview {
-    NavigationStack {
-        MonthView(selectedDate: .constant(.now), dutyForMonth: [], dutyDetails: [], bankHolidays: [])
-            .navigationTitle("Today")
-            .navigationBarTitleDisplayMode(.inline)
-    }
-}
+//#Preview {
+//    NavigationStack {
+//        MonthView(selectedDate: .constant(.now), dutyForMonth: [], dutyDetails: [], bankHolidays: [], monthEvents: .constant([]))
+//            .navigationTitle("Today")
+//            .navigationBarTitleDisplayMode(.inline)
+//    }
+//}

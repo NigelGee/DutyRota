@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B0CF44F2B99EA9F00F05261 /* DayEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0CF44E2B99EA9F00F05261 /* DayEventView.swift */; };
 		8B12FD1E2B6D972600A22940 /* MonthRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FD1D2B6D972600A22940 /* MonthRowView.swift */; };
 		8B12FD202B6FF4B500A22940 /* Duty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FD1F2B6FF4B500A22940 /* Duty.swift */; };
 		8B12FD5D2B70125900A22940 /* DutyDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FD5C2B70125900A22940 /* DutyDetail.swift */; };
@@ -72,6 +73,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8B0CF44E2B99EA9F00F05261 /* DayEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEventView.swift; sourceTree = "<group>"; };
 		8B12FD1D2B6D972600A22940 /* MonthRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthRowView.swift; sourceTree = "<group>"; };
 		8B12FD1F2B6FF4B500A22940 /* Duty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Duty.swift; sourceTree = "<group>"; };
 		8B12FD5C2B70125900A22940 /* DutyDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutyDetail.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				8B7137FB2B66D5CF00627BF6 /* CompactMonthView.swift */,
 				8B12FD1D2B6D972600A22940 /* MonthRowView.swift */,
 				8BA6FB712B94E6B200DAD23D /* MonthView.swift */,
+				8B0CF44E2B99EA9F00F05261 /* DayEventView.swift */,
 				8BBB20432B977E76009C3DF0 /* DayDutiesRowView.swift */,
 				8BA6FB752B96435500DAD23D /* DayAdHocDutiesRowView.swift */,
 				8BF7C8A82B79F8F700346B7A /* DutyBackgroundColor.swift */,
@@ -412,6 +415,7 @@
 				8BF7C8D12B7B9D1200346B7A /* EditRotaView.swift in Sources */,
 				8BF7C8CF2B7B76EC00346B7A /* RotaDetail.swift in Sources */,
 				8B3FDFE72B86804000E2070F /* URLSession-Codable.swift in Sources */,
+				8B0CF44F2B99EA9F00F05261 /* DayEventView.swift in Sources */,
 				8B7137F22B66D37A00627BF6 /* CalendarView.swift in Sources */,
 				8B12FD1E2B6D972600A22940 /* MonthRowView.swift in Sources */,
 				8B7137F42B66D39800627BF6 /* Date-Helper.swift in Sources */,
@@ -579,7 +583,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DutyRota/DutyRota.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"DutyRota/Preview Content\"";
 				DEVELOPMENT_TEAM = 5SYZQ266RF;
 				ENABLE_PREVIEWS = YES;
@@ -611,7 +615,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DutyRota/DutyRota.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"DutyRota/Preview Content\"";
 				DEVELOPMENT_TEAM = 5SYZQ266RF;
 				ENABLE_PREVIEWS = YES;

@@ -72,7 +72,10 @@ struct CalendarView: View {
                         selectedDate: $selectedDate,
                         dutyForMonth: dutiesForMonth,
                         dutyDetails: dutyDetails,
-                        bankHolidays: bankHolidays
+                        bankHolidays: bankHolidays,
+                        monthEvents: $monthEvents,
+                        eventStore: eventStore,
+                        loadEvent: loadEvent
                     )
                 }
             }
@@ -84,10 +87,18 @@ struct CalendarView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
-                    Button {
-                        showDialog = true
-                    } label: {
-                        Label("Add New Event", systemImage: "calendar.badge.plus")
+                    Menu("Add New Event", systemImage: "calendar.badge.plus") {
+                        Button {
+                            addNewDuty()
+                        } label: {
+                            Label("New Duty", systemImage: "book.pages")
+                        }
+
+                        Button {
+                            showAddEvent = true
+                        } label: {
+                            Label("New Event", systemImage: "calendar")
+                        }
                     }
                 }
 
@@ -109,19 +120,6 @@ struct CalendarView: View {
             }
             .sheet(isPresented: $showAddEvent) {
                 AddNewEventView(eventStore: eventStore, selectedDate: selectedDate, loadEvent: loadEvent)
-            }
-            .confirmationDialog("Add Event", isPresented: $showDialog) {
-                Button {
-                    addNewDuty()
-                } label: {
-                    Label("New Duty", systemImage: "book.pages")
-                }
-
-                Button {
-                    showAddEvent = true
-                } label: {
-                    Label("New Event", systemImage: "calendar")
-                }
             }
             .task {
                 await fetch()
