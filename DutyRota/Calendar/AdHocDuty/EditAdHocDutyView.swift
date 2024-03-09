@@ -12,6 +12,8 @@ struct EditAdHocDutyView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var modelContext
 
+    @State private var confirmDelete = false
+
     @Bindable var adHocDuty: AdHocDuty
     var isEditing: Bool
 
@@ -68,9 +70,22 @@ struct EditAdHocDutyView: View {
                 }
 
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(isEditing ? "Delete" : "Cancel", action: deleteDuty)
-                        .foregroundStyle(.red)
-                        .bold()
+                    if isEditing {
+                        Button("Delete") {
+                            confirmDelete = true
+                        }
+                            .foregroundStyle(.red)
+                            .bold()
+                    } else {
+                        Button("Cancel", action: deleteDuty)
+                            .foregroundStyle(.red)
+                            .bold()
+                    }
+                }
+            }
+            .alert("Are you sure you want to delete this duty?", isPresented: $confirmDelete) {
+                Button(role: .destructive, action: deleteDuty) {
+                    Text("Delete")
                 }
             }
         }

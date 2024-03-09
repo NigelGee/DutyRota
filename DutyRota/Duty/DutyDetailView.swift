@@ -47,21 +47,40 @@ struct DutyDetailView: View {
             if filteredDutyDetails.isNotEmpty {
                 ForEach(filteredDutyDetails) { dutyDetail in
                     NavigationLink(value: dutyDetail) {
-                        VStack {
-                            HStack {
-                                Text("Duty: **\(dutyDetail.title)**")
-                                Spacer()
-                                Text("Start: **\(dutyDetail.start.formattedTime)**")
-                                Spacer()
-                                Text("Finish: **\(dutyDetail.end.formattedTime)**")
+                        ViewThatFits {
+                            VStack {
+                                HStack {
+                                    Text("Duty: **\(dutyDetail.title)**")
+                                    Spacer()
+                                    Text("Start: **\(dutyDetail.start.formattedTime)**")
+                                    Spacer()
+                                    Text("Finish: **\(dutyDetail.end.formattedTime)**")
+                                    Spacer()
+                                    Text("TOD: **\(dutyDetail.tod.formattedTime)**")
+                                    Spacer()
+                                    Text("Break: **\(dutyDetail.dutyBreakTime)**")
+                                    Spacer()
+                                    Text("Spd: **\(dutyDetail.dutySpread)**")
+                                }
                             }
 
-                            HStack {
-                                Text("TOD: **\(dutyDetail.tod.formattedTime)**")
-                                Spacer()
-                                Text("Break: **\(dutyDetail.dutyBreakTime)**")
-                                Spacer()
-                                Text("Spd: **\(dutyDetail.dutySpread)**")
+                            //Compact
+                            VStack {
+                                HStack {
+                                    Text("Duty: **\(dutyDetail.title)**")
+                                    Spacer()
+                                    Text("Start: **\(dutyDetail.start.formattedTime)**")
+                                    Spacer()
+                                    Text("Finish: **\(dutyDetail.end.formattedTime)**")
+                                }
+
+                                HStack {
+                                    Text("TOD: **\(dutyDetail.tod.formattedTime)**")
+                                    Spacer()
+                                    Text("Break: **\(dutyDetail.dutyBreakTime)**")
+                                    Spacer()
+                                    Text("Spd: **\(dutyDetail.dutySpread)**")
+                                }
                             }
                         }
                         .font(.system(size: 16))
@@ -69,7 +88,6 @@ struct DutyDetailView: View {
                     .listRowBackground(Color(dutyDetail.color))
                 }
                 .onDelete(perform: deleteDutyDetail)
-
             } else {
                 ContentUnavailableView.search
             }
@@ -101,7 +119,7 @@ struct DutyDetailView: View {
         }
         .onAppear(perform: onAppearDefault)
         .sheet(isPresented: $showAddNewDuty) { AddDutyDetailView(duty: duty, selectedColor: defaultColor) }
-        .searchable(text: $search)
+        .searchable(text: $search, placement: .navigationBarDrawer)
         .fileImporter(
             isPresented: $isImporting,
             allowedContentTypes: [UTType.plainText],
@@ -157,18 +175,6 @@ struct DutyDetailView: View {
         duty.dutyDetails?.append(emptyDetail)
         duty.dutyDetails?.append(restDetail)
         duty.dutyDetails?.append(spareDetail)
-    }
-
-    func addSample() {
-        var todTime: Date {
-            var components = DateComponents()
-            components.hour = 2
-            components.minute = 0
-            return Calendar.current.date(from: components)!
-        }
-
-        let dutyDetail = DutyDetail(title: "101", start: .now, end: .now.addingTimeInterval(10800), tod: todTime)
-        duty.dutyDetails?.append(dutyDetail)
     }
 
     func importDuties(of file: String) {
