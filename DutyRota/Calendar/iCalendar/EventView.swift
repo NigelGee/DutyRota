@@ -15,26 +15,19 @@ struct EventView: View {
     var loadEvent: () -> Void
 
     var body: some View {
-        NavigationStack {
-            ForEach(events) { event in
-                Button {
-                    if event.calendar.type == .calDAV || event.calendar.type == .local {
-                        self.event = event
-                    }
-                } label: {
-                    EventRowView(event: event)
-                        .contentShape(Rectangle())
+        ForEach(events) { event in
+            Button {
+                if event.calendar.type == .calDAV || event.calendar.type == .local {
+                    self.event = event
                 }
-                .buttonStyle(.plain)
-
+            } label: {
+                EventRowView(event: event)
+                    .contentShape(Rectangle())
             }
-            .sheet(item: $event, onDismiss: loadEvent) { event in
-                EventEditViewController(event: event, eventStore: eventStore)
-            }
+            .buttonStyle(.plain)
+        }
+        .sheet(item: $event, onDismiss: loadEvent) { newEvent in
+            EventEditViewController(event: newEvent, eventStore: eventStore)
         }
     }
 }
-
-//#Preview {
-//    EventView(events: <#Binding<[EKEvent]>#>, eventStore: <#EKEventStore#>) { }
-//}
