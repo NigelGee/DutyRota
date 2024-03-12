@@ -11,6 +11,7 @@ import SwiftUI
 
 struct CalendarView: View {
     @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.saturday
+//    @Environment(\.scenePhase) var scenePhase
     @Environment(\.modelContext) var modelContext
     @Environment(\.horizontalSizeClass) var sizeClass
 
@@ -133,6 +134,11 @@ struct CalendarView: View {
             } message: {
                 Text("Bank Holidays might not show correctly in calendar.")
             }
+//            .onChange(of: scenePhase) { _, newPhase in
+//                if newPhase == .active, sizeClass != .compact {
+//                    selectedDate = .now
+//                }
+//            }
         }
     }
 
@@ -154,8 +160,7 @@ struct CalendarView: View {
     func loadEvent() {
         eventStore.requestFullAccessToEvents { granted, error in
             if granted && error == nil {
-                let calendar = Calendar.current
-                let startDay = calendar.date(byAdding: .hour, value: 3, to: selectedDate.startOfDay)!
+                let startDay = selectedDate.startOfDay
 
                 let predicateDay = eventStore.predicateForEvents(withStart: startDay, end: selectedDate.endOfDay, calendars: nil)
 

@@ -150,6 +150,7 @@ struct CompactMonthView: View {
                     ForEach(dayDutyDetails) { dayDutyDetail in
                         DutyDetailRowView(dutyDetail: dayDutyDetail)
                             .listRowBackground(Color(dayDutyDetail.color))
+
                     }
 
                     if filteredDuties.isNotEmpty {
@@ -161,7 +162,7 @@ struct CompactMonthView: View {
                         EventView(events: $events, eventStore: eventStore, loadEvent: loadEvent)
                     }
                 }
-                .listStyle(.plain)
+                .listStyle(.insetGrouped)
             } else {
                 ContentUnavailableView("No Events", systemImage: "calendar")
             }

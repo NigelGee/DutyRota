@@ -8,16 +8,22 @@
 import SwiftUI
 
 struct AStack<Content: View>: View {
+    private var spacing: CGFloat?
+    private var hAlignment: HorizontalAlignment
+    private var vAlignment: VerticalAlignment
     private var content: Content
 
-    init(@ViewBuilder content: () -> Content) {
+    init(spacing: CGFloat? = nil, vAlignment: VerticalAlignment = .center ,hAlignment: HorizontalAlignment = .center, @ViewBuilder content: () -> Content) {
+        self.spacing = spacing
+        self.hAlignment = hAlignment
+        self.vAlignment = vAlignment
         self.content = content()
     }
 
     var body: some View {
         ViewThatFits {
-            HStack { content }
-            VStack { content }
+            HStack(alignment: vAlignment, spacing: spacing) { content }
+            VStack(alignment: hAlignment, spacing: spacing) { content }
         }
     }
 }

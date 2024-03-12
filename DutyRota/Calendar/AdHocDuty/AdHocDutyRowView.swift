@@ -15,7 +15,7 @@ struct AdHocDutyRowView: View {
             Rectangle()
                 .frame(maxWidth: 3, maxHeight: .infinity)
                 .padding(.vertical, 5)
-                .foregroundStyle(.clear)
+                .foregroundStyle(.primary)
 
             VStack(alignment: .leading) {
                 HStack(spacing: 0) {

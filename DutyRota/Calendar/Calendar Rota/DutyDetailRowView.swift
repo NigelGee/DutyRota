@@ -16,7 +16,7 @@ struct DutyDetailRowView: View {
             Rectangle()
                 .frame(maxWidth: 3, maxHeight: .infinity)
                 .padding(.vertical, 5)
-                .foregroundStyle(.clear)
+                .foregroundStyle(.primary)
 
             VStack(alignment: .leading) {
                 Text("Duty: \(dutyDetail.title)")
@@ -44,4 +44,6 @@ struct DutyDetailRowView: View {
 
 #Preview {
     DutyDetailRowView(dutyDetail: .example)
+        .padding()
+        .frame(height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
 }
