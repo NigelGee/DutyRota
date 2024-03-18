@@ -11,8 +11,9 @@ import SwiftUI
 struct EventEditViewController: UIViewControllerRepresentable {
     @Environment(\.dismiss) var dismiss
 
-    var event: EKEvent
+    var event: EKEvent?
     var eventStore: EKEventStore
+    var loadEvent: () -> Void
 
     func makeUIViewController(context: Context) -> EKEventEditViewController {
         let eventEditViewController = EKEventEditViewController()
@@ -37,6 +38,7 @@ struct EventEditViewController: UIViewControllerRepresentable {
         }
 
         func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
+            parent.loadEvent()
             parent.dismiss()
         }
     }

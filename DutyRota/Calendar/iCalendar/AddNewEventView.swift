@@ -50,7 +50,6 @@ struct AddNewEventView: View {
                 } footer: {
                     Text("Event are created with your default setting.")
                 }
-
             }
             .navigationTitle("Add New Event")
             .navigationBarTitleDisplayMode(.inline)
@@ -90,7 +89,7 @@ struct AddNewEventView: View {
                 event.calendar = self.eventStore.defaultCalendarForNewEvents
 
                 do {
-                    try self.eventStore.save(event, span: .thisEvent)
+                    try self.eventStore.save(event, span: .thisEvent, commit: true)
 
                     loadEvent()
                     dismiss()

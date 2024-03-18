@@ -11,7 +11,7 @@ import SwiftUI
 
 struct CalendarView: View {
     @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.saturday
-//    @Environment(\.scenePhase) var scenePhase
+    @Environment(\.scenePhase) var scenePhase
     @Environment(\.modelContext) var modelContext
     @Environment(\.horizontalSizeClass) var sizeClass
 
@@ -134,11 +134,11 @@ struct CalendarView: View {
             } message: {
                 Text("Bank Holidays might not show correctly in calendar.")
             }
-//            .onChange(of: scenePhase) { _, newPhase in
-//                if newPhase == .active, sizeClass != .compact {
-//                    selectedDate = .now
-//                }
-//            }
+            .onChange(of: scenePhase) { _, newPhase in
+                if newPhase == .active, sizeClass != .compact {
+                    selectedDate = .now
+                }
+            }
         }
     }
 
