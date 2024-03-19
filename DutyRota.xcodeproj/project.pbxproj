@@ -22,6 +22,7 @@
 		8B12FD782B73809800A22940 /* EditDutyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FD772B73809800A22940 /* EditDutyView.swift */; };
 		8B12FD7A2B74BEF200A22940 /* AddDutyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FD792B74BEF200A22940 /* AddDutyDetailView.swift */; };
 		8B12FDEA2B77A07600A22940 /* ExportDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FDE92B77A07600A22940 /* ExportDocument.swift */; };
+		8B168F2E2BA9381700A6FF47 /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B168F2D2BA9381700A6FF47 /* EventDetailView.swift */; };
 		8B346AEA2B7FB94600A29C3C /* DayRotaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B346AE92B7FB94600A29C3C /* DayRotaView.swift */; };
 		8B3FDF8A2B80C93100E2070F /* ImportExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FDF892B80C93100E2070F /* ImportExportView.swift */; };
 		8B3FDF8C2B81168800E2070F /* EditRotaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FDF8B2B81168800E2070F /* EditRotaDetailView.swift */; };
@@ -88,6 +89,7 @@
 		8B12FD772B73809800A22940 /* EditDutyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDutyView.swift; sourceTree = "<group>"; };
 		8B12FD792B74BEF200A22940 /* AddDutyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDutyDetailView.swift; sourceTree = "<group>"; };
 		8B12FDE92B77A07600A22940 /* ExportDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportDocument.swift; sourceTree = "<group>"; };
+		8B168F2D2BA9381700A6FF47 /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
 		8B346AE92B7FB94600A29C3C /* DayRotaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRotaView.swift; sourceTree = "<group>"; };
 		8B3FDF892B80C93100E2070F /* ImportExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportExportView.swift; sourceTree = "<group>"; };
 		8B3FDF8B2B81168800E2070F /* EditRotaDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRotaDetailView.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				8B12FD652B70BBE700A22940 /* EventRowView.swift */,
 				8B6F5BCA2B696B8B003B54F5 /* AddNewEventView.swift */,
 				8B12FD612B704DF200A22940 /* EventEditViewController.swift */,
+				8B168F2D2BA9381700A6FF47 /* EventDetailView.swift */,
 			);
 			path = iCalendar;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				8B12FD642B70B35800A22940 /* EKEvent-Extension.swift in Sources */,
 				8B12FD5D2B70125900A22940 /* DutyDetail.swift in Sources */,
 				8B7138002B66DA6500627BF6 /* ButtonView.swift in Sources */,
+				8B168F2E2BA9381700A6FF47 /* EventDetailView.swift in Sources */,
 				8B3FE0232B88CE8F00E2070F /* Holiday.swift in Sources */,
 				8B6F5C032B6ABC5A003B54F5 /* EditAdHocDutyView.swift in Sources */,
 				8BF7C8CB2B7B767A00346B7A /* RotaView.swift in Sources */,
@@ -583,7 +587,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DutyRota/DutyRota.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"DutyRota/Preview Content\"";
 				DEVELOPMENT_TEAM = 5SYZQ266RF;
 				ENABLE_PREVIEWS = YES;
@@ -615,7 +619,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DutyRota/DutyRota.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"DutyRota/Preview Content\"";
 				DEVELOPMENT_TEAM = 5SYZQ266RF;
 				ENABLE_PREVIEWS = YES;

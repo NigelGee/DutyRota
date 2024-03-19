@@ -108,16 +108,17 @@ struct MonthView: View {
                                 if dayEvents.isNotEmpty {
                                     ForEach(dayEvents) { dayEvent in
 //                                        if dayEvent.calendar.type == .calDAV || dayEvent.calendar.type == .local {
-//                                            Button {
-//                                                event = dayEvent
-//                                            } label: {
-//                                                DayEventView(event: dayEvent)
-//                                            }
-//                                            .buttonStyle(.plain)
-//                                            .hoverEffect()
-//                                        } else {
+                                        if dayEvent.calendar.isImmutable == false {
+                                            Button {
+                                                event = dayEvent
+                                            } label: {
+                                                DayEventView(event: dayEvent)
+                                            }
+                                            .buttonStyle(.plain)
+                                            .hoverEffect()
+                                        } else {
                                             DayEventView(event: dayEvent)
-//                                        }
+                                        }
                                     }
                                 }
                             } else {
@@ -153,7 +154,8 @@ struct MonthView: View {
             EditAdHocDutyView(adHocDuty: duty, isEditing: true)
         }
         .sheet(item: $event) { event in
-            EventEditViewController(event: event, eventStore: eventStore, loadEvent: loadEvent)
+            EventDetailView(event: event)
+//            EventEditViewController(event: event, eventStore: eventStore, loadEvent: loadEvent)
         }
     }
 }
