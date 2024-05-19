@@ -134,11 +134,6 @@ struct CalendarView: View {
             } message: {
                 Text("Bank Holidays might not show correctly in calendar.")
             }
-            .onChange(of: scenePhase) { _, newPhase in
-                if newPhase == .active, sizeClass != .compact {
-                    selectedDate = .now
-                }
-            }
         }
     }
 

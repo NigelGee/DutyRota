@@ -24,6 +24,7 @@
 		8B12FDEA2B77A07600A22940 /* ExportDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FDE92B77A07600A22940 /* ExportDocument.swift */; };
 		8B168F2E2BA9381700A6FF47 /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B168F2D2BA9381700A6FF47 /* EventDetailView.swift */; };
 		8B346AEA2B7FB94600A29C3C /* DayRotaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B346AE92B7FB94600A29C3C /* DayRotaView.swift */; };
+		8B37EC6A2BE5896300D08488 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 8B37EC692BE5896300D08488 /* PrivacyInfo.xcprivacy */; };
 		8B3FDF8A2B80C93100E2070F /* ImportExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FDF892B80C93100E2070F /* ImportExportView.swift */; };
 		8B3FDF8C2B81168800E2070F /* EditRotaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FDF8B2B81168800E2070F /* EditRotaDetailView.swift */; };
 		8B3FDFE52B86800300E2070F /* BankHoliday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FDFE42B86800300E2070F /* BankHoliday.swift */; };
@@ -91,6 +92,7 @@
 		8B12FDE92B77A07600A22940 /* ExportDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportDocument.swift; sourceTree = "<group>"; };
 		8B168F2D2BA9381700A6FF47 /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
 		8B346AE92B7FB94600A29C3C /* DayRotaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRotaView.swift; sourceTree = "<group>"; };
+		8B37EC692BE5896300D08488 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		8B3FDF892B80C93100E2070F /* ImportExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportExportView.swift; sourceTree = "<group>"; };
 		8B3FDF8B2B81168800E2070F /* EditRotaDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRotaDetailView.swift; sourceTree = "<group>"; };
 		8B3FDFE42B86800300E2070F /* BankHoliday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankHoliday.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 			children = (
 				8BA6FB702B9380AB00DAD23D /* DutyRota.entitlements */,
 				8B7137FA2B66D52200627BF6 /* Info.plist */,
+				8B37EC692BE5896300D08488 /* PrivacyInfo.xcprivacy */,
 				8B7137E32B66D31700627BF6 /* DutyRotaApp.swift */,
 				8B7137E52B66D31700627BF6 /* ContentView.swift */,
 				8B7137F92B66D4D800627BF6 /* Calendar */,
@@ -383,6 +386,7 @@
 			files = (
 				8B7137EB2B66D31800627BF6 /* Preview Assets.xcassets in Resources */,
 				8BA6FB4F2B8E021700DAD23D /* setup.json in Resources */,
+				8B37EC6A2BE5896300D08488 /* PrivacyInfo.xcprivacy in Resources */,
 				8B7137E82B66D31800627BF6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -587,7 +591,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DutyRota/DutyRota.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"DutyRota/Preview Content\"";
 				DEVELOPMENT_TEAM = 5SYZQ266RF;
 				ENABLE_PREVIEWS = YES;
@@ -619,7 +623,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DutyRota/DutyRota.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"DutyRota/Preview Content\"";
 				DEVELOPMENT_TEAM = 5SYZQ266RF;
 				ENABLE_PREVIEWS = YES;

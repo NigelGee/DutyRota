@@ -191,7 +191,7 @@ struct DutyDetailView: View {
             if columns[0] == "Spare" || columns[0] == "Rest" || columns[0] == "" { continue }
 
             let color: String
-            if columns.count >= 4 {
+            if columns.count > 4 {
                 color = columns[4].trimmed
             } else {
                 color = defaultColor

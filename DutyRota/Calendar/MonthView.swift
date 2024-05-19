@@ -79,7 +79,7 @@ struct MonthView: View {
                                 .padding(.vertical, 5)
                                 .buttonStyle(.plain)
 
-                                if dutyForMonth.isNotEmpty, dutyForMonth[dayIndex] != "" {
+                                if dutyForMonth.isNotEmpty, dutyForMonth[dayIndex] != "", dutyDetails.isNotEmpty {
                                     if bankHolidays.contains(where: { $0.date == calendarDates[dayIndex].date }) {
                                         if calendarDates[dayIndex].date.isBankHoliday(.friday) {
                                             DayDutiesRowView(dutyNumber: dutyForMonth[dayIndex + 1], dutyDetails: dutyDetails)

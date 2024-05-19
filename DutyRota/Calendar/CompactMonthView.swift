@@ -150,7 +150,6 @@ struct CompactMonthView: View {
                     ForEach(dayDutyDetails) { dayDutyDetail in
                         DutyDetailRowView(dutyDetail: dayDutyDetail)
                             .listRowBackground(Color(dayDutyDetail.color))
-
                     }
 
                     if filteredDuties.isNotEmpty {

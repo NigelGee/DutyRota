@@ -9,6 +9,7 @@ import EventKit
 import SwiftUI
 
 struct EventDetailView: View {
+    @Environment(\.dismiss) var dismiss
     let event: EKEvent
 
     var body: some View {
@@ -71,6 +72,9 @@ struct EventDetailView: View {
 
             }
             .navigationTitle(event.title)
+            .toolbar {
+                Button("Done") { dismiss() }
+            }
         }
     }
 

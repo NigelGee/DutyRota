@@ -51,8 +51,6 @@ enum WeekDay: Int, CaseIterable {
         return newDays
     }
 
-//    static let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-
     static func days(full: Bool) -> [String] {
         let calendar = Calendar.current
 

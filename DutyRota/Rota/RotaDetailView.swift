@@ -43,41 +43,83 @@ struct RotaDetailView: View {
     }
 
     var body: some View {
-        VStack {
-            List {
-                LabeledContent("First Line of the Period: ") {
+        Grid(alignment: .leading) {
+            GridRow {
+                HStack {
+                    
+                    Text("First Line of the Period:")
+
                     TextField("First Line", value: $rota.startRotaLine, format: .number)
                         .frame(width: 100)
                         .keyboardType(.numberPad)
                         .multilineTextAlignment(.center)
                 }
-
-                HStack(spacing: 1) {
-                    Spacer()
+                .padding(.bottom)
+            }
+            
+            GridRow {
+                HStack {
                     ForEach(weekDays, id: \.self) {
                         Text($0)
                             .font(.system(size: 13, weight: .bold))
-                            .frame(width: 33)
-                        Spacer()
+                            .frame(maxWidth: .infinity)
                     }
                 }
-                .padding(.trailing, 7)
-                .frame(maxWidth: .infinity)
-
-                ForEach(wrappedRotaDetails) { rotaDetail in
-                    NavigationLink(value: rotaDetail) {
-                        HStack {
-                            Text(rotaDetail.line.formatted(.number))
-                                .font(.system(size: 13))
-                                .frame(width: 31, height: 30)
-                            DayRotaView(rotaDetail: rotaDetail)
-                        }
-                    }
-                }
-                .onDelete(perform: deleteRotaLine)
             }
-            .padding(.horizontal)
+
+            ScrollView {
+                ForEach(wrappedRotaDetails) { rotaDetail in
+                    GridRow {
+                        NavigationLink(value: rotaDetail) {
+                            HStack {
+                                Text(rotaDetail.line.formatted(.number))
+                                DayRotaView(rotaDetail: rotaDetail)
+
+                            }
+                            .font(.system(size: 13))
+                            .padding(.horizontal)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+            }
         }
+
+//        VStack {
+//            List {
+//                LabeledContent("First Line of the Period: ") {
+//                    TextField("First Line", value: $rota.startRotaLine, format: .number)
+//                        .frame(width: 100)
+//                        .keyboardType(.numberPad)
+//                        .multilineTextAlignment(.center)
+//                }
+//
+//                HStack(spacing: 1) {
+//                    Spacer()
+//                    ForEach(weekDays, id: \.self) {
+//                        Text($0)
+//                            .font(.system(size: 13, weight: .bold))
+//                            .frame(width: 33)
+//                        Spacer()
+//                    }
+//                }
+//                .padding(.trailing, 7)
+//                .frame(maxWidth: .infinity)
+//
+//                ForEach(wrappedRotaDetails) { rotaDetail in
+//                    NavigationLink(value: rotaDetail) {
+//                        HStack {
+//                            Text(rotaDetail.line.formatted(.number))
+//                                .font(.system(size: 13))
+//                                .frame(width: 31, height: 30)
+//                            DayRotaView(rotaDetail: rotaDetail)
+//                        }
+//                    }
+//                }
+//                .onDelete(perform: deleteRotaLine)
+//            }
+//            .padding(.horizontal)
+//        }
         .sheet(isPresented: $showAddNewRota) {
             AddRotaDetailView(rota: rota)
         }
@@ -165,7 +207,7 @@ struct RotaDetailView: View {
 
         for row in rows {
             let columns = row.components(separatedBy: ",")
-            
+
             do {
                 let newRota = try RotaDetail.importDuties(for: columns, on: startDayOfWeek)
                 rota.rotaDetails?.append(newRota)
