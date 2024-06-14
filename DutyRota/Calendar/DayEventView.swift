@@ -46,6 +46,7 @@ struct DayEventView: View {
             }
         }
         .font(.system(size: 12))
+        .textTint(bgColorOf: Color(cgColor: event.calendar.cgColor))
     }
 }
 

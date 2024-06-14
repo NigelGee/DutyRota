@@ -63,6 +63,7 @@ struct ColorPickerDisplayView: View {
             }
         }
         .padding()
+        .textTint(bgColorOf: Color(selectedColor))
     }
 }
 

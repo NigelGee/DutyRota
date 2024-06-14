@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B023E132C1C373500EA9F71 /* TextTint-Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B023E122C1C373500EA9F71 /* TextTint-Modifier.swift */; };
 		8B0CF44F2B99EA9F00F05261 /* DayEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0CF44E2B99EA9F00F05261 /* DayEventView.swift */; };
 		8B12FD1E2B6D972600A22940 /* MonthRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FD1D2B6D972600A22940 /* MonthRowView.swift */; };
 		8B12FD202B6FF4B500A22940 /* Duty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B12FD1F2B6FF4B500A22940 /* Duty.swift */; };
@@ -75,6 +76,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8B023E122C1C373500EA9F71 /* TextTint-Modifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextTint-Modifier.swift"; sourceTree = "<group>"; };
 		8B0CF44E2B99EA9F00F05261 /* DayEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEventView.swift; sourceTree = "<group>"; };
 		8B12FD1D2B6D972600A22940 /* MonthRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthRowView.swift; sourceTree = "<group>"; };
 		8B12FD1F2B6FF4B500A22940 /* Duty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Duty.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 				8B12FD632B70B35800A22940 /* EKEvent-Extension.swift */,
 				8BA6FB522B8E030800DAD23D /* Bundle-Decodable.swift */,
 				8BA6FB732B9630BF00DAD23D /* AStack.swift */,
+				8B023E122C1C373500EA9F71 /* TextTint-Modifier.swift */,
 				8B7137E72B66D31800627BF6 /* Assets.xcassets */,
 			);
 			path = Supporting;
@@ -425,6 +428,7 @@
 				8B0CF44F2B99EA9F00F05261 /* DayEventView.swift in Sources */,
 				8B7137F22B66D37A00627BF6 /* CalendarView.swift in Sources */,
 				8B12FD1E2B6D972600A22940 /* MonthRowView.swift in Sources */,
+				8B023E132C1C373500EA9F71 /* TextTint-Modifier.swift in Sources */,
 				8B7137F42B66D39800627BF6 /* Date-Helper.swift in Sources */,
 				8B12FD762B7303E100A22940 /* SampleDuty.swift in Sources */,
 				8B12FD6E2B71725B00A22940 /* DutyDetailView.swift in Sources */,
@@ -591,7 +595,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DutyRota/DutyRota.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"DutyRota/Preview Content\"";
 				DEVELOPMENT_TEAM = 5SYZQ266RF;
 				ENABLE_PREVIEWS = YES;
@@ -623,7 +627,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DutyRota/DutyRota.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"DutyRota/Preview Content\"";
 				DEVELOPMENT_TEAM = 5SYZQ266RF;
 				ENABLE_PREVIEWS = YES;

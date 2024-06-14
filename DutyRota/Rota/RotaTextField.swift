@@ -19,13 +19,12 @@ struct RotaTextField: View {
     @Binding var satRota: String
 
     var body: some View {
-        HStack {
+        VStack {
             ForEach(Array(sortedRotaTextfields(day: startDayOfWeek.rawValue, for: dayTextfield).enumerated()), id: \.offset) { index, content in
-                VStack {
-                    Text(WeekDay.sortedWeekDays(startOn: startDayOfWeek)[index])
-                        .foregroundStyle(.secondary)
+                HStack {
+                    Text("\(WeekDay.sortedWeekDays(startOn: startDayOfWeek, full: true)[index]):")
+
                     content
-                        .frame(width: 47)
                 }
             }
         }

@@ -62,7 +62,7 @@ struct RotaDetailView: View {
                     ForEach(weekDays, id: \.self) {
                         Text($0)
                             .font(.system(size: 13, weight: .bold))
-                            .frame(maxWidth: .infinity)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
             }
@@ -74,7 +74,6 @@ struct RotaDetailView: View {
                             HStack {
                                 Text(rotaDetail.line.formatted(.number))
                                 DayRotaView(rotaDetail: rotaDetail)
-
                             }
                             .font(.system(size: 13))
                             .padding(.horizontal)

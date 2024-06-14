@@ -40,6 +40,7 @@ struct DayDutiesRowView: View {
             .font(.system(size: 12))
             .padding(5)
             .background(Color(dutyDetail.color))
+            .textTint(bgColorOf: Color(dutyDetail.color))
             .clipShape(.rect(cornerRadius: 5))
         }
         .buttonStyle(.plain)

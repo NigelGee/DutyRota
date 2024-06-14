@@ -39,6 +39,7 @@ struct DutyDetailRowView: View {
                     .foregroundStyle(.secondary)
             }
         }
+        .textTint(bgColorOf: Color(dutyDetail.color))
     }
 }
 

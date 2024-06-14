@@ -18,9 +18,7 @@ struct DayTextField: View, Identifiable {
                 .font(.system(size: 15))
                 .textFieldStyle(.roundedBorder)
                 .multilineTextAlignment(.center)
-                .frame(width: 45)
         }
-        .padding(.horizontal)
     }
 }
 
