@@ -72,7 +72,7 @@ struct MonthView: View {
                                 } label: {
                                     VStack {
                                         Text(calendarDates[dayIndex].date, format: .dateTime.day())
-                                            .selected(date: selectedDate, sameAs: calendarDates[dayIndex].date)
+//                                            .selected(date: selectedDate, sameAs: calendarDates[dayIndex].date, bgColor: "")
                                             .bold()
                                     }
                                 }

@@ -9,7 +9,24 @@ import SwiftUI
 
 struct ColorPickerView: View {
     @Binding var selectedColor: String
-    let colors = ["dutyClear", "dutyLightYellow", "dutyLightGreen", "dutyGreen", "dutyLightBlue", "dutyBlue", "dutyPeach", "dutyPurple"]
+
+    let colors = ["dutyClear",
+                  "dutySilver",
+                  "dutySourLemon",
+                  "dutyLightYellow",
+                  "dutyYellow",
+                  "dutyGreen",
+                  "dutyMintLeaf",
+                  "dutyLightGreen",
+                  "dutyGreenDarnerTail",
+                  "dutyLightBlue",
+                  "dutyBlue",
+                  "dutyFirstDate",
+                  "dutyPink",
+                  "dutyPeach",
+                  "dutyShyMoment",
+                  "dutyPurple"
+    ]
 
     var body: some View {
         VStack {

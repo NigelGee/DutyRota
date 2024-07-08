@@ -52,7 +52,8 @@ struct MonthRowView: View {
                 } label: {
                     VStack {
                         Text(day.date, format: .dateTime.day())
-                            .selected(date: selectedDate, sameAs: day.date)
+                            .selected(date: selectedDate, sameAs: day.date, bgColor: color(dayIndex))
+//                            .textTint(bgColorOf: Color(color(dayIndex)))
                             .bold()
                     }
                 }

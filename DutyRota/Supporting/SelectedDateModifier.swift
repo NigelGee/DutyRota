@@ -13,23 +13,15 @@ struct SelectedDate: ViewModifier {
 
     let date1: Date
     let date2: Date
+    let bgColor: String
 
-    var foreGroundColor: Color {
-        if date2.sameDay(as: today) {
-            return.red
-        } else if date2 < today {
-            return .secondary/*.black.opacity(0.4)*/
-        } else {
-            return .primary/*.black*/
-        }
-    }
-
-    var backgroundColor: some View {
+    var todayCircle: some View {
         Group {
             if date1.sameDay(as: date2) {
                 Circle()
                     .stroke(lineWidth: 2)
                     .frame(width: 200)
+                    .textTint(bgColorOf: Color(bgColor))
             } else {
                 EmptyView()
             }
@@ -39,9 +31,9 @@ struct SelectedDate: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.system(size: 20))
-            .foregroundStyle(foreGroundColor)
+            .todayTextTint(date1: date1, date2: date2, bgColor: bgColor, today: $today)
             .padding(5)
-            .background(backgroundColor)
+            .background(todayCircle)
             .onChange(of: scenePhase) { _, newPhase in
                 if newPhase == .active {
                     today = .now
@@ -52,7 +44,29 @@ struct SelectedDate: ViewModifier {
 }
 
 extension View {
-    func selected(date date1: Date, sameAs date2: Date) -> some View {
-        modifier(SelectedDate(date1: date1, date2: date2))
+    func selected(date date1: Date, sameAs date2: Date, bgColor: String) -> some View {
+        modifier(SelectedDate(date1: date1, date2: date2, bgColor: bgColor))
+    }
+
+    func todayTextTint(date1: Date, date2: Date, bgColor: String, today: Binding<Date>) -> some View {
+        modifier(TodayTextTint(date1: date1, date2: date2, bgColor: bgColor, today: today))
+    }
+}
+
+
+struct TodayTextTint: ViewModifier {
+    let date1: Date
+    let date2: Date
+    let bgColor: String
+    @Binding var today: Date
+
+    func body(content: Content) -> some View {
+        if date2.sameDay(as: today) {
+            content
+                .foregroundStyle(.red)
+        } else {
+            content
+                .textTint(bgColorOf: Color(bgColor))
+        }
     }
 }

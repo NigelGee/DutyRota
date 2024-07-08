@@ -17,6 +17,8 @@ struct TextTint: ViewModifier {
         var blue: CGFloat = 0
         uiColor.getRed(&red, green: &green, blue: &blue, alpha: nil)
 
+        guard (red + green + blue) > 0 else { return .primary }
+
         let lightRed = red > 0.65
         let lightGreen = green > 0.65
         let lightBlue = blue > 0.65
