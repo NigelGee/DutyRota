@@ -84,6 +84,7 @@ struct DutyDetailView: View {
                             }
                         }
                         .font(.system(size: 16))
+                        .textTint(bgColorOf: Color(dutyDetail.color))
                     }
                     .listRowBackground(Color(dutyDetail.color))
                 }
