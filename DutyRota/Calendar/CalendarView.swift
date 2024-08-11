@@ -34,23 +34,30 @@ struct CalendarView: View {
     @Query var rota: [Rota]
 
     var calendarDates: [CalendarDate] {
-        selectedDate.datesOfMonth(with: startDayOfWeek.rawValue).map { CalendarDate(date: $0) }
+        selectedDate.datesOfMonth(with: startDayOfWeek.rawValue).map { CalendarDate(date: $0.startOfDay) }
     }
 
     var dutyDetails: [DutyDetail] {
+        if let currentDuty = duties.first(where: { calendarDates.first!.date.isDateInRange(start: $0.periodStart, end: $0.periodEnd) && calendarDates.last!.date.isDateInRange(start: $0.periodStart, end: $0.periodEnd) }) {
+            return currentDuty.unwrappedDutyDetails
+        }
+
+        var newDutyDetails = Set<DutyDetail>()
+
         for day in calendarDates {
             if let currentDuty = duties.first(where: { calendarDates.first!.date.isDateInRange(start: $0.periodStart, end: $0.periodEnd) }) {
-                if currentDuty.periodEnd >= day.date {
-                    return currentDuty.unwrappedDutyDetails
+                if day.date <= currentDuty.periodEnd {
+
+                } else {
+                    if let newDuty = duties.first(where: { day.date.isDateInRange(start: $0.periodStart, end: $0.periodEnd)} ) {
+                        for duty in newDuty.unwrappedDutyDetails {
+                            newDutyDetails.insert(duty)
+                        }
+                    }
                 }
-                if let newDuty = duties.first(where: { day.date.isDateInRange(start: $0.periodStart.add(day: -1), end: $0.periodEnd) }) {
-                    return newDuty.unwrappedDutyDetails
-                }
-            } else if let currentDuty = duties.first(where: { $0.periodStart.isDateInRange(start: selectedDate.startDateOfMonth, end: selectedDate.endDateOfMonth) }) {
-                return currentDuty.unwrappedDutyDetails
             }
         }
-        return []
+        return Array(newDutyDetails)
     }
 
     var body: some View {
@@ -203,7 +210,8 @@ struct CalendarView: View {
         guard let calendarLast = calendarDates.last else { return }
         if let currentRota = rota.first(where: { calendarFirst.date.isDateInRange(start: $0.periodStart, end: $0.periodEnd) }) {
             let weeksToStartDate = Int((calendarFirst.date.dayDifference(from: currentRota.periodStart)) / 7) + 1
-            var currentLine = currentRota.startRotaLine + weeksToStartDate
+            let startRotaLine = currentRota.startRotaLine == 0 ? currentRota.unwrappedRotaDetails.map { $0.line }.min() ?? 0 : currentRota.startRotaLine
+            var currentLine = startRotaLine + weeksToStartDate
             let maxLineNumber = currentRota.unwrappedRotaDetails.map { $0.line }.max() ?? 0
             let minLineNumber = currentRota.unwrappedRotaDetails.map { $0.line }.min() ?? 0
 
@@ -230,7 +238,8 @@ struct CalendarView: View {
                 } else {
                     end = end.add(day: 7)
                     if let nextRota = rota.first(where: { end.isDateInRange(start: $0.periodStart, end: $0.periodEnd) }) {
-                        currentLine = nextRota.startRotaLine - (count + 1) + i
+                        let startRotaLine = nextRota.startRotaLine == 0 ? nextRota.unwrappedRotaDetails.map { $0.line }.min() ?? 0 : nextRota.startRotaLine
+                        currentLine = startRotaLine - (count + 1) + i
                         guard let nextRotaDetail = nextRota.unwrappedRotaDetails.first(where: { $0.line == currentLine} ) else { continue }
                         monthDuties.append(contentsOf: RotaDetail.weekDuties(of: nextRotaDetail, for: startDayOfWeek))
                     } else {
@@ -244,7 +253,7 @@ struct CalendarView: View {
                 if numberOfWeeks > i {
                     monthDuties.append(contentsOf: RotaDetail.emptyWeek)
                 } else {
-                    let currentLine = currentRota.startRotaLine
+                    let currentLine = currentRota.startRotaLine == 0 ? currentRota.unwrappedRotaDetails.map { $0.line }.min() ?? 0 : currentRota.startRotaLine
                     guard let rotaDetail = currentRota.unwrappedRotaDetails.first(where: { $0.line == (currentLine + count) }) else { continue }
                     monthDuties.append(contentsOf: RotaDetail.weekDuties(of: rotaDetail, for: startDayOfWeek))
                     count += 1

@@ -53,7 +53,6 @@ struct MonthRowView: View {
                     VStack {
                         Text(day.date, format: .dateTime.day())
                             .selected(date: selectedDate, sameAs: day.date, bgColor: color(dayIndex))
-//                            .textTint(bgColorOf: Color(color(dayIndex)))
                             .bold()
                     }
                 }
@@ -64,6 +63,7 @@ struct MonthRowView: View {
             HStack(spacing: 4) {
                 if (monthEvents.contains { $0.startDate.sameDay(as: day.date) }) {
                     Circle()
+                        .textTint(bgColorOf: Color(color(dayIndex)))
                         .frame(width: 5)
                 }
 
