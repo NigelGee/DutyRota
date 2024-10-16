@@ -24,7 +24,10 @@ struct RotaTextField: View {
                 HStack {
                     Text("\(WeekDay.sortedWeekDays(startOn: startDayOfWeek, full: true)[index]):")
 
+                    Spacer()
+
                     content
+                        .frame(width: 200)
                 }
             }
         }

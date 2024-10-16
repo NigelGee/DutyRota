@@ -7,6 +7,6 @@
 
 import EventKit
 
-extension EKEvent: Identifiable {
+extension EKEvent: @retroactive Identifiable {
     public var id: String { calendarItemIdentifier }
 }

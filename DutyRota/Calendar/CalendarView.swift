@@ -47,7 +47,7 @@ struct CalendarView: View {
         for day in calendarDates {
             if let currentDuty = duties.first(where: { calendarDates.first!.date.isDateInRange(start: $0.periodStart, end: $0.periodEnd) }) {
                 if day.date <= currentDuty.periodEnd {
-
+                    #warning("Need to have the first days added to Set")
                 } else {
                     if let newDuty = duties.first(where: { day.date.isDateInRange(start: $0.periodStart, end: $0.periodEnd)} ) {
                         for duty in newDuty.unwrappedDutyDetails {

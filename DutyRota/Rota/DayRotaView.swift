@@ -126,21 +126,15 @@ struct DayRotaView: View {
                 }
             case .saturday:
                 Group {
-                    Text(rotaDetail.sat)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 30)
-                    Text(rotaDetail.sun)
-                        .frame(maxWidth: .infinity)
-                    Text(rotaDetail.mon)
-                        .frame(maxWidth: .infinity)
-                    Text(rotaDetail.tue)
-                        .frame(maxWidth: .infinity)
-                    Text(rotaDetail.wed)
-                        .frame(maxWidth: .infinity)
-                    Text(rotaDetail.thu)
-                        .frame(maxWidth: .infinity)
-                    Text(rotaDetail.fri)
-                        .frame(maxWidth: .infinity)
+                    GridFrameView(text: rotaDetail.line.formatted(.number))
+                    GridFrameView(text: rotaDetail.sat)
+                    GridFrameView(text: rotaDetail.sun)
+                    GridFrameView(text: rotaDetail.mon)
+                    GridFrameView(text: rotaDetail.tue)
+                    GridFrameView(text: rotaDetail.wed)
+                    GridFrameView(text: rotaDetail.thu)
+                    GridFrameView(text: rotaDetail.fri)
+                        
                 }
             }
 

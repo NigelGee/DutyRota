@@ -43,6 +43,7 @@ struct EditRotaDetailView: View {
 
             Spacer()
         }
+        .padding(.horizontal)
         .navigationTitle("Add New Rota Lines")
         .navigationBarTitleDisplayMode(.inline)
 
