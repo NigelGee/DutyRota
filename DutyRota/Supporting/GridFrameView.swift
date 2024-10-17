@@ -9,6 +9,12 @@ import SwiftUI
 
 struct GridFrameView: View {
     let text: String
+    let color: Color
+
+    init(text: String, color: Color = .primary) {
+        self.text = text
+        self.color = color
+    }
 
     var body: some View {
         RoundedRectangle(cornerRadius: 5)
@@ -19,6 +25,7 @@ struct GridFrameView: View {
             .overlay {
                 Text(text)
                     .dynamicTypeSize(...DynamicTypeSize.medium)
+                    .foregroundColor(color)
             }
     }
 }

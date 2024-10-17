@@ -62,7 +62,7 @@ struct RotaDetailView: View {
             GridRow {
                 HStack {
                     ForEach(weekDays, id: \.self) {
-                        GridFrameView(text: $0)
+                        GridFrameView(text: $0, color: .accentColor)
                     }
                 }
             }
