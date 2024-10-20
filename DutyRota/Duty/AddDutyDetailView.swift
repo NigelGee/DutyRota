@@ -30,7 +30,7 @@ struct AddDutyDetailView: View {
                     TextField("Duty", text: $title)
                         .textFieldStyle(.roundedBorder)
                         .multilineTextAlignment(.trailing)
-                        .frame(width: 70)
+                        .frame(width: 71)
                 }
 
                 DatePicker("Sign On:", selection: $start, displayedComponents: .hourAndMinute)
@@ -44,11 +44,11 @@ struct AddDutyDetailView: View {
                         showColorPicker = true
                     } label: {
                         Color(selectedColor)
-                            .frame(width: 30, height: 30)
-                            .clipShape(RoundedRectangle(cornerRadius: 5))
+                            .frame(width: 71, height: 30)
+                            .clipShape(RoundedRectangle(cornerRadius: 7))
                     }
                     .overlay {
-                        RoundedRectangle(cornerRadius: 5)
+                        RoundedRectangle(cornerRadius: 7)
                             .strokeBorder(.primary, lineWidth: 1)
                     }
                 }

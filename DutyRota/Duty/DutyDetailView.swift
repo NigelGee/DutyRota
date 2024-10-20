@@ -23,6 +23,8 @@ struct DutyDetailView: View {
     @State private var showErrorImporting = false
     @State private var message = ""
 
+    let titles = ["Duty", "Start", "End", "Break", "ToD", "Spread"]
+
     var navigationTitle: String {
         let start = "\(duty.periodStart.formattedDayMonth)"
         var end = ""
@@ -43,52 +45,26 @@ struct DutyDetailView: View {
     }
 
     var body: some View {
-        List {
+        Group {
             if filteredDutyDetails.isNotEmpty {
-                ForEach(filteredDutyDetails) { dutyDetail in
-                    NavigationLink(value: dutyDetail) {
-                        ViewThatFits {
-                            VStack {
-                                HStack {
-                                    Text("Duty: **\(dutyDetail.title)**")
-                                    Spacer()
-                                    Text("Start: **\(dutyDetail.start.formattedTime)**")
-                                    Spacer()
-                                    Text("Finish: **\(dutyDetail.end.formattedTime)**")
-                                    Spacer()
-                                    Text("TOD: **\(dutyDetail.tod.formattedTime)**")
-                                    Spacer()
-                                    Text("Break: **\(dutyDetail.dutyBreakTime)**")
-                                    Spacer()
-                                    Text("Spd: **\(dutyDetail.dutySpread)**")
-                                }
-                            }
+                Grid {
+                    GridRow {
+                        ForEach(titles, id: \.self) {
+                            GridFrameView(text: $0, color: .accentColor)
+                        }
+                    }
 
-                            //Compact
-                            VStack {
-                                HStack {
-                                    Text("Duty: **\(dutyDetail.title)**")
-                                    Spacer()
-                                    Text("Start: **\(dutyDetail.start.formattedTime)**")
-                                    Spacer()
-                                    Text("Finish: **\(dutyDetail.end.formattedTime)**")
-                                }
-
-                                HStack {
-                                    Text("TOD: **\(dutyDetail.tod.formattedTime)**")
-                                    Spacer()
-                                    Text("Break: **\(dutyDetail.dutyBreakTime)**")
-                                    Spacer()
-                                    Text("Spd: **\(dutyDetail.dutySpread)**")
+                    ScrollView(showsIndicators: false) {
+                        ForEach(filteredDutyDetails) { dutyDetail in
+                            GridRow {
+                                NavigationLink(value: dutyDetail) {
+                                    DetailRowView(dutyDetail: dutyDetail)
                                 }
                             }
                         }
-                        .font(.system(size: 16))
-                        .textTint(bgColorOf: Color(dutyDetail.color))
                     }
-                    .listRowBackground(Color(dutyDetail.color))
                 }
-                .onDelete(perform: deleteDutyDetail)
+                .padding(.horizontal, 5)
             } else {
                 ContentUnavailableView.search
             }
@@ -116,7 +92,7 @@ struct DutyDetailView: View {
             }
         }
         .navigationDestination(for: DutyDetail.self) { dutyDetail in
-            EditDutyDetailView(dutyDetail: dutyDetail)
+            EditDutyDetailView(dutyDetail: dutyDetail, duty: duty)
         }
         .onAppear(perform: onAppearDefault)
         .sheet(isPresented: $showAddNewDuty) { AddDutyDetailView(duty: duty, selectedColor: defaultColor) }

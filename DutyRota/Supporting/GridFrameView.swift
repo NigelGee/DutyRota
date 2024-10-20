@@ -10,10 +10,12 @@ import SwiftUI
 struct GridFrameView: View {
     let text: String
     let color: Color
+    let background: Color
 
-    init(text: String, color: Color = .primary) {
+    init(text: String, color: Color = .primary, background: Color = .clear) {
         self.text = text
         self.color = color
+        self.background = background
     }
 
     var body: some View {
@@ -22,10 +24,19 @@ struct GridFrameView: View {
             .foregroundStyle(.secondary.opacity(0.4))
             .frame(maxWidth: .infinity)
             .frame(height: 30)
+            .background(background)
+            .clipShape(.rect(cornerRadius: 5))
             .overlay {
-                Text(text)
-                    .dynamicTypeSize(...DynamicTypeSize.medium)
-                    .foregroundColor(color)
+                if background == .clear {
+                    Text(text)
+                        .dynamicTypeSize(...DynamicTypeSize.medium)
+                        .foregroundStyle(color)
+                } else {
+                    Text(text)
+                        .dynamicTypeSize(...DynamicTypeSize.medium)
+                        .textTint(bgColorOf: background)
+                }
+
             }
     }
 }

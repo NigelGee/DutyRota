@@ -55,6 +55,7 @@
 		8B7137FE2B66D96D00627BF6 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137FD2B66D96D00627BF6 /* EventView.swift */; };
 		8B7138002B66DA6500627BF6 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137FF2B66DA6500627BF6 /* ButtonView.swift */; };
 		8BA02FFA2CC0127C00CBD32F /* GridFrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA02FF92CC0127C00CBD32F /* GridFrameView.swift */; };
+		8BA030022CC3E75500CBD32F /* DetailRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA030012CC3E75500CBD32F /* DetailRowView.swift */; };
 		8BA6FB4F2B8E021700DAD23D /* setup.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BA6FB4E2B8E021700DAD23D /* setup.json */; };
 		8BA6FB512B8E02D400DAD23D /* SetUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6FB502B8E02D400DAD23D /* SetUp.swift */; };
 		8BA6FB532B8E030800DAD23D /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6FB522B8E030800DAD23D /* Bundle-Decodable.swift */; };
@@ -127,6 +128,7 @@
 		8B7137FD2B66D96D00627BF6 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		8B7137FF2B66DA6500627BF6 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		8BA02FF92CC0127C00CBD32F /* GridFrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridFrameView.swift; sourceTree = "<group>"; };
+		8BA030012CC3E75500CBD32F /* DetailRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRowView.swift; sourceTree = "<group>"; };
 		8BA6FB4E2B8E021700DAD23D /* setup.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = setup.json; sourceTree = "<group>"; };
 		8BA6FB502B8E02D400DAD23D /* SetUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUp.swift; sourceTree = "<group>"; };
 		8BA6FB522B8E030800DAD23D /* Bundle-Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable.swift"; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				8B12FD6B2B7155ED00A22940 /* DutyView.swift */,
 				8B12FD772B73809800A22940 /* EditDutyView.swift */,
 				8B12FD6D2B71725B00A22940 /* DutyDetailView.swift */,
+				8BA030012CC3E75500CBD32F /* DetailRowView.swift */,
 				8B12FD792B74BEF200A22940 /* AddDutyDetailView.swift */,
 				8BF7C8A62B796B6E00346B7A /* EditDutyDetailView.swift */,
 				8B12FD1F2B6FF4B500A22940 /* Duty.swift */,
@@ -424,6 +427,7 @@
 				8BF7C8A32B79481C00346B7A /* ColorPickerView.swift in Sources */,
 				8B12FD202B6FF4B500A22940 /* Duty.swift in Sources */,
 				8BBB20462B978492009C3DF0 /* DutySheetView.swift in Sources */,
+				8BA030022CC3E75500CBD32F /* DetailRowView.swift in Sources */,
 				8BF7C8A72B796B6E00346B7A /* EditDutyDetailView.swift in Sources */,
 				8BA6FB532B8E030800DAD23D /* Bundle-Decodable.swift in Sources */,
 				8BF7C8D12B7B9D1200346B7A /* EditRotaView.swift in Sources */,
@@ -599,7 +603,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DutyRota/DutyRota.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_ASSET_PATHS = "\"DutyRota/Preview Content\"";
 				DEVELOPMENT_TEAM = 5SYZQ266RF;
 				ENABLE_PREVIEWS = YES;
@@ -631,7 +635,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DutyRota/DutyRota.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_ASSET_PATHS = "\"DutyRota/Preview Content\"";
 				DEVELOPMENT_TEAM = 5SYZQ266RF;
 				ENABLE_PREVIEWS = YES;
