@@ -43,42 +43,48 @@ struct RotaDetailView: View {
     }
 
     var body: some View {
-        Grid (horizontalSpacing: 1){
-            GridRow {
-                HStack {
-                    Text("First Line of the Period:")
-
-                    TextField("First Line", value: $rota.startRotaLine, format: .number)
-                        .frame(width: 100)
-                        .bold()
-                        .keyboardType(.numberPad)
-                        .multilineTextAlignment(.center)
-                        .textFieldStyle(.roundedBorder)
-                }
-                .padding()
-                .dynamicTypeSize(...DynamicTypeSize.accessibility1)
-            }
-            
-            GridRow {
-                HStack {
-                    ForEach(weekDays, id: \.self) {
-                        GridFrameView(text: $0, color: .accentColor)
-                    }
-                }
-            }
-
-            ScrollView(showsIndicators: false) {
-                ForEach(wrappedRotaDetails) { rotaDetail in
+        Group {
+            if wrappedRotaDetails.isEmpty {
+                RotaDetailStartView()
+            } else {
+                Grid (horizontalSpacing: 1){
                     GridRow {
-                        NavigationLink(value: rotaDetail) {
-                            DayRotaView(rotaDetail: rotaDetail)
+                        HStack {
+                            Text("First Line of the Period:")
+
+                            TextField("First Line", value: $rota.startRotaLine, format: .number)
+                                .frame(width: 100)
+                                .bold()
+                                .keyboardType(.numberPad)
+                                .multilineTextAlignment(.center)
+                                .textFieldStyle(.roundedBorder)
                         }
-                        .buttonStyle(.plain)
+                        .padding()
+                        .dynamicTypeSize(...DynamicTypeSize.accessibility1)
+                    }
+
+                    GridRow {
+                        HStack {
+                            ForEach(weekDays, id: \.self) {
+                                GridFrameView(text: $0, color: .accentColor)
+                            }
+                        }
+                    }
+
+                    ScrollView(showsIndicators: false) {
+                        ForEach(wrappedRotaDetails) { rotaDetail in
+                            GridRow {
+                                NavigationLink(value: rotaDetail) {
+                                    DayRotaView(rotaDetail: rotaDetail)
+                                }
+                                .buttonStyle(.plain)
+                            }
+                        }
                     }
                 }
+                .padding(.horizontal, 5)
             }
         }
-        .padding(.horizontal, 5)
         .sheet(isPresented: $showAddNewRota) {
             AddRotaDetailView(rota: rota)
         }

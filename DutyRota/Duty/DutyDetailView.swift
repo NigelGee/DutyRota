@@ -36,6 +36,10 @@ struct DutyDetailView: View {
         return start + " - " + end
     }
 
+    var showFirstView: Bool {
+        duty.unwrappedDutyDetails.count <= 3
+    }
+
     var filteredDutyDetails: [DutyDetail] {
         if search.isNotEmpty {
             return duty.unwrappedDutyDetails.filter { $0.title.localizedCaseInsensitiveContains(search) }.sorted()
@@ -46,27 +50,32 @@ struct DutyDetailView: View {
 
     var body: some View {
         Group {
-            if filteredDutyDetails.isNotEmpty {
-                Grid {
-                    GridRow {
-                        ForEach(titles, id: \.self) {
-                            GridFrameView(text: $0, color: .accentColor)
+            if showFirstView {
+                DutyDetailStartView()
+            } else {
+                if filteredDutyDetails.isNotEmpty {
+                    Grid {
+                        GridRow {
+                            ForEach(titles, id: \.self) {
+                                GridFrameView(text: $0, color: .accentColor)
+                            }
                         }
-                    }
 
-                    ScrollView(showsIndicators: false) {
-                        ForEach(filteredDutyDetails) { dutyDetail in
-                            GridRow {
-                                NavigationLink(value: dutyDetail) {
-                                    DetailRowView(dutyDetail: dutyDetail)
+                        ScrollView(showsIndicators: false) {
+                            ForEach(filteredDutyDetails) { dutyDetail in
+                                GridRow {
+                                    NavigationLink(value: dutyDetail) {
+                                        DetailRowView(dutyDetail: dutyDetail)
+                                    }
                                 }
                             }
                         }
                     }
+                    .searchable(text: $search, placement: .navigationBarDrawer)
+                    .padding(.horizontal, 5)
+                } else {
+                    ContentUnavailableView.search
                 }
-                .padding(.horizontal, 5)
-            } else {
-                ContentUnavailableView.search
             }
         }
         .navigationTitle(navigationTitle)
@@ -96,7 +105,6 @@ struct DutyDetailView: View {
         }
         .onAppear(perform: onAppearDefault)
         .sheet(isPresented: $showAddNewDuty) { AddDutyDetailView(duty: duty, selectedColor: defaultColor) }
-        .searchable(text: $search, placement: .navigationBarDrawer)
         .fileImporter(
             isPresented: $isImporting,
             allowedContentTypes: [UTType.plainText],

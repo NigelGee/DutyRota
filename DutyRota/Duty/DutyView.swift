@@ -19,30 +19,36 @@ struct DutyView: View {
 
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(duties) { duty in
-                    NavigationLink(value: duty) {
-                        HStack {
-                            Text(duty.periodStart.formatted(date: .abbreviated, time: .omitted))
-                            Text("-")
-                            if duty.periodEnd == .distantFuture {
-                                Text("End")
-                            } else {
-                                Text(duty.periodEnd.formatted(date: .abbreviated, time: .omitted))
+            Group {
+                if duties.isEmpty {
+                    DutyStartView()
+                } else {
+                    List {
+                        ForEach(duties) { duty in
+                            NavigationLink(value: duty) {
+                                HStack {
+                                    Text(duty.periodStart.formatted(date: .abbreviated, time: .omitted))
+                                    Text("-")
+                                    if duty.periodEnd == .distantFuture {
+                                        Text("End")
+                                    } else {
+                                        Text(duty.periodEnd.formatted(date: .abbreviated, time: .omitted))
+                                    }
+                                }
+                            }
+                            .buttonStyle(.plain)
+                            .swipeActions(edge: .leading) {
+                                Button {
+                                    editDuty(duty)
+                                } label: {
+                                    Text("Edit")
+                                }
+                                .tint(.green)
                             }
                         }
-                    }
-                    .buttonStyle(.plain)
-                    .swipeActions(edge: .leading) {
-                        Button {
-                            editDuty(duty)
-                        } label: {
-                            Text("Edit")
-                        }
-                        .tint(.green)
+                        .onDelete(perform: deleteDuty)
                     }
                 }
-                .onDelete(perform: deleteDuty)
             }
             .toolbar {
                 Button(action: addNewDuty) {

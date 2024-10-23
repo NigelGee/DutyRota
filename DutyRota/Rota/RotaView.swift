@@ -19,29 +19,35 @@ struct RotaView: View {
 
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(rotas) { rota in
-                    NavigationLink(value: rota) {
-                        HStack {
-                            Text(rota.periodStart.formatted(date: .abbreviated, time: .omitted))
-                            Text("-")
-                            if rota.periodEnd == .distantFuture {
-                                Text("End")
-                            } else {
-                                Text(rota.periodEnd.formatted(date: .abbreviated, time: .omitted))
+            Group {
+                if rotas.isEmpty {
+                    RotaStartView()
+                } else {
+                    List {
+                        ForEach(rotas) { rota in
+                            NavigationLink(value: rota) {
+                                HStack {
+                                    Text(rota.periodStart.formatted(date: .abbreviated, time: .omitted))
+                                    Text("-")
+                                    if rota.periodEnd == .distantFuture {
+                                        Text("End")
+                                    } else {
+                                        Text(rota.periodEnd.formatted(date: .abbreviated, time: .omitted))
+                                    }
+                                }
+                                .swipeActions(edge: .leading) {
+                                    Button {
+                                        editRota(rota)
+                                    } label: {
+                                        Text("Edit")
+                                    }
+                                    .tint(.green)
+                                }
                             }
                         }
-                        .swipeActions(edge: .leading) {
-                            Button {
-                                editRota(rota)
-                            } label: {
-                                Text("Edit")
-                            }
-                            .tint(.green)
-                        }
+                        .onDelete(perform: deleteRota)
                     }
                 }
-                .onDelete(perform: deleteRota)
             }
             .toolbar {
                 Button(action: addNewRota) {
