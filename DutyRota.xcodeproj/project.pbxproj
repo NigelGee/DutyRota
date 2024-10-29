@@ -35,6 +35,7 @@
 		8B3FE0272B89FFC700E2070F /* EditHolidayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FE0262B89FFC700E2070F /* EditHolidayView.swift */; };
 		8B3FE0292B8A513B00E2070F /* DutyDetailRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FE0282B8A513B00E2070F /* DutyDetailRowView.swift */; };
 		8B5FB8F52B7F76F700B736ED /* RotaTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5FB8F42B7F76F700B736ED /* RotaTextField.swift */; };
+		8B617D232CD0F6B6004CC465 /* Array - Replace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B617D222CD0F6B6004CC465 /* Array - Replace.swift */; };
 		8B6F5BC32B67C803003B54F5 /* AdHocDuty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5BC22B67C803003B54F5 /* AdHocDuty.swift */; };
 		8B6F5BC52B67CA48003B54F5 /* AdHocDutyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5BC42B67CA48003B54F5 /* AdHocDutyView.swift */; };
 		8B6F5BC92B692160003B54F5 /* Collection - isNotEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5BC82B692160003B54F5 /* Collection - isNotEmpty.swift */; };
@@ -64,7 +65,7 @@
 		8BA6FB4F2B8E021700DAD23D /* setup.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BA6FB4E2B8E021700DAD23D /* setup.json */; };
 		8BA6FB512B8E02D400DAD23D /* SetUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6FB502B8E02D400DAD23D /* SetUp.swift */; };
 		8BA6FB532B8E030800DAD23D /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6FB522B8E030800DAD23D /* Bundle-Decodable.swift */; };
-		8BA6FB722B94E6B200DAD23D /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6FB712B94E6B200DAD23D /* MonthView.swift */; };
+		8BA6FB722B94E6B200DAD23D /* RegularMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6FB712B94E6B200DAD23D /* RegularMonthView.swift */; };
 		8BA6FB742B9630BF00DAD23D /* AStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6FB732B9630BF00DAD23D /* AStack.swift */; };
 		8BA6FB762B96435500DAD23D /* DayAdHocDutiesRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6FB752B96435500DAD23D /* DayAdHocDutiesRowView.swift */; };
 		8BBB20442B977E76009C3DF0 /* DayDutiesRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBB20432B977E76009C3DF0 /* DayDutiesRowView.swift */; };
@@ -111,6 +112,7 @@
 		8B3FE0262B89FFC700E2070F /* EditHolidayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHolidayView.swift; sourceTree = "<group>"; };
 		8B3FE0282B8A513B00E2070F /* DutyDetailRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutyDetailRowView.swift; sourceTree = "<group>"; };
 		8B5FB8F42B7F76F700B736ED /* RotaTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotaTextField.swift; sourceTree = "<group>"; };
+		8B617D222CD0F6B6004CC465 /* Array - Replace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array - Replace.swift"; sourceTree = "<group>"; };
 		8B6F5BC22B67C803003B54F5 /* AdHocDuty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocDuty.swift; sourceTree = "<group>"; };
 		8B6F5BC42B67CA48003B54F5 /* AdHocDutyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocDutyView.swift; sourceTree = "<group>"; };
 		8B6F5BC82B692160003B54F5 /* Collection - isNotEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection - isNotEmpty.swift"; sourceTree = "<group>"; };
@@ -143,7 +145,7 @@
 		8BA6FB502B8E02D400DAD23D /* SetUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUp.swift; sourceTree = "<group>"; };
 		8BA6FB522B8E030800DAD23D /* Bundle-Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable.swift"; sourceTree = "<group>"; };
 		8BA6FB702B9380AB00DAD23D /* DutyRota.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DutyRota.entitlements; sourceTree = "<group>"; };
-		8BA6FB712B94E6B200DAD23D /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
+		8BA6FB712B94E6B200DAD23D /* RegularMonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularMonthView.swift; sourceTree = "<group>"; };
 		8BA6FB732B9630BF00DAD23D /* AStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AStack.swift; sourceTree = "<group>"; };
 		8BA6FB752B96435500DAD23D /* DayAdHocDutiesRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayAdHocDutiesRowView.swift; sourceTree = "<group>"; };
 		8BBB20432B977E76009C3DF0 /* DayDutiesRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDutiesRowView.swift; sourceTree = "<group>"; };
@@ -294,7 +296,7 @@
 				8B7137F12B66D37A00627BF6 /* CalendarView.swift */,
 				8B7137FF2B66DA6500627BF6 /* ButtonView.swift */,
 				8B7137FB2B66D5CF00627BF6 /* CompactMonthView.swift */,
-				8BA6FB712B94E6B200DAD23D /* MonthView.swift */,
+				8BA6FB712B94E6B200DAD23D /* RegularMonthView.swift */,
 				8B12FD1D2B6D972600A22940 /* MonthRowView.swift */,
 				8B0CF44E2B99EA9F00F05261 /* DayEventView.swift */,
 				8BBB20432B977E76009C3DF0 /* DayDutiesRowView.swift */,
@@ -319,6 +321,7 @@
 				8BF7C8A42B794B1B00346B7A /* ColorPickerDisplayView.swift */,
 				8B7137F32B66D39800627BF6 /* Date-Helper.swift */,
 				8B6F5BC82B692160003B54F5 /* Collection - isNotEmpty.swift */,
+				8B617D222CD0F6B6004CC465 /* Array - Replace.swift */,
 				8B3FDFE62B86804000E2070F /* URLSession-Codable.swift */,
 				8B12FD632B70B35800A22940 /* EKEvent-Extension.swift */,
 				8BA6FB522B8E030800DAD23D /* Bundle-Decodable.swift */,
@@ -436,7 +439,7 @@
 				8B12FDEA2B77A07600A22940 /* ExportDocument.swift in Sources */,
 				8B5FB8F52B7F76F700B736ED /* RotaTextField.swift in Sources */,
 				8BF7C8D52B7E10F300346B7A /* AddRotaDetailView.swift in Sources */,
-				8BA6FB722B94E6B200DAD23D /* MonthView.swift in Sources */,
+				8BA6FB722B94E6B200DAD23D /* RegularMonthView.swift in Sources */,
 				8BBB20442B977E76009C3DF0 /* DayDutiesRowView.swift in Sources */,
 				8B12FD722B72771600A22940 /* AdHocDutySamples.swift in Sources */,
 				8BA0300A2CC7E94A00CBD32F /* DutyStartView.swift in Sources */,
@@ -461,6 +464,7 @@
 				8B12FD6E2B71725B00A22940 /* DutyDetailView.swift in Sources */,
 				8B12FD7A2B74BEF200A22940 /* AddDutyDetailView.swift in Sources */,
 				8B12FD6C2B7155ED00A22940 /* DutyView.swift in Sources */,
+				8B617D232CD0F6B6004CC465 /* Array - Replace.swift in Sources */,
 				8B346AEA2B7FB94600A29C3C /* DayRotaView.swift in Sources */,
 				8BA6FB742B9630BF00DAD23D /* AStack.swift in Sources */,
 				8B12FD782B73809800A22940 /* EditDutyView.swift in Sources */,

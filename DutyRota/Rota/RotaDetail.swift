@@ -36,7 +36,7 @@ class RotaDetail: Comparable {
         self.sat = sat
     }
 
-    static var emptyWeek = ["", "", "", "", "", "", ""]
+    static var emptyWeek = Array(repeating: "", count: 7)
 
     static func importDuties(for columns: [String], on weekDay: WeekDay) throws -> RotaDetail {
         guard columns.count >= 8 else { throw ImportError.invalidCount }

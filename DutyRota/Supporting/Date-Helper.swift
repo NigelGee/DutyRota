@@ -129,9 +129,19 @@ extension Date {
     /// a method to check if a day is the same as another day
     /// - Parameter date: Comparison date use `.now` for today
     /// - Returns: `true` if in the same day
-    func sameDay(as date: Date) -> Bool {
+    func isSameDay(as date: Date) -> Bool {
         let calendar = Calendar.current
         return calendar.isDate(self, inSameDayAs: date)
+    }
+
+    /// a method to check if a day is the same as another day
+    /// - Parameter date: Comparison date use `.now` for today
+    /// - Returns: `true` if in the same day
+    func isSameMonth(as date: Date) -> Bool {
+        let calendar = Calendar.current
+        let currentMonth = calendar.component(.month, from: self)
+        let selectedMonth = calendar.component(.month, from: date)
+        return currentMonth == selectedMonth
     }
 
     /// Returns a Boolean value indicating whether the given date is contained within the range.

@@ -10,12 +10,10 @@ import SwiftData
 import SwiftUI
 
 struct CompactMonthView: View {
-    var rotaLines: [String]
-
     @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.saturday
     @AppStorage("bankHolidayRule") var bankHolidayRule = true
 
-    @Query var rota: [Rota]
+    var dayDuty: DutyDetail
 
     @Binding var selectedDate: Date
     @Binding var monthEvents: [EKEvent]
@@ -39,78 +37,11 @@ struct CompactMonthView: View {
     }
 
     var filteredDuties: [AdHocDuty] {
-        adHocDuties.filter { $0.start.sameDay(as: selectedDate) }
+        adHocDuties.filter { $0.start.isSameDay(as: selectedDate) }
     }
 
-    var dayDutyDetails: [DutyDetail] {
-        guard rotaLines.isNotEmpty else { return [] }
-        let selectedIndex = selectedDate.dayDifference(from: calendarDates.first!.date)
-        guard selectedIndex < rotaLines.count else { return [] }
-        if bankHolidayRule, bankHolidays.contains(where: { $0.date == selectedDate} ) {
-            if selectedDate.isBankHoliday(.monday) {
-                if selectedIndex - 1 > 0 {
-                    if rotaLines[selectedIndex] != "" {
-                        if rotaLines[selectedIndex - 1] != "" {
-                            let dayDuties = dutyDetails.filter { $0.title == rotaLines[selectedIndex - 1] }
-                            if dayDuties.isNotEmpty {
-                                return dayDuties
-                            } else {
-                                return [DutyDetail.dutyError(for: rotaLines[selectedIndex])]
-                            }
-                        } else {
-                            return [DutyDetail.spare]
-                        }
-                    } else {
-                        return []
-                    }
-                } else {
-                    return [DutyDetail.dutyError(for: "Check")]
-                }
-            } else if selectedDate.isBankHoliday(.friday) {
-                if selectedIndex + 1 < rotaLines.count {
-                    if rotaLines[selectedIndex] != "" {
-                        if rotaLines[selectedIndex - 1] != "" {
-                            let dayDuties = dutyDetails.filter { $0.title == rotaLines[selectedIndex + 1] }
-                            if dayDuties.isNotEmpty {
-                                return dayDuties
-                            } else {
-                                return [DutyDetail.dutyError(for: rotaLines[selectedIndex])]
-                            }
-                        } else {
-                            return [DutyDetail.spare]
-                        }
-                    } else {
-                        return []
-                    }
-                } else {
-                    return [DutyDetail.dutyError(for: "Check")]
-                }
-            } else {
-                if rotaLines[selectedIndex] != "" {
-                    let dayDuties = dutyDetails.filter { $0.title == rotaLines[selectedIndex] }
-                    if dayDuties.isNotEmpty {
-                        return dayDuties
-                    } else {
-                        return [DutyDetail.dutyError(for: rotaLines[selectedIndex])]
-                    }
-                }
-            }
-        } else {
-            if rotaLines[selectedIndex] != "" {
-                let dayDuties = dutyDetails.filter { $0.title == rotaLines[selectedIndex] }
-                if dayDuties.isNotEmpty {
-                    return dayDuties
-                } else {
-                    return [DutyDetail.dutyError(for: rotaLines[selectedIndex])]
-                }
-            }
-        }
-
-        return []
-    }
-
-    var listsAreEmpty: Bool {
-        events.isNotEmpty || filteredDuties.isNotEmpty || dayDutyDetails.isNotEmpty
+    var listsAreNotEmpty: Bool {
+        events.isNotEmpty || filteredDuties.isNotEmpty || dayDuty.title.isNotEmpty
     }
 
     var body: some View {
@@ -131,7 +62,6 @@ struct CompactMonthView: View {
                 ForEach(0..<calendarDates.count, id: \.self) { day in
                     MonthRowView(monthEvents: monthEvents,
                                  adHocDuties: adHocDuties,
-                                 rotas: rotaLines,
                                  dutyDetails: dutyDetails,
                                  day: calendarDates[day],
                                  startDateOfCalendar: calendarDates.first!.date,
@@ -145,11 +75,11 @@ struct CompactMonthView: View {
             Divider()
                 .padding(.horizontal)
 
-            if listsAreEmpty {
+            if listsAreNotEmpty {
                 List {
-                    ForEach(dayDutyDetails) { dayDutyDetail in
-                        DutyDetailRowView(dutyDetail: dayDutyDetail)
-                            .listRowBackground(Color(dayDutyDetail.color))
+                    if dayDuty.title.isNotEmpty {
+                        DutyDetailRowView(dutyDetail: dayDuty)
+                            .listRowBackground(Color(dayDuty.color))
                     }
 
                     if filteredDuties.isNotEmpty {
@@ -165,6 +95,9 @@ struct CompactMonthView: View {
             } else {
                 ContentUnavailableView("No Events", systemImage: "calendar")
             }
+        }
+        .onAppear {
+            print(dayDuty.title)
         }
     }
 }

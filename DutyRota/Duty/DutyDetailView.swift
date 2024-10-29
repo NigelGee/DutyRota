@@ -71,7 +71,7 @@ struct DutyDetailView: View {
                             }
                         }
                     }
-                    .searchable(text: $search, placement: .navigationBarDrawer)
+                    .searchable(text: $search, placement: .navigationBarDrawer, prompt: "Search for a Duty.")
                     .padding(.horizontal, 5)
                 } else {
                     ContentUnavailableView.search

@@ -85,10 +85,12 @@ class DutyDetail: Comparable {
         return lhs.title < rhs.title
     }
 
+    static let emptyWeek = Array(repeating: DutyDetail(title: "", start: .zeroTime, end: .zeroTime, tod: .zeroTime, color: "dutyClear"), count: 7)
     static let example = DutyDetail(title: "701", start: .now, end: .now, tod: .now, color: "dutyGreen")
     static let spare = DutyDetail(title: "Spare", start: .zeroTime, end: .zeroTime, tod: .zeroTime)
+    static let loading = DutyDetail(title: "LOADING", start: .zeroTime, end: .zeroTime, tod: .zeroTime, color: "dutyClear")
 
     static func dutyError(for dutyNumber: String) -> DutyDetail {
-        DutyDetail(title: "'\(dutyNumber)' Error", start: .zeroTime, end: .zeroTime, tod: .zeroTime, color: "dutyError")
+        DutyDetail(title: "Error for \(dutyNumber)", start: .zeroTime, end: .zeroTime, tod: .zeroTime, color: "dutyError")
     }
 }

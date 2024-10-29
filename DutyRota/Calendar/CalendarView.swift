@@ -11,6 +11,7 @@ import SwiftUI
 
 struct CalendarView: View {
     @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.saturday
+    @AppStorage("bankHolidayRule") var bankHolidayRule = true
     @Environment(\.scenePhase) var scenePhase
     @Environment(\.modelContext) var modelContext
     @Environment(\.horizontalSizeClass) var sizeClass
@@ -20,11 +21,13 @@ struct CalendarView: View {
     @State private var showAddEvent = false
 
     @State private var selectedDate = Date.now
+    @State private var controlDate = Date.distantPast
     @State private var eventStore = EKEventStore()
     @State private var events = [EKEvent]()
     @State private var monthEvents = [EKEvent]()
     @State private var newDuty: AdHocDuty?
-    @State private var dutiesForMonth = [String]()
+    @State private var dutyDetails = [DutyDetail]()
+    @State private var dayDuty = DutyDetail.loading
 
     @State private var bankHolidays = [BankHolidayEvent]()
     @State private var showErrorBH = false
@@ -37,27 +40,8 @@ struct CalendarView: View {
         selectedDate.datesOfMonth(with: startDayOfWeek.rawValue).map { CalendarDate(date: $0.startOfDay) }
     }
 
-    var dutyDetails: [DutyDetail] {
-        if let currentDuty = duties.first(where: { calendarDates.first!.date.isDateInRange(start: $0.periodStart, end: $0.periodEnd) && calendarDates.last!.date.isDateInRange(start: $0.periodStart, end: $0.periodEnd) }) {
-            return currentDuty.unwrappedDutyDetails
-        }
-
-        var newDutyDetails = Set<DutyDetail>()
-
-        for day in calendarDates {
-            if let currentDuty = duties.first(where: { calendarDates.first!.date.isDateInRange(start: $0.periodStart, end: $0.periodEnd) }) {
-                if day.date <= currentDuty.periodEnd {
-                    #warning("Need to have the first days added to Set")
-                } else {
-                    if let newDuty = duties.first(where: { day.date.isDateInRange(start: $0.periodStart, end: $0.periodEnd)} ) {
-                        for duty in newDuty.unwrappedDutyDetails {
-                            newDutyDetails.insert(duty)
-                        }
-                    }
-                }
-            }
-        }
-        return Array(newDutyDetails)
+    var selectedDayIndex: Int {
+        selectedDate.dayDifference(from: calendarDates.first!.date)
     }
 
     var body: some View {
@@ -65,7 +49,7 @@ struct CalendarView: View {
             VStack {
                 if sizeClass == .compact {
                     CompactMonthView(
-                        rotaLines: dutiesForMonth,
+                        dayDuty: dayDuty,
                         selectedDate: $selectedDate,
                         monthEvents: $monthEvents,
                         adHocDuties: adHocDuties,
@@ -76,15 +60,7 @@ struct CalendarView: View {
                         loadEvent: loadEvent
                     )
                 } else {
-                    MonthView(
-                        selectedDate: $selectedDate,
-                        dutyForMonth: dutiesForMonth,
-                        dutyDetails: dutyDetails,
-                        bankHolidays: bankHolidays,
-                        monthEvents: $monthEvents,
-                        eventStore: eventStore,
-                        loadEvent: loadEvent
-                    )
+
                 }
             }
             .navigationTitle("Calendar")
@@ -92,6 +68,10 @@ struct CalendarView: View {
             .onAppear(perform: loadEvent)
             .onChange(of: selectedDate) {
                 loadEvent()
+                Task {
+                    await getRotaDuties()
+                    await getDayDuty(dutyDetails: dutyDetails)
+                }
             }
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
@@ -126,20 +106,18 @@ struct CalendarView: View {
                     EditAdHocDutyView(adHocDuty: newDuty, isEditing: false)
                 }
             }
-            .sheet(isPresented: $showAddEvent) {
+            .sheet(isPresented: $showAddEvent, onDismiss: loadEvent) {
                 AddNewEventView(eventStore: eventStore, selectedDate: selectedDate, loadEvent: loadEvent)
             }
             .task {
-                await fetch()
-                monthRotasDuties()
-            }
-            .onChange(of: selectedDate) {
-                monthRotasDuties()
+                await fetchBankHolidays()
+                await getRotaDuties()
+                await getDayDuty(dutyDetails: dutyDetails)
             }
             .alert("No Internet", isPresented: $showErrorBH) {
                 Button("OK") { }
             } message: {
-                Text("Bank Holidays might not show correctly in calendar.")
+                Text("Bank Holidays duties might not show correctly in calendar.")
             }
         }
     }
@@ -147,7 +125,7 @@ struct CalendarView: View {
     /// Call for get JSON data from URL
     /// requires `@State private var name = [Decodable]()`
     /// and `.task { await fetch() }`
-    func fetch() async {
+    func fetchBankHolidays() async {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yy-MM-dd"
         do  {
@@ -203,65 +181,99 @@ struct CalendarView: View {
         }
     }
 
-    func monthRotasDuties() {
-        var monthDuties = [String]()
-        var count = 0
-        guard let calendarFirst = calendarDates.first else { return }
-        guard let calendarLast = calendarDates.last else { return }
-        if let currentRota = rota.first(where: { calendarFirst.date.isDateInRange(start: $0.periodStart, end: $0.periodEnd) }) {
-            let weeksToStartDate = Int((calendarFirst.date.dayDifference(from: currentRota.periodStart)) / 7) + 1
+    func getRotaDuties() async {
+        guard !selectedDate.isSameMonth(as: controlDate) else { return }
+        controlDate = selectedDate
+        var newRotaDuties = [String]()
+        var newDuties = [DutyDetail]()
+        guard let startOfCalendarMonth = calendarDates.first?.date.startOfDay else { return }
+        guard let endOfCalendarMonth = calendarDates.last?.date.startOfDay else { return }
+
+        for week in 0..<7 {
+            let weekStartDate = startOfCalendarMonth.add(day: week * 7)
+            guard weekStartDate < endOfCalendarMonth else { break }
+
+            // ROTA
+            guard let currentRota = rota.first(where: { weekStartDate.isDateInRange(start: $0.periodStart, end: $0.periodEnd) || weekStartDate.isSameDay(as: $0.periodStart) }) else {
+                newRotaDuties.append(contentsOf: RotaDetail.emptyWeek)
+                newDuties.append(contentsOf: DutyDetail.emptyWeek)
+                continue
+            }
             let startRotaLine = currentRota.startRotaLine == 0 ? currentRota.unwrappedRotaDetails.map { $0.line }.min() ?? 0 : currentRota.startRotaLine
-            var currentLine = startRotaLine + weeksToStartDate
-            let maxLineNumber = currentRota.unwrappedRotaDetails.map { $0.line }.max() ?? 0
+            let weeksFromStartRotaLine = Int((weekStartDate.dayDifference(from: currentRota.periodStart.startOfDay)) / 7)
             let minLineNumber = currentRota.unwrappedRotaDetails.map { $0.line }.min() ?? 0
 
-            var remainder = 0
-            if currentRota.unwrappedRotaDetails.count > 0 {
-                remainder = (currentLine - minLineNumber) % currentRota.unwrappedRotaDetails.count
+            let currentWeekLine = ((startRotaLine + weeksFromStartRotaLine - minLineNumber) % currentRota.unwrappedRotaDetails.count) + minLineNumber
+            guard let rotaLineDetails = currentRota.unwrappedRotaDetails.first(where:  { $0.line == currentWeekLine }) else {
+                newRotaDuties.append(contentsOf: RotaDetail.emptyWeek)
+                continue
             }
-            currentLine = minLineNumber + remainder
+            let weekRotaLines = RotaDetail.weekDuties(of: rotaLineDetails, for: startDayOfWeek)
+            newRotaDuties.append(contentsOf: weekRotaLines)
 
-            var end = calendarFirst.date
+            // DUTIES
+            guard let currentDuty = duties.first(where: { weekStartDate.isDateInRange(start: $0.periodStart, end: $0.periodEnd) || weekStartDate.isSameDay(as: $0.periodStart) }) else { continue }
 
-            for i in 0 ..< 6 {
-                if end <= currentRota.periodEnd {
-                    count = i
-                    guard let rotaDetail = currentRota.unwrappedRotaDetails.first(where: { $0.line == currentLine }) else { continue }
-                    monthDuties.append(contentsOf: RotaDetail.weekDuties(of: rotaDetail, for: startDayOfWeek))
-                    if currentLine == maxLineNumber {
-                        currentLine = minLineNumber
+            for line in weekRotaLines {
+                guard let duty = currentDuty.unwrappedDutyDetails.first(where: { $0.title == line }) else {
+                    newDuties.append(DutyDetail.dutyError(for: line))
+                    continue
+                }
+                newDuties.append(duty)
+            }
+        }
+
+        var bankHolidaysInMonth = [Date]()
+        for holiday in bankHolidays {
+            if holiday.date.isDateInRange(start: startOfCalendarMonth, end: endOfCalendarMonth) {
+                bankHolidaysInMonth.append(holiday.date)
+            }
+        }
+
+        // BANK HOLIDAYS
+        if bankHolidayRule, bankHolidaysInMonth.isNotEmpty {
+            for holiday in bankHolidaysInMonth {
+                let holidayIndex = holiday.dayDifference(from: startOfCalendarMonth)
+                if newDuties[selectedDayIndex].title.isNotEmpty, newDuties[selectedDayIndex].title != "Rest" {
+                    // Bank holiday Monday check
+                    if holiday.isBankHoliday(.monday) {
+                        // Check if not the first day of month data
+                        if holidayIndex - 1 > 0 {
+                            // Check if the Sunday is a rest day
+                            if newDuties[holidayIndex - 1].title.isEmpty || newDuties[holidayIndex - 1].title == "Rest" {
+                                newDuties.replaceElement(at: holidayIndex, with: DutyDetail.spare)
+                            } else {
+                                newDuties.replaceElement(before: holidayIndex)
+                            }
+                        } else {
+                            newDuties.replaceElement(at: holidayIndex, with: DutyDetail.dutyError(for: "Check"))
+                        }
+                    } else if holiday.isBankHoliday(.friday) {
+                        // Check if not the last day of month data
+                        if holidayIndex + 1 < newDuties.count {
+                            // Check if the Saturday is a rest day
+                            if newDuties[holidayIndex + 1].title.isEmpty || newDuties[holidayIndex + 1].title == "Rest" {
+                                newDuties.replaceElement(at: holidayIndex, with: DutyDetail.spare)
+                            } else {
+                                newDuties.replaceElement(after: holidayIndex)
+                            }
+                        } else {
+                            newDuties.replaceElement(at: holidayIndex, with: DutyDetail.dutyError(for: "Check"))
+                        }
                     } else {
-                        currentLine += 1
-                    }
-                    end = end.add(day: 7)
-
-                } else {
-                    end = end.add(day: 7)
-                    if let nextRota = rota.first(where: { end.isDateInRange(start: $0.periodStart, end: $0.periodEnd) }) {
-                        let startRotaLine = nextRota.startRotaLine == 0 ? nextRota.unwrappedRotaDetails.map { $0.line }.min() ?? 0 : nextRota.startRotaLine
-                        currentLine = startRotaLine - (count + 1) + i
-                        guard let nextRotaDetail = nextRota.unwrappedRotaDetails.first(where: { $0.line == currentLine} ) else { continue }
-                        monthDuties.append(contentsOf: RotaDetail.weekDuties(of: nextRotaDetail, for: startDayOfWeek))
-                    } else {
-                        monthDuties.append(contentsOf: RotaDetail.emptyWeek)
+                        // Christmas Week!
+                        print("CHRISTMAS BANK HOLIDAYS")
                     }
                 }
             }
-        } else if let currentRota = rota.first(where: { $0.periodStart.isDateInRange(start: calendarFirst.date, end: calendarLast.date) }) {
-            let numberOfWeeks = currentRota.periodStart.dayDifference(from: calendarFirst.date) / 7
-            for i in 0 ..< 6 {
-                if numberOfWeeks > i {
-                    monthDuties.append(contentsOf: RotaDetail.emptyWeek)
-                } else {
-                    let currentLine = currentRota.startRotaLine == 0 ? currentRota.unwrappedRotaDetails.map { $0.line }.min() ?? 0 : currentRota.startRotaLine
-                    guard let rotaDetail = currentRota.unwrappedRotaDetails.first(where: { $0.line == (currentLine + count) }) else { continue }
-                    monthDuties.append(contentsOf: RotaDetail.weekDuties(of: rotaDetail, for: startDayOfWeek))
-                    count += 1
-                }
-            }
-        } 
+        }
 
-        dutiesForMonth = monthDuties
+        dutyDetails = newDuties
+    }
+
+    func getDayDuty(dutyDetails: [DutyDetail]) async {
+        let duty = dutyDetails[selectedDayIndex]
+        dayDuty = duty
     }
 }
 

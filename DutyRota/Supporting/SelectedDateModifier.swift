@@ -17,7 +17,7 @@ struct SelectedDate: ViewModifier {
 
     var todayCircle: some View {
         Group {
-            if date1.sameDay(as: date2) {
+            if date1.isSameDay(as: date2) {
                 Circle()
                     .stroke(lineWidth: 2)
                     .frame(width: 200)
@@ -61,7 +61,7 @@ struct TodayTextTint: ViewModifier {
     @Binding var today: Date
 
     func body(content: Content) -> some View {
-        if date2.sameDay(as: today) {
+        if date2.isSameDay(as: today) {
             content
                 .foregroundStyle(.red)
         } else {

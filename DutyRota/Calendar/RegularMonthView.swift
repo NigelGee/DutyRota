@@ -10,7 +10,7 @@ import EventKitUI
 import SwiftData
 import SwiftUI
 
-struct MonthView: View {
+struct RegularMonthView: View {
     @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.saturday
     @AppStorage("bankHolidayRule") var bankHolidayRule = true
 
@@ -64,7 +64,7 @@ struct MonthView: View {
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
                     ForEach(0..<calendarDates.count, id: \.self) { dayIndex in
-                        let dayEvents = monthEvents.filter { $0.startDate.sameDay(as: calendarDates[dayIndex].date)}
+                        let dayEvents = monthEvents.filter { $0.startDate.isSameDay(as: calendarDates[dayIndex].date)}
                         VStack(spacing: 2) {
                             if calendarDates[dayIndex].date >= selectedDate.startDateOfMonth {
                                 Button {
@@ -96,8 +96,8 @@ struct MonthView: View {
                                         .fill(Color.clear)
                                 }
 
-                                if (filteredDuties.contains { $0.start.sameDay(as: calendarDates[dayIndex].date) }) {
-                                    let dayAdHocDuties = filteredDuties.filter { $0.start.sameDay(as: calendarDates[dayIndex].date) }
+                                if (filteredDuties.contains { $0.start.isSameDay(as: calendarDates[dayIndex].date) }) {
+                                    let dayAdHocDuties = filteredDuties.filter { $0.start.isSameDay(as: calendarDates[dayIndex].date) }
                                     ForEach(dayAdHocDuties) { duty in
                                         DayAdHocDutiesRowView(duty: duty) {
                                             selectedDuty = duty

@@ -12,7 +12,7 @@ import SwiftUI
 struct MonthRowView: View {
     var monthEvents: [EKEvent]
     var adHocDuties: [AdHocDuty]
-    var rotas: [String]
+//    var rotas: [String]
     var dutyDetails: [DutyDetail]
     var day: CalendarDate
     var startDateOfCalendar: Date
@@ -21,7 +21,6 @@ struct MonthRowView: View {
 
     var bankHolidays: [BankHolidayEvent]
 
-    @Query var duties: [Duty]
     @Query var holidays: [Holiday]
 
     var holidayDates: [Date] {
@@ -61,17 +60,17 @@ struct MonthRowView: View {
             }
 
             HStack(spacing: 4) {
-                if (monthEvents.contains { $0.startDate.sameDay(as: day.date) }) {
+                if (monthEvents.contains { $0.startDate.isSameDay(as: day.date) }) {
                     Circle()
                         .textTint(bgColorOf: Color(color(dayIndex)))
                         .frame(width: 5)
                 }
 
-                if (filteredDuties.contains { $0.start.sameDay(as: day.date) }) {
+                if (filteredDuties.contains { $0.start.isSameDay(as: day.date) }) {
                     Circle()
                         .fill(.orange)
                         .frame(width: 5)
-                } else if (!monthEvents.contains { $0.startDate.sameDay(as: day.date) }) {
+                } else if (!monthEvents.contains { $0.startDate.isSameDay(as: day.date) }) {
                     Circle()
                         .fill(.clear)
                         .frame(width: 5)
@@ -91,14 +90,10 @@ struct MonthRowView: View {
     }
 
     func color(_ dayIndex: Int) -> String {
-        guard rotas.isNotEmpty, dutyDetails.isNotEmpty else { return "dutyClear" }
-        guard dayIndex < rotas.count else { return "dutyClear"}
+        guard /*rotas.isNotEmpty,*/ dutyDetails.isNotEmpty else { return "dutyClear" }
+        guard dayIndex < dutyDetails.count else { return "dutyClear"}
 
-        if let dutyDetail = (dutyDetails.first { $0.title == rotas[dayIndex] }) {
-            return dutyDetail.color
-        } else {
-            return "dutyError"
-        }
+        return dutyDetails[dayIndex].color
     }
 }
 
