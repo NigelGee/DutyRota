@@ -101,7 +101,7 @@ struct SettingsView: View {
                 Section {
                     Toggle("Bank Holiday Rule", isOn: $bankHolidayRule)
                 } footer: {
-                    Text("This will change the duty on Bank Holidays by use Sunday duties on Bank Holiday Monday and Saturday Duties on Bank Holiday Friday. Please note that the colour of duty on Bank holiday will not change.")
+                    Text("This will change the duty on Bank Holidays by use Sunday duties on Bank Holiday Monday and Saturday Duties on Bank Holiday Friday.")
                 }
             }
             .navigationTitle("Settings")

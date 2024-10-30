@@ -96,9 +96,6 @@ struct CompactMonthView: View {
                 ContentUnavailableView("No Events", systemImage: "calendar")
             }
         }
-        .onAppear {
-            print(dayDuty.title)
-        }
     }
 }
 

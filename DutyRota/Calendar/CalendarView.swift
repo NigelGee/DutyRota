@@ -272,6 +272,7 @@ struct CalendarView: View {
     }
 
     func getDayDuty(dutyDetails: [DutyDetail]) async {
+        guard selectedDayIndex < dutyDetails.count else { return }
         let duty = dutyDetails[selectedDayIndex]
         dayDuty = duty
     }
