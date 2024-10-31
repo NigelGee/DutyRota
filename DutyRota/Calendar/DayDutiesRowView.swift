@@ -9,48 +9,42 @@ import SwiftData
 import SwiftUI
 
 struct DayDutiesRowView: View {
-    let dutyNumber: String
-    let dutyDetails: [DutyDetail]
-
+    let dutyDetail: DutyDetail
     @State private var showDetail = false
 
-    var dutyDetail: DutyDetail {
-        if let dayDetail = (dutyDetails.first { $0.title == dutyNumber }) {
-            return dayDetail
-        }
-
-        return DutyDetail.dutyError(for: dutyNumber)
-    }
-
     var body: some View {
-        Button {
-            showDetail = true
-        } label: {
-            HStack(spacing: 5) {
-                Text(dutyDetail.title)
-                    .bold()
-                Spacer()
+        Group {
+            if dutyDetail.title.isNotEmpty {
+                Button {
+                    showDetail = true
+                } label: {
+                    HStack(spacing: 5) {
+                        Text(dutyDetail.title)
+                            .bold()
+                        Spacer()
 
-                AStack {
-                    Text(dutyDetail.start, format: .dateTime.hour().minute())
-                        .bold()
-                    Text(dutyDetail.end, format: .dateTime.hour().minute())
+                        AStack {
+                            Text(dutyDetail.start, format: .dateTime.hour().minute())
+                                .bold()
+                            Text(dutyDetail.end, format: .dateTime.hour().minute())
+                        }
+                    }
+                    .font(.system(size: 12))
+                    .padding(5)
+                    .background(Color(dutyDetail.color))
+                    .textTint(bgColorOf: Color(dutyDetail.color))
+                    .clipShape(.rect(cornerRadius: 5))
+                }
+                .buttonStyle(.plain)
+                .hoverEffect()
+                .sheet(isPresented: $showDetail) {
+                    DutySheetView(dutyDetail: dutyDetail)
                 }
             }
-            .font(.system(size: 12))
-            .padding(5)
-            .background(Color(dutyDetail.color))
-            .textTint(bgColorOf: Color(dutyDetail.color))
-            .clipShape(.rect(cornerRadius: 5))
-        }
-        .buttonStyle(.plain)
-        .hoverEffect()
-        .sheet(isPresented: $showDetail) {
-            DutySheetView(dutyDetail: dutyDetail)
         }
     }
 }
 
 #Preview {
-    DayDutiesRowView(dutyNumber: "701", dutyDetails: [])
+    DayDutiesRowView(dutyDetail: DutyDetail.example)
 }

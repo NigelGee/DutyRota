@@ -60,7 +60,13 @@ struct CalendarView: View {
                         loadEvent: loadEvent
                     )
                 } else {
-
+                    RegularMonthView(selectedDate: $selectedDate,
+                                     dutyDetails: dutyDetails,
+                                     bankHolidays: bankHolidays,
+                                     monthEvents: $monthEvents,
+                                     eventStore: eventStore,
+                                     loadEvent: loadEvent
+                    )
                 }
             }
             .navigationTitle("Calendar")
@@ -189,7 +195,7 @@ struct CalendarView: View {
         guard let startOfCalendarMonth = calendarDates.first?.date.startOfDay else { return }
         guard let endOfCalendarMonth = calendarDates.last?.date.startOfDay else { return }
 
-        for week in 0..<7 {
+        for week in 0..<8 {
             let weekStartDate = startOfCalendarMonth.add(day: week * 7)
             guard weekStartDate < endOfCalendarMonth else { break }
 

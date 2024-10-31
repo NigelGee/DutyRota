@@ -22,12 +22,38 @@ struct DutyDetailRowView: View {
                 Text("Duty: \(dutyDetail.title)")
                     .font(.headline)
 
-                HStack {
-                    Text("TOD: **\(dutyDetail.tod.formattedTime)**")
-                    Text("Spread: **\(dutyDetail.dutySpread)**")
-                    Text("Break: **\(dutyDetail.dutyBreakTime)**")
+                ViewThatFits {
+                    HStack {
+                        Text("TOD: **\(dutyDetail.tod.formattedTime)**")
+                        Spacer()
+                        Text("Spread: **\(dutyDetail.dutySpread)**")
+                        Spacer()
+                        Text("Break: **\(dutyDetail.dutyBreakTime)**")
+                        Spacer()
+                    }
+
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("TOD:")
+                            Text(dutyDetail.tod.formattedTime)
+                                .bold()
+                        }
+                        Spacer()
+                        VStack(alignment: .leading) {
+                            Text("Spread:")
+                            Text(dutyDetail.dutySpread)
+                                .bold()
+                        }
+                        Spacer()
+                        VStack(alignment: .leading) {
+                            Text("Break:")
+                            Text(dutyDetail.dutyBreakTime)
+                                .bold()
+                        }
+                        Spacer()
+                    }
                 }
-                .font(.footnote)
+                .font(.caption)
                 .foregroundStyle(.secondary)
             }
 
@@ -38,6 +64,7 @@ struct DutyDetailRowView: View {
                 Text(dutyDetail.end.formattedTime)
                     .foregroundStyle(.secondary)
             }
+
         }
         .textTint(bgColorOf: Color(dutyDetail.color))
     }

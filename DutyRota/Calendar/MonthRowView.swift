@@ -12,7 +12,6 @@ import SwiftUI
 struct MonthRowView: View {
     var monthEvents: [EKEvent]
     var adHocDuties: [AdHocDuty]
-//    var rotas: [String]
     var dutyDetails: [DutyDetail]
     var day: CalendarDate
     var startDateOfCalendar: Date
@@ -90,7 +89,7 @@ struct MonthRowView: View {
     }
 
     func color(_ dayIndex: Int) -> String {
-        guard /*rotas.isNotEmpty,*/ dutyDetails.isNotEmpty else { return "dutyClear" }
+        guard dutyDetails.isNotEmpty else { return "dutyClear" }
         guard dayIndex < dutyDetails.count else { return "dutyClear"}
 
         return dutyDetails[dayIndex].color

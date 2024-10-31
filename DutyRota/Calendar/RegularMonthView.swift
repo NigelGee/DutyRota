@@ -15,7 +15,6 @@ struct RegularMonthView: View {
     @AppStorage("bankHolidayRule") var bankHolidayRule = true
 
     @Binding var selectedDate: Date
-    var dutyForMonth: [String]
     var dutyDetails: [DutyDetail]
     var bankHolidays: [BankHolidayEvent]
     @Binding var monthEvents: [EKEvent]
@@ -79,21 +78,10 @@ struct RegularMonthView: View {
                                 .padding(.vertical, 5)
                                 .buttonStyle(.plain)
 
-                                if dutyForMonth.isNotEmpty, dutyForMonth[dayIndex] != "", dutyDetails.isNotEmpty {
-                                    if bankHolidays.contains(where: { $0.date == calendarDates[dayIndex].date }) {
-                                        if calendarDates[dayIndex].date.isBankHoliday(.friday) {
-                                            DayDutiesRowView(dutyNumber: dutyForMonth[dayIndex + 1], dutyDetails: dutyDetails)
-                                        } else if calendarDates[dayIndex].date.isBankHoliday(.monday) {
-                                            DayDutiesRowView(dutyNumber: dutyForMonth[dayIndex - 1], dutyDetails: dutyDetails)
-                                        } else {
-                                            DayDutiesRowView(dutyNumber: dutyForMonth[dayIndex], dutyDetails: dutyDetails)
-                                        }
-                                    } else {
-                                        DayDutiesRowView(dutyNumber: dutyForMonth[dayIndex], dutyDetails: dutyDetails)
+                                if dutyDetails.isNotEmpty {
+                                    if dayIndex < dutyDetails.count {
+                                        DayDutiesRowView(dutyDetail: dutyDetails[dayIndex])
                                     }
-                                } else if filteredDuties.isEmpty, dayEvents.isEmpty {
-                                    Rectangle()
-                                        .fill(Color.clear)
                                 }
 
                                 if (filteredDuties.contains { $0.start.isSameDay(as: calendarDates[dayIndex].date) }) {

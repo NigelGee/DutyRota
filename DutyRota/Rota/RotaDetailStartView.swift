@@ -19,7 +19,8 @@ struct RotaDetailStartView: View {
                 Text("You can entering the the details manually by tapping the \(Image(systemName: "plus")) button or by importing a CSV file by tapping the \(Image(systemName: "tray")) button")
                 Image(.addRotaDetails)
                     .resizable()
-                    .frame(height: 100)
+                    .scaledToFit()
+                    .frame(maxHeight: 100)
                 Text("Enter Manual Details")
                     .font(.title3)
                     .underline()
@@ -30,7 +31,7 @@ struct RotaDetailStartView: View {
                         Image(.enterRotaDetails)
                             .resizable()
                             .scaledToFit()
-                            .frame(height: 300)
+                            .frame(maxHeight: 300)
                     }
                     Spacer()
                 }
@@ -38,7 +39,8 @@ struct RotaDetailStartView: View {
                 Text("3. Add the first line of rota for the period.")
                 Image(.enterFirstLine)
                     .resizable()
-                    .frame(height: 150)
+                    .scaledToFit()
+                    .frame(maxHeight: 150)
 
                 Text("Import Rota Details")
                     .font(.title3)
@@ -50,7 +52,8 @@ struct RotaDetailStartView: View {
                 Text("5. Add the first line of rota for the period.")
                 Image(.enterFirstLine)
                     .resizable()
-                    .frame(height: 150)
+                    .scaledToFit()
+                    .frame(maxHeight: 150)
 
             }
             .padding(.horizontal)
