@@ -60,12 +60,13 @@ struct CalendarView: View {
                         loadEvent: loadEvent
                     )
                 } else {
-                    RegularMonthView(selectedDate: $selectedDate,
-                                     dutyDetails: dutyDetails,
-                                     bankHolidays: bankHolidays,
-                                     monthEvents: $monthEvents,
-                                     eventStore: eventStore,
-                                     loadEvent: loadEvent
+                    RegularMonthView(
+                        selectedDate: $selectedDate,
+                        dutyDetails: dutyDetails,
+                        bankHolidays: bankHolidays,
+                        monthEvents: $monthEvents,
+                        eventStore: eventStore,
+                        loadEvent: loadEvent
                     )
                 }
             }
@@ -240,7 +241,7 @@ struct CalendarView: View {
         if bankHolidayRule, bankHolidaysInMonth.isNotEmpty {
             for holiday in bankHolidaysInMonth {
                 let holidayIndex = holiday.dayDifference(from: startOfCalendarMonth)
-                if newDuties[selectedDayIndex].title.isNotEmpty, newDuties[selectedDayIndex].title != "Rest" {
+                if newDuties[holidayIndex].title.isNotEmpty, newDuties[holidayIndex].title != "Rest" {
                     // Bank holiday Monday check
                     if holiday.isBankHoliday(.monday) {
                         // Check if not the first day of month data
