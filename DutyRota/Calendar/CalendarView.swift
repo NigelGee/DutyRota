@@ -68,6 +68,7 @@ struct CalendarView: View {
                         eventStore: eventStore,
                         loadEvent: loadEvent
                     )
+                    .padding(.horizontal, 5)
                 }
             }
             .navigationTitle("Calendar")

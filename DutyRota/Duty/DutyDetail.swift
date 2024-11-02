@@ -16,6 +16,7 @@ class DutyDetail: Comparable {
     var tod: Date = Date.now
     var color: String = "dutyGreen"
     var duty: Duty?
+    var notes: String = ""
 
     init(title: String, start: Date, end: Date, tod: Date, color: String = "dutyGreen") {
         self.title = title

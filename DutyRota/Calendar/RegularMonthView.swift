@@ -145,6 +145,7 @@ struct RegularMonthView: View {
             EventDetailView(event: event)
 //            EventEditViewController(event: event, eventStore: eventStore, loadEvent: loadEvent)
         }
+        .onAppear { selectedDate = .now }
     }
 }
 

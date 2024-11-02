@@ -45,6 +45,15 @@ struct EditDutyDetailView: View {
                 }
             }
 
+            VStack(alignment: .leading) {
+                TextField("Notes:", text: $dutyDetail.notes, axis: .vertical)
+                    .textFieldStyle(.roundedBorder)
+                    .multilineTextAlignment(.leading)
+                Text("Notes that added to duties will not be exported.")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+            }
+
             Spacer()
         }
         .sheet(isPresented: $showColorPicker) {

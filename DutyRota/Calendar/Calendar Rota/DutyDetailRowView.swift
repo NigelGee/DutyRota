@@ -10,63 +10,79 @@ import SwiftUI
 
 struct DutyDetailRowView: View {
     var dutyDetail: DutyDetail
+    @State private var showDetails = false
 
     var body: some View {
-        HStack {
-            Rectangle()
-                .frame(maxWidth: 3, maxHeight: .infinity)
-                .padding(.vertical, 5)
-                .foregroundStyle(.primary)
+        Button {
+            showDetails.toggle()
+        } label: {
+            HStack {
+                Rectangle()
+                    .frame(maxWidth: 3, maxHeight: .infinity)
+                    .padding(.vertical, 5)
+                    .foregroundStyle(.primary)
 
-            VStack(alignment: .leading) {
-                Text("Duty: \(dutyDetail.title)")
-                    .font(.headline)
-
-                ViewThatFits {
+                VStack(alignment: .leading) {
                     HStack {
-                        Text("TOD: **\(dutyDetail.tod.formattedTime)**")
-                        Spacer()
-                        Text("Spread: **\(dutyDetail.dutySpread)**")
-                        Spacer()
-                        Text("Break: **\(dutyDetail.dutyBreakTime)**")
-                        Spacer()
+                        Text("Duty: \(dutyDetail.title)")
+                            .font(.headline)
+                        
+                        if dutyDetail.notes.isNotEmpty {
+                            Image(systemName: "note.text")
+                            Spacer()
+                        }
+
                     }
 
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text("TOD:")
-                            Text(dutyDetail.tod.formattedTime)
-                                .bold()
+                    ViewThatFits {
+                        HStack {
+                            Text("TOD: **\(dutyDetail.tod.formattedTime)**")
+                            Spacer()
+                            Text("Spread: **\(dutyDetail.dutySpread)**")
+                            Spacer()
+                            Text("Break: **\(dutyDetail.dutyBreakTime)**")
+                            Spacer()
                         }
-                        Spacer()
-                        VStack(alignment: .leading) {
-                            Text("Spread:")
-                            Text(dutyDetail.dutySpread)
-                                .bold()
+
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("TOD:")
+                                Text(dutyDetail.tod.formattedTime)
+                                    .bold()
+                            }
+                            Spacer()
+                            VStack(alignment: .leading) {
+                                Text("Spread:")
+                                Text(dutyDetail.dutySpread)
+                                    .bold()
+                            }
+                            Spacer()
+                            VStack(alignment: .leading) {
+                                Text("Break:")
+                                Text(dutyDetail.dutyBreakTime)
+                                    .bold()
+                            }
+                            Spacer()
                         }
-                        Spacer()
-                        VStack(alignment: .leading) {
-                            Text("Break:")
-                            Text(dutyDetail.dutyBreakTime)
-                                .bold()
-                        }
-                        Spacer()
                     }
-                }
-                .font(.caption)
-                .foregroundStyle(.secondary)
-            }
-
-            Spacer()
-
-            VStack {
-                Text(dutyDetail.start.formattedTime)
-                Text(dutyDetail.end.formattedTime)
+                    .font(.caption)
                     .foregroundStyle(.secondary)
-            }
+                }
 
+                Spacer()
+
+                VStack {
+                    Text(dutyDetail.start.formattedTime)
+                    Text(dutyDetail.end.formattedTime)
+                        .foregroundStyle(.secondary)
+                }
+
+            }
+            .textTint(bgColorOf: Color(dutyDetail.color))
         }
-        .textTint(bgColorOf: Color(dutyDetail.color))
+        .sheet(isPresented: $showDetails) {
+            DutySheetView(dutyDetail: dutyDetail)
+        }
     }
 }
 

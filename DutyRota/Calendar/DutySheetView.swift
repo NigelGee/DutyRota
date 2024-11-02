@@ -19,9 +19,21 @@ struct DutySheetView: View {
                     LabeledContent("Sign On:", value: dutyDetail.start.formattedTime)
                     LabeledContent("Sign Off:", value: dutyDetail.end.formattedTime)
                 }
-                LabeledContent("Time On Duty:", value: dutyDetail.tod.formattedTime)
-                LabeledContent("Break:", value: dutyDetail.dutyBreakTime)
-                LabeledContent("Spread:", value: dutyDetail.dutySpread)
+
+                Section {
+                    LabeledContent("Time On Duty:", value: dutyDetail.tod.formattedTime)
+                    LabeledContent("Break:", value: dutyDetail.dutyBreakTime)
+                    LabeledContent("Spread:", value: dutyDetail.dutySpread)
+                }
+
+                if dutyDetail.notes.isNotEmpty {
+                    Section {
+                        VStack(alignment: .leading) {
+                            Text("Notes:")
+                            Text(dutyDetail.notes)
+                        }
+                    }
+                }
             }
             .font(.title3)
             .navigationTitle("Duty Detail")

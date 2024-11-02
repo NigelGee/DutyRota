@@ -15,6 +15,7 @@ class AdHocDuty {
     var start: Date = Date.now
     var end: Date = Date.now
     var breakTime: Date = Date.now
+    var notes: String = ""
 
     init(title: String, route: String, start: Date, end: Date, breakTime: Date) {
         self.title = title

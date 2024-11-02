@@ -48,7 +48,13 @@ struct EditAdHocDutyView: View {
                     
                     DatePicker("Break", selection: $adHocDuty.breakTime, displayedComponents: .hourAndMinute)
                 }
-                
+
+                Section {
+                    TextField("Notes", text: $adHocDuty.notes, axis: .vertical)
+                } header: {
+                    Text("Notes:")
+                }
+
                 if isEditing {
                     Section {
                         LabeledContent("Time On Duty:", value: adHocDuty.tod)

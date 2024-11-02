@@ -14,6 +14,7 @@ struct AddDutyDetailView: View {
     @State private var start = Date.zeroTime
     @State private var end = Date.zeroTime
     @State private var tod = Date.zeroTime
+    @State private var notes: String = ""
     @State private var showAlert = false
     @State private var selectedColor: String
     @State private var showColorPicker = false
@@ -51,6 +52,15 @@ struct AddDutyDetailView: View {
                         RoundedRectangle(cornerRadius: 7)
                             .strokeBorder(.primary, lineWidth: 1)
                     }
+                }
+
+                VStack(alignment: .leading) {
+                    TextField("Notes:", text: $notes, axis: .vertical)
+                        .textFieldStyle(.roundedBorder)
+                        .multilineTextAlignment(.leading)
+                    Text("Notes that added to duties will not be exported.")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
                 }
 
                 Button("Add", action: addDuty)
