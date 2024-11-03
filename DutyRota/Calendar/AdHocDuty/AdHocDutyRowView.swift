@@ -21,17 +21,49 @@ struct AdHocDutyRowView: View {
                 HStack(spacing: 0) {
                     Text(duty.title)
                         .font(.headline)
+                        .padding(.trailing)
                     if duty.route != "" {
                         Text(" - \(duty.route)")
                             .foregroundStyle(.secondary)
                     }
+                    if duty.notes.isNotEmpty {
+                        Image(systemName: "note.text")
+                        Spacer()
+                    }
                 }
-                HStack {
-                    Text("TOD: **\(duty.tod)**")
-                    Text("Spread: **\(duty.spread)**")
-                    Text("Break: **\(duty.breakTime.formattedTime)**")
+
+                ViewThatFits {
+                    HStack {
+                        Text("TOD: **\(duty.tod)**")
+                        Spacer()
+                        Text("Spread: **\(duty.spread)**")
+                        Spacer()
+                        Text("Break: **\(duty.breakTime.formattedTime)**")
+                        Spacer()
+                    }
+
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("TOD:")
+                            Text(duty.tod)
+                                .bold()
+                        }
+                        Spacer()
+                        VStack(alignment: .leading) {
+                            Text("Spread:")
+                            Text(duty.spread)
+                                .bold()
+                        }
+                        Spacer()
+                        VStack(alignment: .leading) {
+                            Text("Break:")
+                            Text(duty.breakTime.formattedTime)
+                                .bold()
+                        }
+                        Spacer()
+                    }
                 }
-                .font(.footnote)
+                .font(.caption)
                 .foregroundStyle(.secondary)
             }
 

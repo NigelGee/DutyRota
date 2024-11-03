@@ -24,7 +24,7 @@ struct DutyDetailRowView: View {
 
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("Duty: \(dutyDetail.title)")
+                        Text(dutyDetail.title)
                             .font(.headline)
                         
                         if dutyDetail.notes.isNotEmpty {

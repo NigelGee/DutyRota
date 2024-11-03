@@ -31,6 +31,7 @@ struct DutySheetView: View {
                         VStack(alignment: .leading) {
                             Text("Notes:")
                             Text(dutyDetail.notes)
+                                .foregroundStyle(.secondary)
                         }
                     }
                 }
