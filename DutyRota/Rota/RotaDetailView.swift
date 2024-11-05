@@ -8,11 +8,14 @@
 import SwiftData
 import SwiftUI
 import UniformTypeIdentifiers
+import TipKit
 
 struct RotaDetailView: View {
     @Environment(\.modelContext) var modelContext
     @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.saturday
     @Bindable var rota: Rota
+
+    let editRotaDetailTip = EditRotaDetailTip()
 
     @State private var showAddNewRota = false
     @State private var isImporting = false
@@ -71,6 +74,10 @@ struct RotaDetailView: View {
                         }
                     }
 
+                    TipView(editRotaDetailTip, arrowEdge: .bottom)
+                        .tipBackground(.blue.opacity(0.2))
+                        .padding(.horizontal)
+
                     ScrollView(showsIndicators: false) {
                         ForEach(wrappedRotaDetails) { rotaDetail in
                             GridRow {
@@ -83,6 +90,11 @@ struct RotaDetailView: View {
                     }
                 }
                 .padding(.horizontal, 5)
+            }
+        }
+        .onAppear {
+            if wrappedRotaDetails.count > 3 {
+                EditRotaDetailTip.thresholdParameter = true
             }
         }
         .sheet(isPresented: $showAddNewRota) {

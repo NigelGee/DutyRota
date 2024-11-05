@@ -18,12 +18,12 @@ struct AdHocDutyRowView: View {
                 .foregroundStyle(.primary)
 
             VStack(alignment: .leading) {
-                HStack(spacing: 0) {
+                HStack {
                     Text(duty.title)
                         .font(.headline)
-                        .padding(.trailing)
+
                     if duty.route != "" {
-                        Text(" - \(duty.route)")
+                        Text("- \(duty.route)")
                             .foregroundStyle(.secondary)
                     }
                     if duty.notes.isNotEmpty {

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UniformTypeIdentifiers
+import TipKit
 
 struct DutyDetailView: View {
     @AppStorage("defaultColor") var defaultColor = "dutyGreen"
@@ -24,6 +25,7 @@ struct DutyDetailView: View {
     @State private var message = ""
 
     let titles = ["Duty", "Start", "End", "Break", "ToD", "Spread"]
+    let editDutyDetailTip = EditDutyDetailTip()
 
     var navigationTitle: String {
         let start = "\(duty.periodStart.formattedDayMonth)"
@@ -60,6 +62,10 @@ struct DutyDetailView: View {
                                 GridFrameView(text: $0, color: .accentColor)
                             }
                         }
+                        
+                        TipView(editDutyDetailTip, arrowEdge: .bottom)
+                            .tipBackground(.blue.opacity(0.2))
+                            .padding(.horizontal)
 
                         ScrollView(showsIndicators: false) {
                             ForEach(filteredDutyDetails) { dutyDetail in
@@ -76,6 +82,11 @@ struct DutyDetailView: View {
                 } else {
                     ContentUnavailableView.search
                 }
+            }
+        }
+        .onAppear {
+            if showFirstView == false {
+                EditDutyDetailTip.thresholdParameter = true
             }
         }
         .navigationTitle(navigationTitle)

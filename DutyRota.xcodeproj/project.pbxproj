@@ -34,6 +34,10 @@
 		8B3FE0252B88D2C000E2070F /* SetUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FE0242B88D2C000E2070F /* SetUpView.swift */; };
 		8B3FE0272B89FFC700E2070F /* EditHolidayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FE0262B89FFC700E2070F /* EditHolidayView.swift */; };
 		8B3FE0292B8A513B00E2070F /* DutyDetailRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FE0282B8A513B00E2070F /* DutyDetailRowView.swift */; };
+		8B4CFEFE2CD7E109007C724F /* EditRotaDetailTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4CFEFD2CD7E109007C724F /* EditRotaDetailTip.swift */; };
+		8B4CFF002CD80AC8007C724F /* EditDutyDetailTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4CFEFF2CD80AC8007C724F /* EditDutyDetailTip.swift */; };
+		8B4CFF022CD9214E007C724F /* SwipeActionTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4CFF012CD9214E007C724F /* SwipeActionTip.swift */; };
+		8B4CFF042CDA70CF007C724F /* Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4CFF032CDA70CF007C724F /* Tabs.swift */; };
 		8B5FB8F52B7F76F700B736ED /* RotaTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5FB8F42B7F76F700B736ED /* RotaTextField.swift */; };
 		8B617D232CD0F6B6004CC465 /* Array - Replace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B617D222CD0F6B6004CC465 /* Array - Replace.swift */; };
 		8B6F5BC32B67C803003B54F5 /* AdHocDuty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F5BC22B67C803003B54F5 /* AdHocDuty.swift */; };
@@ -111,6 +115,10 @@
 		8B3FE0242B88D2C000E2070F /* SetUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpView.swift; sourceTree = "<group>"; };
 		8B3FE0262B89FFC700E2070F /* EditHolidayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHolidayView.swift; sourceTree = "<group>"; };
 		8B3FE0282B8A513B00E2070F /* DutyDetailRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutyDetailRowView.swift; sourceTree = "<group>"; };
+		8B4CFEFD2CD7E109007C724F /* EditRotaDetailTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRotaDetailTip.swift; sourceTree = "<group>"; };
+		8B4CFEFF2CD80AC8007C724F /* EditDutyDetailTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDutyDetailTip.swift; sourceTree = "<group>"; };
+		8B4CFF012CD9214E007C724F /* SwipeActionTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeActionTip.swift; sourceTree = "<group>"; };
+		8B4CFF032CDA70CF007C724F /* Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabs.swift; sourceTree = "<group>"; };
 		8B5FB8F42B7F76F700B736ED /* RotaTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotaTextField.swift; sourceTree = "<group>"; };
 		8B617D222CD0F6B6004CC465 /* Array - Replace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array - Replace.swift"; sourceTree = "<group>"; };
 		8B6F5BC22B67C803003B54F5 /* AdHocDuty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocDuty.swift; sourceTree = "<group>"; };
@@ -207,6 +215,16 @@
 			path = "Calendar Rota";
 			sourceTree = "<group>";
 		};
+		8B4CFEF82CD7DC8B007C724F /* Tips */ = {
+			isa = PBXGroup;
+			children = (
+				8B4CFEFD2CD7E109007C724F /* EditRotaDetailTip.swift */,
+				8B4CFEFF2CD80AC8007C724F /* EditDutyDetailTip.swift */,
+				8B4CFF012CD9214E007C724F /* SwipeActionTip.swift */,
+			);
+			path = Tips;
+			sourceTree = "<group>";
+		};
 		8B6F5C262B6C3146003B54F5 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -271,6 +289,7 @@
 				8B7137E52B66D31700627BF6 /* ContentView.swift */,
 				8B7137F92B66D4D800627BF6 /* Calendar */,
 				8BF7C8C52B7B750800346B7A /* Rota */,
+				8B4CFEF82CD7DC8B007C724F /* Tips */,
 				8B12FD5E2B70128A00A22940 /* Duty */,
 				8B6F5C262B6C3146003B54F5 /* Settings */,
 				8BF7C8C42B7B6FBE00346B7A /* Supporting */,
@@ -328,6 +347,7 @@
 				8BA6FB732B9630BF00DAD23D /* AStack.swift */,
 				8BA02FF92CC0127C00CBD32F /* GridFrameView.swift */,
 				8B023E122C1C373500EA9F71 /* TextTint-Modifier.swift */,
+				8B4CFF032CDA70CF007C724F /* Tabs.swift */,
 				8B7137E72B66D31800627BF6 /* Assets.xcassets */,
 				8BA030052CC6BEE800CBD32F /* Images.xcassets */,
 			);
@@ -460,6 +480,8 @@
 				8B12FD1E2B6D972600A22940 /* MonthRowView.swift in Sources */,
 				8B023E132C1C373500EA9F71 /* TextTint-Modifier.swift in Sources */,
 				8B7137F42B66D39800627BF6 /* Date-Helper.swift in Sources */,
+				8B4CFF042CDA70CF007C724F /* Tabs.swift in Sources */,
+				8B4CFF022CD9214E007C724F /* SwipeActionTip.swift in Sources */,
 				8B12FD762B7303E100A22940 /* SampleDuty.swift in Sources */,
 				8B12FD6E2B71725B00A22940 /* DutyDetailView.swift in Sources */,
 				8B12FD7A2B74BEF200A22940 /* AddDutyDetailView.swift in Sources */,
@@ -493,7 +515,9 @@
 				8B168F2E2BA9381700A6FF47 /* EventDetailView.swift in Sources */,
 				8B3FE0232B88CE8F00E2070F /* Holiday.swift in Sources */,
 				8B6F5C032B6ABC5A003B54F5 /* EditAdHocDutyView.swift in Sources */,
+				8B4CFF002CD80AC8007C724F /* EditDutyDetailTip.swift in Sources */,
 				8BF7C8CB2B7B767A00346B7A /* RotaView.swift in Sources */,
+				8B4CFEFE2CD7E109007C724F /* EditRotaDetailTip.swift in Sources */,
 				8B6F5BC52B67CA48003B54F5 /* AdHocDutyView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

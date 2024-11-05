@@ -9,6 +9,7 @@
 
 import SwiftData
 import SwiftUI
+import TipKit
 
 @main
 struct DutyRotaApp: App {
@@ -22,6 +23,9 @@ struct DutyRotaApp: App {
         } catch {
             fatalError("Failed to configure SwiftData container.")
         }
+//        try? Tips.resetDatastore()
+//        Tips.showTipsForTesting([SwipeActionTip.self])
+        try? Tips.configure(/*[.displayFrequency(.daily)]*/)
     }
 
     var body: some Scene {

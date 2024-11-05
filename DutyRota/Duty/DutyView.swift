@@ -7,6 +7,7 @@
 
 import SwiftData
 import SwiftUI
+import TipKit
 
 struct DutyView: View {
     @Query(sort: \Duty.periodStart) var duties: [Duty]
@@ -17,6 +18,8 @@ struct DutyView: View {
     @State private var isEdit = false
     @State private var isPeriodEndDateError = false
 
+    private let swipeActionTip = SwipeActionTip()
+
     var body: some View {
         NavigationStack {
             Group {
@@ -24,6 +27,9 @@ struct DutyView: View {
                     DutyStartView()
                 } else {
                     List {
+                        TipView(swipeActionTip, arrowEdge: .bottom)
+                            .tipBackground(.blue.opacity(0.2))
+
                         ForEach(duties) { duty in
                             NavigationLink(value: duty) {
                                 HStack {
@@ -40,6 +46,7 @@ struct DutyView: View {
                             .swipeActions(edge: .leading) {
                                 Button {
                                     editDuty(duty)
+                                    swipeActionTip.invalidate(reason: .actionPerformed)
                                 } label: {
                                     Text("Edit")
                                 }
@@ -68,6 +75,11 @@ struct DutyView: View {
                 Button("Ok") { }
             } message: {
                 Text("One of the duties does not have a Period End Date. To amend this by swipe to the right on the duty and change the end date.")
+            }
+            .onAppear {
+                if duties.isNotEmpty {
+                    SwipeActionTip.thresholdParameter = true
+                }
             }
         }
     }
@@ -106,6 +118,8 @@ struct DutyView: View {
             let object = duties[item]
             modelContext.delete(object)
         }
+
+        swipeActionTip.invalidate(reason: .actionPerformed)
     }
 }
 

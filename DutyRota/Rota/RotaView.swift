@@ -7,10 +7,13 @@
 
 import SwiftData
 import SwiftUI
+import TipKit
 
 struct RotaView: View {
     @Query(sort: \Rota.periodStart) var rotas: [Rota]
     @Environment(\.modelContext) var modelContext
+
+    private let swipeActionTip = SwipeActionTip()
 
     @State private var rota: Rota?
     @State private var isEnd = true
@@ -24,6 +27,9 @@ struct RotaView: View {
                     RotaStartView()
                 } else {
                     List {
+                        TipView(swipeActionTip, arrowEdge: .bottom)
+                            .tipBackground(.blue.opacity(0.2))
+
                         ForEach(rotas) { rota in
                             NavigationLink(value: rota) {
                                 HStack {
@@ -38,6 +44,7 @@ struct RotaView: View {
                                 .swipeActions(edge: .leading) {
                                     Button {
                                         editRota(rota)
+                                        swipeActionTip.invalidate(reason: .actionPerformed)
                                     } label: {
                                         Text("Edit")
                                     }
@@ -67,6 +74,11 @@ struct RotaView: View {
                 Button("Ok") { }
             } message: {
                 Text("One of the rotas does not have a Period End Date. To amend this by swipe to right on the rota and change the end date.")
+            }
+            .onAppear {
+                if rotas.isNotEmpty {
+                    SwipeActionTip.thresholdParameter = true
+                }
             }
         }
     }
@@ -104,6 +116,7 @@ struct RotaView: View {
             let object = rotas[item]
             modelContext.delete(object)
         }
+        swipeActionTip.invalidate(reason: .actionPerformed)
     }
 }
 

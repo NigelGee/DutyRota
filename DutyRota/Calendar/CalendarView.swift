@@ -12,6 +12,8 @@ import SwiftUI
 struct CalendarView: View {
     @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.saturday
     @AppStorage("bankHolidayRule") var bankHolidayRule = true
+    @AppStorage("selectedTab") var selectedTab: Tabs = .calendar
+
     @Environment(\.scenePhase) var scenePhase
     @Environment(\.modelContext) var modelContext
     @Environment(\.horizontalSizeClass) var sizeClass
@@ -22,6 +24,7 @@ struct CalendarView: View {
 
     @State private var selectedDate = Date.now
     @State private var controlDate = Date.distantPast
+
     @State private var eventStore = EKEventStore()
     @State private var events = [EKEvent]()
     @State private var monthEvents = [EKEvent]()
@@ -76,6 +79,13 @@ struct CalendarView: View {
             .onAppear(perform: loadEvent)
             .onChange(of: selectedDate) {
                 loadEvent()
+                Task {
+                    await getRotaDuties()
+                    await getDayDuty(dutyDetails: dutyDetails)
+                }
+            }
+            .onChange(of: selectedTab) {
+                controlDate = .distantPast
                 Task {
                     await getRotaDuties()
                     await getDayDuty(dutyDetails: dutyDetails)

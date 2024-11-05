@@ -8,19 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
+    @AppStorage("selectedTab") var selectedTab: Tabs = .calendar
+
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             CalendarView()
                 .tabItem { Label("Calendar", systemImage: "calendar") }
+                .tag(Tabs.calendar)
 
             RotaView()
                 .tabItem { Label("Rota", systemImage: "calendar.badge.clock") }
+                .tag(Tabs.rota)
 
             DutyView()
                 .tabItem { Label("Duty", systemImage: "filemenu.and.selection") }
+                .tag(Tabs.duty)
 
             SettingsView()
                 .tabItem { Label("Settings", systemImage: "gear") }
+                .tag(Tabs.settings)
         }
     }
 }
