@@ -25,7 +25,7 @@ struct DutyRotaApp: App {
         }
 //        try? Tips.resetDatastore()
 //        Tips.showTipsForTesting([SwipeActionTip.self])
-        try? Tips.configure(/*[.displayFrequency(.daily)]*/)
+        try? Tips.configure([.displayFrequency(.daily)])
     }
 
     var body: some Scene {
