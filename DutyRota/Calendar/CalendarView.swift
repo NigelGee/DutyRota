@@ -60,7 +60,8 @@ struct CalendarView: View {
                         dutyDetails: dutyDetails,
                         events: $events,
                         eventStore: eventStore,
-                        loadEvent: loadEvent
+                        loadEvent: loadEvent,
+                        resetControlDate: resetControlDate
                     )
                 } else {
                     RegularMonthView(
@@ -69,7 +70,8 @@ struct CalendarView: View {
                         bankHolidays: bankHolidays,
                         monthEvents: $monthEvents,
                         eventStore: eventStore,
-                        loadEvent: loadEvent
+                        loadEvent: loadEvent,
+                        resetControlDate: resetControlDate
                     )
                     .padding(.horizontal, 5)
                 }
@@ -85,7 +87,13 @@ struct CalendarView: View {
                 }
             }
             .onChange(of: selectedTab) {
-                controlDate = .distantPast
+                resetControlDate()
+                Task {
+                    await getRotaDuties()
+                    await getDayDuty(dutyDetails: dutyDetails)
+                }
+            }
+            .onChange(of: controlDate) {
                 Task {
                     await getRotaDuties()
                     await getDayDuty(dutyDetails: dutyDetails)
@@ -197,6 +205,7 @@ struct CalendarView: View {
                 modelContext.delete(object)
             }
         }
+        resetControlDate()
     }
 
     func getRotaDuties() async {
@@ -286,6 +295,18 @@ struct CalendarView: View {
             }
         }
 
+        // AD HOC DUTIES
+        if adHocDuties.isNotEmpty {
+            let duties = adHocDuties.filter({ $0.start >= startOfCalendarMonth && $0.end <= endOfCalendarMonth && $0.overtime == false })
+            for duty in duties {
+                let dutyIndex = duty.start.dayDifference(from: startOfCalendarMonth)
+                if dutyIndex >= 0 && dutyIndex < newDuties.count {
+                    let replacedDuty = DutyDetail(title: duty.title, start: duty.start, end: duty.end, tod: duty.todDate, color: "dutyAdHoc", notes: duty.notes, route: duty.route, isAdHoc: true)
+                    newDuties.replaceElement(at: dutyIndex, with: replacedDuty)
+                }
+            }
+        }
+
         dutyDetails = newDuties
     }
 
@@ -293,6 +314,10 @@ struct CalendarView: View {
         guard selectedDayIndex < dutyDetails.count else { return }
         let duty = dutyDetails[selectedDayIndex]
         dayDuty = duty
+    }
+
+    func resetControlDate() {
+        controlDate = .distantPast
     }
 }
 

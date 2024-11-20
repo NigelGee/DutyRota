@@ -28,8 +28,8 @@ struct DayAdHocDutiesRowView: View {
             }
             .font(.system(size: 12))
             .padding(5)
-            .background(.orange)
-            .textTint(bgColorOf: .orange)
+            .background(.dutyAdHoc)
+            .textTint(bgColorOf: Color(.dutyAdHoc))
             .clipShape(.rect(cornerRadius: 5))
         }
         .buttonStyle(.plain)

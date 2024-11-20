@@ -17,13 +17,18 @@ class DutyDetail: Comparable {
     var color: String = "dutyGreen"
     var duty: Duty?
     var notes: String = ""
+    var route: String = ""
+    var isAdHoc: Bool = false
 
-    init(title: String, start: Date, end: Date, tod: Date, color: String = "dutyGreen") {
+    init(title: String, start: Date, end: Date, tod: Date, color: String = "dutyGreen", notes: String = "", route: String = "", isAdHoc: Bool = false) {
         self.title = title
         self.start = start
         self.end = end
         self.tod = tod
         self.color = color
+        self.notes = notes
+        self.route = route
+        self.isAdHoc = isAdHoc
     }
 
     var dutySpread: String {

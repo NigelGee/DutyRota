@@ -20,6 +20,7 @@ struct RegularMonthView: View {
     @Binding var monthEvents: [EKEvent]
     var eventStore: EKEventStore
     var loadEvent: () -> Void
+    var resetControlDate: () -> Void
 
     @State private var event: EKEvent?
     @State private var selectedDuty: AdHocDuty?
@@ -80,11 +81,11 @@ struct RegularMonthView: View {
 
                                 if dutyDetails.isNotEmpty {
                                     if dayIndex < dutyDetails.count {
-                                        DayDutiesRowView(dutyDetail: dutyDetails[dayIndex])
+                                        DayDutiesRowView(dutyDetail: dutyDetails[dayIndex], resetControlDate: resetControlDate)
                                     }
                                 }
 
-                                if (filteredDuties.contains { $0.start.isSameDay(as: calendarDates[dayIndex].date) }) {
+                                if (filteredDuties.contains { $0.start.isSameDay(as: calendarDates[dayIndex].date) && $0.overtime }) {
                                     let dayAdHocDuties = filteredDuties.filter { $0.start.isSameDay(as: calendarDates[dayIndex].date) }
                                     ForEach(dayAdHocDuties) { duty in
                                         DayAdHocDutiesRowView(duty: duty) {

@@ -35,7 +35,7 @@ struct MonthRowView: View {
     }
 
     var filteredDuties: [AdHocDuty] {
-        adHocDuties.filter { $0.start.isDateInRange(start: selectedDate.startDateOfMonth, end: selectedDate.endDateOfMonth) }
+        adHocDuties.filter { $0.start.isDateInRange(start: selectedDate.startDateOfMonth, end: selectedDate.endDateOfMonth) && $0.overtime }
     }
 
     var dayIndex: Int {
@@ -67,7 +67,7 @@ struct MonthRowView: View {
 
                 if (filteredDuties.contains { $0.start.isSameDay(as: day.date) }) {
                     Circle()
-                        .fill(.orange)
+                        .fill(Color(.dutyAdHoc))
                         .frame(width: 5)
                 } else if (!monthEvents.contains { $0.startDate.isSameDay(as: day.date) }) {
                     Circle()

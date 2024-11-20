@@ -63,6 +63,7 @@ extension Date {
         dateFormatter.dateFormat = "dd MMM"
         return dateFormatter.string(from: self)
     }
+
     static var zeroTime: Date {
         var components = DateComponents()
         components.hour = 0

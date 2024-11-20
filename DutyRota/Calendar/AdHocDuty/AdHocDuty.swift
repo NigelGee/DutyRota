@@ -16,6 +16,7 @@ class AdHocDuty {
     var end: Date = Date.now
     var breakTime: Date = Date.now
     var notes: String = ""
+    var overtime: Bool = false
 
     init(title: String, route: String, start: Date, end: Date, breakTime: Date) {
         self.title = title
@@ -44,5 +45,16 @@ class AdHocDuty {
         let newTOD = end.timeIntervalSinceReferenceDate - start.timeIntervalSinceReferenceDate - Double(hour + minute)
 
         return formatter.string(from: newTOD) ?? "Time"
+    }
+
+    var todDate: Date {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute]
+        let components = Calendar.current.dateComponents([.hour, .minute], from: breakTime)
+        let hour = (components.hour ?? 0) * 60 * 60
+        let minute = (components.minute ?? 0) * 60
+        let newTOD = end.timeIntervalSinceReferenceDate - start.timeIntervalSinceReferenceDate - Double(hour + minute)
+
+        return Date(timeIntervalSinceReferenceDate: newTOD)
     }
 }

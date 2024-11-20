@@ -10,7 +10,18 @@ import SwiftUI
 
 struct DayDutiesRowView: View {
     let dutyDetail: DutyDetail
+    var resetControlDate: () -> Void
+
+    @Query var adHocDuties: [AdHocDuty]
+
     @State private var showDetail = false
+
+    var filteredAdHocDuty: AdHocDuty? {
+        if dutyDetail.isAdHoc {
+            return adHocDuties.filter({ $0.start == dutyDetail.start }).first
+        }
+        return nil
+    }
 
     var body: some View {
         Group {
@@ -37,14 +48,18 @@ struct DayDutiesRowView: View {
                 }
                 .buttonStyle(.plain)
                 .hoverEffect()
-                .sheet(isPresented: $showDetail) {
-                    DutySheetView(dutyDetail: dutyDetail)
+                .sheet(isPresented: $showDetail, onDismiss: resetControlDate) {
+                    if dutyDetail.isAdHoc {
+                        EditAdHocDutyView(adHocDuty: filteredAdHocDuty ?? AdHocDuty(title: "", route: "", start: .zeroTime, end: .zeroTime, breakTime: .zeroTime), isEditing: true)
+                    } else {
+                        DutySheetView(dutyDetail: dutyDetail)
+                    }
                 }
             }
         }
     }
 }
 
-#Preview {
-    DayDutiesRowView(dutyDetail: DutyDetail.example)
-}
+//#Preview {
+//    DayDutiesRowView(dutyDetail: DutyDetail.example, controlDate: .constant(.now))
+//}

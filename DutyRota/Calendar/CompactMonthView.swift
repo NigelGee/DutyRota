@@ -23,6 +23,7 @@ struct CompactMonthView: View {
     @Binding var events: [EKEvent]
     var eventStore: EKEventStore
     var loadEvent: () -> Void
+    var resetControlDate: () -> Void
 
     var calendarDates: [CalendarDate] {
         selectedDate.datesOfMonth(with: startDayOfWeek.rawValue).map { CalendarDate(date: $0) }
@@ -37,7 +38,7 @@ struct CompactMonthView: View {
     }
 
     var filteredDuties: [AdHocDuty] {
-        adHocDuties.filter { $0.start.isSameDay(as: selectedDate) }
+        adHocDuties.filter { $0.start.isSameDay(as: selectedDate) && $0.overtime }
     }
 
     var listsAreNotEmpty: Bool {
@@ -78,13 +79,13 @@ struct CompactMonthView: View {
             if listsAreNotEmpty {
                 List {
                     if dayDuty.title.isNotEmpty {
-                        DutyDetailRowView(dutyDetail: dayDuty)
+                        DutyDetailRowView(dutyDetail: dayDuty, adHocDuties: adHocDuties, resetControlDate: resetControlDate)
                             .listRowBackground(Color(dayDuty.color))
                     }
 
                     if filteredDuties.isNotEmpty {
                         AdHocDutyView(filteredDuties: filteredDuties)
-                            .listRowBackground(Color.orange.opacity(0.7))
+                            .listRowBackground(Color.dutyAdHoc)
                     }
 
                     if events.isNotEmpty {

@@ -47,6 +47,12 @@ struct EditAdHocDutyView: View {
                     DatePicker("Sign Off", selection: $adHocDuty.end)
                     
                     DatePicker("Break", selection: $adHocDuty.breakTime, displayedComponents: .hourAndMinute)
+
+                    VStack(alignment: .leading) {
+                        Toggle("Overtime", isOn: $adHocDuty.overtime)
+                        Text(adHocDuty.overtime ? "This will not replace any existing duty" : "This will replace any existing duty")
+                            .font(.footnote)
+                    }
                 }
 
                 Section {

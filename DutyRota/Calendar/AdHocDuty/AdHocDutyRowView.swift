@@ -26,6 +26,7 @@ struct AdHocDutyRowView: View {
                         Text("- \(duty.route)")
                             .foregroundStyle(.secondary)
                     }
+
                     if duty.notes.isNotEmpty {
                         Image(systemName: "note.text")
                         Spacer()
