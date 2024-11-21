@@ -18,7 +18,7 @@ struct DayDutiesRowView: View {
 
     var filteredAdHocDuty: AdHocDuty? {
         if dutyDetail.isAdHoc {
-            return adHocDuties.filter({ $0.start == dutyDetail.start }).first
+            return adHocDuties.filter({ $0.id == dutyDetail.id }).first
         }
         return nil
     }

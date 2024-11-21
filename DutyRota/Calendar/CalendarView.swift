@@ -301,7 +301,7 @@ struct CalendarView: View {
             for duty in duties {
                 let dutyIndex = duty.start.dayDifference(from: startOfCalendarMonth)
                 if dutyIndex >= 0 && dutyIndex < newDuties.count {
-                    let replacedDuty = DutyDetail(title: duty.title, start: duty.start, end: duty.end, tod: duty.todDate, color: "dutyAdHoc", notes: duty.notes, route: duty.route, isAdHoc: true)
+                    let replacedDuty = DutyDetail(id: duty.id, title: duty.title, start: duty.start, end: duty.end, tod: duty.todDate, color: "dutyAdHoc", notes: duty.notes, route: duty.route, isAdHoc: true)
                     newDuties.replaceElement(at: dutyIndex, with: replacedDuty)
                 }
             }

@@ -10,6 +10,7 @@ import SwiftData
 
 @Model
 class AdHocDuty {
+    var id: UUID = UUID()
     var title: String = ""
     var route: String = ""
     var start: Date = Date.now
@@ -18,7 +19,8 @@ class AdHocDuty {
     var notes: String = ""
     var overtime: Bool = false
 
-    init(title: String, route: String, start: Date, end: Date, breakTime: Date) {
+    init(id: UUID = UUID(), title: String, route: String, start: Date, end: Date, breakTime: Date) {
+        self.id = id
         self.title = title
         self.route = route
         self.start = start
