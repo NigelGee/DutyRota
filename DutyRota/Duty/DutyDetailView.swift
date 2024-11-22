@@ -68,7 +68,8 @@ struct DutyDetailView: View {
                             .padding(.horizontal)
 
                         ScrollView(showsIndicators: false) {
-                            ForEach(filteredDutyDetails) { dutyDetail in
+                            #warning(#"remove \.self from id when in production"#)
+                            ForEach(filteredDutyDetails, id: \.self) { dutyDetail in
                                 GridRow {
                                     NavigationLink(value: dutyDetail) {
                                         DetailRowView(dutyDetail: dutyDetail)

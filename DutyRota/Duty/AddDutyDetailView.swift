@@ -68,8 +68,9 @@ struct AddDutyDetailView: View {
                     .disabled(title.isEmpty)
 
                 Divider()
-                
-                List(duty.unwrappedDutyDetails.sorted()) { dutyDetail in
+
+                #warning(#"remove \.self from id when in production"#)
+                List(duty.unwrappedDutyDetails.sorted(), id: \.self) { dutyDetail in
                     HStack {
                         Text("**\(dutyDetail.title)**")
                         Spacer()
