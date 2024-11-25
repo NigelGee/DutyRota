@@ -13,6 +13,7 @@ struct CalendarView: View {
     @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.saturday
     @AppStorage("bankHolidayRule") var bankHolidayRule = true
     @AppStorage("selectedTab") var selectedTab: Tabs = .calendar
+    @AppStorage("purgeTime") var purgePeriod: PurgePeriod = .year
 
     @Environment(\.scenePhase) var scenePhase
     @Environment(\.modelContext) var modelContext
@@ -35,6 +36,8 @@ struct CalendarView: View {
     @State private var bankHolidays = [BankHolidayEvent]()
     @State private var showErrorBH = false
 
+    @State private var isChristmasNewYear = true
+
     @Query(sort: \AdHocDuty.start) var adHocDuties: [AdHocDuty]
     @Query var duties: [Duty]
     @Query var rota: [Rota]
@@ -47,9 +50,30 @@ struct CalendarView: View {
         selectedDate.dayDifference(from: calendarDates.first!.date)
     }
 
+    var christmasMessage: some View {
+        Group {
+            if isChristmasNewYear {
+                HStack(spacing: 5) {
+                    Image(systemName: "exclamationmark.triangle")
+                        .foregroundStyle(.black, .yellow)
+                        .symbolVariant(.fill)
+
+                    Text("Duties may change over Christmas and New Year")
+                        .font(.caption)
+                }
+            } else {
+                Text("")
+                    .font(.caption)
+            }
+        }
+        .padding(.horizontal)
+        .padding(.vertical, 5)
+    }
+
     var body: some View {
         NavigationStack {
             VStack {
+                christmasMessage
                 if sizeClass == .compact {
                     CompactMonthView(
                         dayDuty: dayDuty,
@@ -78,7 +102,13 @@ struct CalendarView: View {
             }
             .navigationTitle("Calendar")
             .navigationBarTitleDisplayMode(.inline)
-            .onAppear(perform: loadEvent)
+            .task {
+                loadEvent()
+                await fetchBankHolidays()
+                await getRotaDuties()
+                await getDayDuty(dutyDetails: dutyDetails)
+                await purgeAdHocDuties(for: purgePeriod)
+            }
             .onChange(of: selectedDate) {
                 loadEvent()
                 Task {
@@ -134,11 +164,6 @@ struct CalendarView: View {
             }
             .sheet(isPresented: $showAddEvent, onDismiss: loadEvent) {
                 AddNewEventView(eventStore: eventStore, selectedDate: selectedDate, loadEvent: loadEvent)
-            }
-            .task {
-                await fetchBankHolidays()
-                await getRotaDuties()
-                await getDayDuty(dutyDetails: dutyDetails)
             }
             .alert("No Internet", isPresented: $showErrorBH) {
                 Button("OK") { }
@@ -257,8 +282,10 @@ struct CalendarView: View {
             }
         }
 
+        isChristmasNewYear = christmasNewYear(from: bankHolidaysInMonth)
+
         // BANK HOLIDAYS
-        if bankHolidayRule, bankHolidaysInMonth.isNotEmpty {
+        if bankHolidayRule, bankHolidaysInMonth.isNotEmpty, !isChristmasNewYear {
             for holiday in bankHolidaysInMonth {
                 let holidayIndex = holiday.dayDifference(from: startOfCalendarMonth)
                 if newDuties[holidayIndex].title.isNotEmpty, newDuties[holidayIndex].title != "Rest" {
@@ -287,9 +314,6 @@ struct CalendarView: View {
                         } else {
                             newDuties.replaceElement(at: holidayIndex, with: DutyDetail.dutyError(for: "Check"))
                         }
-                    } else {
-                        // Christmas Week!
-                        print("CHRISTMAS BANK HOLIDAYS")
                     }
                 }
             }
@@ -310,6 +334,17 @@ struct CalendarView: View {
         dutyDetails = newDuties
     }
 
+    func christmasNewYear(from dates: [Date]) -> Bool {
+        guard dates.isNotEmpty else { return false }
+        guard bankHolidayRule else { return false }
+
+        for date in dates {
+            let dateComponents = Calendar.current.dateComponents([.day, .month], from: date)
+            return dateComponents.day == 25 && dateComponents.month == 12 || dateComponents.day == 1 && dateComponents.month == 1
+        }
+        return false
+    }
+
     func getDayDuty(dutyDetails: [DutyDetail]) async {
         guard selectedDayIndex < dutyDetails.count else { return }
         let duty = dutyDetails[selectedDayIndex]
@@ -318,6 +353,29 @@ struct CalendarView: View {
 
     func resetControlDate() {
         controlDate = .distantPast
+    }
+
+    func purgeAdHocDuties(for period: PurgePeriod) async {
+        guard period != .never && adHocDuties.isNotEmpty else { return }
+
+        let purgeDate: Date
+
+        switch period {
+        case .year:
+            purgeDate = Date.now.addingTimeInterval(-365 * 24 * 60 * 60)
+        case .sixMonth:
+            purgeDate = Date.now.addingTimeInterval(-183 * 24 * 60 * 60)
+        case .month:
+            purgeDate = Date.now.addingTimeInterval(-31 * 24 * 60 * 60)
+        case .never:
+            purgeDate = .distantPast
+        }
+
+        for duty in adHocDuties {
+            if duty.start < purgeDate {
+                modelContext.delete(duty)
+            }
+        }
     }
 }
 

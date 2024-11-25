@@ -93,6 +93,7 @@ struct CompactMonthView: View {
                     }
                 }
                 .listStyle(.insetGrouped)
+                .scrollContentBackground(.hidden)
             } else {
                 ContentUnavailableView("No Events", systemImage: "calendar")
             }

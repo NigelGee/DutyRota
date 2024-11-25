@@ -11,9 +11,11 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(\.modelContext) var modelContext
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
+
     @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.saturday
     @AppStorage("defaultColor") var defaultColor = "dutyGreen"
     @AppStorage("bankHolidayRule") var bankHolidayRule = true
+    @AppStorage("purgeTime") var purgePeriod: PurgePeriod = .year
 
     @State private var showColorPicker = false
 
@@ -89,6 +91,22 @@ struct SettingsView: View {
                     }
                 }
 
+                Section {
+                    Picker("Purge Ad Hoc Duties:", selection: $purgePeriod) {
+                        ForEach(PurgePeriod.allCases) {
+                            Text($0.purgeDescription)
+                        }
+                    }
+                } footer: {
+                    Text(purgePeriod == .never ? "This may take up memory and effect performance." : "This is to automatically delete old ad hoc duties after a \(purgePeriod.purgeDescription.lowercased()) period.")
+                }
+
+                Section {
+                    Toggle("Bank Holiday Rule", isOn: $bankHolidayRule)
+                } footer: {
+                    Text("This will change the duty on Bank Holidays by use Sunday duties on Bank Holiday Monday and Saturday Duties on Bank Holiday Friday.")
+                }
+
                 Section("Help") {
                     NavigationLink("How To Set Up") {
                         SetUpView()
@@ -96,12 +114,6 @@ struct SettingsView: View {
                     NavigationLink("How To Import/Export") {
                         ImportExportView()
                     }
-                }
-
-                Section {
-                    Toggle("Bank Holiday Rule", isOn: $bankHolidayRule)
-                } footer: {
-                    Text("This will change the duty on Bank Holidays by use Sunday duties on Bank Holiday Monday and Saturday Duties on Bank Holiday Friday.")
                 }
             }
             .navigationTitle("Settings")

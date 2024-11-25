@@ -17,7 +17,7 @@ struct DutyDetailRowView: View {
 
     var filteredAdHocDuties: AdHocDuty? {
         if dutyDetail.isAdHoc {
-            return adHocDuties.filter({ $0.id == dutyDetail.id }).first
+            return adHocDuties.filter { $0.id == dutyDetail.id }.first
         }
         return nil
     }
