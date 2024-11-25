@@ -72,32 +72,36 @@ struct CalendarView: View {
 
     var body: some View {
         NavigationStack {
-            VStack {
-                christmasMessage
-                if sizeClass == .compact {
-                    CompactMonthView(
-                        dayDuty: dayDuty,
-                        selectedDate: $selectedDate,
-                        monthEvents: $monthEvents,
-                        adHocDuties: adHocDuties,
-                        bankHolidays: bankHolidays,
-                        dutyDetails: dutyDetails,
-                        events: $events,
-                        eventStore: eventStore,
-                        loadEvent: loadEvent,
-                        resetControlDate: resetControlDate
-                    )
-                } else {
-                    RegularMonthView(
-                        selectedDate: $selectedDate,
-                        dutyDetails: dutyDetails,
-                        bankHolidays: bankHolidays,
-                        monthEvents: $monthEvents,
-                        eventStore: eventStore,
-                        loadEvent: loadEvent,
-                        resetControlDate: resetControlDate
-                    )
-                    .padding(.horizontal, 5)
+            ZStack {
+                VortexEffectView()
+                
+                VStack {
+                    christmasMessage
+                    if sizeClass == .compact {
+                        CompactMonthView(
+                            dayDuty: dayDuty,
+                            selectedDate: $selectedDate,
+                            monthEvents: $monthEvents,
+                            adHocDuties: adHocDuties,
+                            bankHolidays: bankHolidays,
+                            dutyDetails: dutyDetails,
+                            events: $events,
+                            eventStore: eventStore,
+                            loadEvent: loadEvent,
+                            resetControlDate: resetControlDate
+                        )
+                    } else {
+                        RegularMonthView(
+                            selectedDate: $selectedDate,
+                            dutyDetails: dutyDetails,
+                            bankHolidays: bankHolidays,
+                            monthEvents: $monthEvents,
+                            eventStore: eventStore,
+                            loadEvent: loadEvent,
+                            resetControlDate: resetControlDate
+                        )
+                        .padding(.horizontal, 5)
+                    }
                 }
             }
             .navigationTitle("Calendar")

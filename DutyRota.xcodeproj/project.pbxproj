@@ -73,6 +73,8 @@
 		8BA6FB742B9630BF00DAD23D /* AStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6FB732B9630BF00DAD23D /* AStack.swift */; };
 		8BA6FB762B96435500DAD23D /* DayAdHocDutiesRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6FB752B96435500DAD23D /* DayAdHocDutiesRowView.swift */; };
 		8BB6C6032CF4B28600250CF4 /* PurgePeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB6C6022CF4B28600250CF4 /* PurgePeriod.swift */; };
+		8BB6C6062CF4DDC400250CF4 /* Vortex in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB6C6052CF4DDC400250CF4 /* Vortex */; };
+		8BB6C6082CF4DDF500250CF4 /* VortexEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB6C6072CF4DDF500250CF4 /* VortexEffectView.swift */; };
 		8BBB20442B977E76009C3DF0 /* DayDutiesRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBB20432B977E76009C3DF0 /* DayDutiesRowView.swift */; };
 		8BBB20462B978492009C3DF0 /* DutySheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBB20452B978492009C3DF0 /* DutySheetView.swift */; };
 		8BF7C8A32B79481C00346B7A /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7C8A22B79481C00346B7A /* ColorPickerView.swift */; };
@@ -158,6 +160,7 @@
 		8BA6FB732B9630BF00DAD23D /* AStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AStack.swift; sourceTree = "<group>"; };
 		8BA6FB752B96435500DAD23D /* DayAdHocDutiesRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayAdHocDutiesRowView.swift; sourceTree = "<group>"; };
 		8BB6C6022CF4B28600250CF4 /* PurgePeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurgePeriod.swift; sourceTree = "<group>"; };
+		8BB6C6072CF4DDF500250CF4 /* VortexEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VortexEffectView.swift; sourceTree = "<group>"; };
 		8BBB20432B977E76009C3DF0 /* DayDutiesRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDutiesRowView.swift; sourceTree = "<group>"; };
 		8BBB20452B978492009C3DF0 /* DutySheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutySheetView.swift; sourceTree = "<group>"; };
 		8BF7C8A22B79481C00346B7A /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
@@ -178,6 +181,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BB6C6062CF4DDC400250CF4 /* Vortex in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				8BB6C6022CF4B28600250CF4 /* PurgePeriod.swift */,
+				8BB6C6072CF4DDF500250CF4 /* VortexEffectView.swift */,
 				8B12FDE92B77A07600A22940 /* ExportDocument.swift */,
 				8B7137F72B66D41900627BF6 /* SelectedDateModifier.swift */,
 				8BF7C8A22B79481C00346B7A /* ColorPickerView.swift */,
@@ -420,6 +425,9 @@
 				Base,
 			);
 			mainGroup = 8B7137D72B66D31700627BF6;
+			packageReferences = (
+				8BB6C6042CF4DDC400250CF4 /* XCRemoteSwiftPackageReference "Vortex" */,
+			);
 			productRefGroup = 8B7137E12B66D31700627BF6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -460,6 +468,7 @@
 				8B7137E42B66D31700627BF6 /* DutyRotaApp.swift in Sources */,
 				8B7137F62B66D3D900627BF6 /* CalendarDate.swift in Sources */,
 				8BA02FFA2CC0127C00CBD32F /* GridFrameView.swift in Sources */,
+				8BB6C6082CF4DDF500250CF4 /* VortexEffectView.swift in Sources */,
 				8B12FDEA2B77A07600A22940 /* ExportDocument.swift in Sources */,
 				8B5FB8F52B7F76F700B736ED /* RotaTextField.swift in Sources */,
 				8BF7C8D52B7E10F300346B7A /* AddRotaDetailView.swift in Sources */,
@@ -734,6 +743,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8BB6C6042CF4DDC400250CF4 /* XCRemoteSwiftPackageReference "Vortex" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/Vortex";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8BB6C6052CF4DDC400250CF4 /* Vortex */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BB6C6042CF4DDC400250CF4 /* XCRemoteSwiftPackageReference "Vortex" */;
+			productName = Vortex;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8B7137D82B66D31700627BF6 /* Project object */;
 }
