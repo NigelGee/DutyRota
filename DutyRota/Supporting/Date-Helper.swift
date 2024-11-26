@@ -140,8 +140,8 @@ extension Date {
     /// - Returns: `true` if in the same day
     func isSameMonth(as date: Date) -> Bool {
         let calendar = Calendar.current
-        let currentMonth = calendar.component(.month, from: self)
-        let selectedMonth = calendar.component(.month, from: date)
+        let currentMonth = calendar.dateComponents([.month, .year], from: self)
+        let selectedMonth = calendar.dateComponents([.month, .year], from: date)
         return currentMonth == selectedMonth
     }
 
