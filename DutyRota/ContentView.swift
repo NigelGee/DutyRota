@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+
+    /// Keep track of which "Tab" the user is on.
     @AppStorage("selectedTab") var selectedTab: Tabs = .calendar
 
     var body: some View {

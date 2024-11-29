@@ -13,8 +13,11 @@ import TipKit
 
 @main
 struct DutyRotaApp: App {
-    var container: ModelContainer
 
+    /// Container for SwiftData
+    var container: ModelContainer
+    
+    /// init for SwiftData and TipKit
     init() {
         let schema = Schema([AdHocDuty.self, Duty.self, Rota.self, Holiday.self])
         let config = ModelConfiguration("default", schema: schema)

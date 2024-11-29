@@ -15,7 +15,7 @@ struct SettingsView: View {
     @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.saturday
     @AppStorage("defaultColor") var defaultColor = "dutyGreen"
     @AppStorage("bankHolidayRule") var bankHolidayRule = true
-    @AppStorage("purgeTime") var purgePeriod: PurgePeriod = .year
+    @AppStorage("purgeTime") var purgePeriod: PurgePeriod = .sixMonth
 
     @State private var showColorPicker = false
 

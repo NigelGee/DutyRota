@@ -13,7 +13,7 @@ struct CalendarView: View {
     @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.saturday
     @AppStorage("bankHolidayRule") var bankHolidayRule = true
     @AppStorage("selectedTab") var selectedTab: Tabs = .calendar
-    @AppStorage("purgeTime") var purgePeriod: PurgePeriod = .year
+    @AppStorage("purgeTime") var purgePeriod: PurgePeriod = .sixMonth
 
     @Environment(\.scenePhase) var scenePhase
     @Environment(\.modelContext) var modelContext
@@ -113,25 +113,16 @@ struct CalendarView: View {
                 await getDayDuty(dutyDetails: dutyDetails)
                 await purgeAdHocDuties(for: purgePeriod)
             }
-            .onChange(of: selectedDate) {
-                loadEvent()
-                Task {
-                    await getRotaDuties()
-                    await getDayDuty(dutyDetails: dutyDetails)
+            .onChange(of: scenePhase) { _, phase in
+                if phase == .active {
+                    refreshCalendar()
                 }
             }
+            .onChange(of: selectedDate) { refreshCalendar() }
+            .onChange(of: controlDate) { refreshCalendar() }
             .onChange(of: selectedTab) {
                 resetControlDate()
-                Task {
-                    await getRotaDuties()
-                    await getDayDuty(dutyDetails: dutyDetails)
-                }
-            }
-            .onChange(of: controlDate) {
-                Task {
-                    await getRotaDuties()
-                    await getDayDuty(dutyDetails: dutyDetails)
-                }
+                refreshCalendar()
             }
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
@@ -193,6 +184,8 @@ struct CalendarView: View {
     }
 
     func loadEvent() {
+        let calendar = Calendar.current
+        guard calendar.identifier == .gregorian else { return }
         eventStore.requestFullAccessToEvents { granted, error in
             if granted && error == nil {
                 let startDay = selectedDate.startOfDay
@@ -357,6 +350,14 @@ struct CalendarView: View {
 
     func resetControlDate() {
         controlDate = .distantPast
+    }
+
+    func refreshCalendar() {
+        loadEvent()
+        Task {
+            await getRotaDuties()
+            await getDayDuty(dutyDetails: dutyDetails)
+        }
     }
 
     func purgeAdHocDuties(for period: PurgePeriod) async {
