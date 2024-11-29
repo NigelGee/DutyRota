@@ -9,63 +9,94 @@ import EventKit
 import SwiftData
 import SwiftUI
 
+/// A view that show a date calendar and work duties details and iCalendar events.
 struct CalendarView: View {
+
+    /// Stores the use preference of the first day of week to User Default.
     @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.saturday
+
+    /// Stores the use preference of on if Bank Holidays duties change to User Default.
     @AppStorage("bankHolidayRule") var bankHolidayRule = true
+    
+    /// Keep track of which "Tab" the user is on.
     @AppStorage("selectedTab") var selectedTab: Tabs = .calendar
+
+    /// Stores the use preference of on how much time should pass before deleting old Ad Hoc Duties to User Default.
     @AppStorage("purgeTime") var purgePeriod: PurgePeriod = .sixMonth
 
     @Environment(\.scenePhase) var scenePhase
     @Environment(\.modelContext) var modelContext
     @Environment(\.horizontalSizeClass) var sizeClass
 
-    @State private var showDialog = false
+    /// A property to show the a sheet to add Ad Hoc Duties.
     @State private var showAddAdHocDuty = false
-    @State private var showAddEvent = false
 
+    /// A property to show the a sheet to add New Calendar Event.
+    @State private var showAddEvent = false
+    
+    /// A property for the date that user select.
     @State private var selectedDate = Date.now
+
+    /// A property that prevent `getRotaDuties()` running when in the same month as previous `selectDate`.
     @State private var controlDate = Date.distantPast
 
     @State private var eventStore = EKEventStore()
+
+    /// An array that hold Calendar Events for the `selectedDate`.
     @State private var events = [EKEvent]()
+
+    /// An array that hold Calendar Events for the select month.
     @State private var monthEvents = [EKEvent]()
+
+    /// A property to add a new ad hoc duty.
     @State private var newDuty: AdHocDuty?
-    @State private var dutyDetails = [DutyDetail]()
+
+    /// A property to if no duty can be found.
     @State private var dayDuty = DutyDetail.loading
-
+    
+    /// An array that hold duty details for the month.
+    @State private var dutyDetails = [DutyDetail]()
+    
+    /// An array that hold Bank Holiday dates that maybe in the month.
     @State private var bankHolidays = [BankHolidayEvent]()
-    @State private var showErrorBH = false
 
-    @State private var isChristmasNewYear = true
+    /// A property that show `true` if unable to get the bank holidays from [gov.co.uk](https://www.gov.uk/bank-holidays.json)
+    @State private var showErrorBH = false
+    
+    /// A property that show `true` if the month is December or January to display warning text.
+    @State private var christmasNewYear = false
 
     @Query(sort: \AdHocDuty.start) var adHocDuties: [AdHocDuty]
     @Query var duties: [Duty]
     @Query var rota: [Rota]
 
+    /**
+     A computed array that calculates the date in a month including days before the 1st of week.
+     - Returns: A `CalendarDate` array of all the dates in the month.
+    */
     var calendarDates: [CalendarDate] {
         selectedDate.datesOfMonth(with: startDayOfWeek.rawValue).map { CalendarDate(date: $0.startOfDay) }
     }
 
+    /**
+     A computed property that calculates the number index of selected date.
+     - Returns: An `Int` from the start of month to `selectedDate`.
+    */
     var selectedDayIndex: Int {
         selectedDate.dayDifference(from: calendarDates.first!.date)
     }
-
+    
+    /// A view that show a message if December or January
     var christmasMessage: some View {
-        Group {
-            if isChristmasNewYear {
-                HStack(spacing: 5) {
-                    Image(systemName: "exclamationmark.triangle")
-                        .foregroundStyle(.black, .yellow)
-                        .symbolVariant(.fill)
+        HStack(spacing: 5) {
+            Image(systemName: "exclamationmark.triangle")
+                .foregroundStyle(.black, .yellow)
+                .symbolVariant(.fill)
 
-                    Text("Duties may change over Christmas and New Year")
-                        .font(.caption)
-                }
-            } else {
-                Text("")
-                    .font(.caption)
-            }
+            Text("Duties may change over Christmas and New Year")
+                .font(.caption)
         }
+        .isPresented(for: christmasNewYear)
         .padding(.horizontal)
         .padding(.vertical, 5)
     }
@@ -77,6 +108,7 @@ struct CalendarView: View {
                 
                 VStack {
                     christmasMessage
+
                     if sizeClass == .compact {
                         CompactMonthView(
                             dayDuty: dayDuty,
@@ -168,9 +200,9 @@ struct CalendarView: View {
         }
     }
 
-    /// Call for get JSON data from URL
-    /// requires `@State private var name = [Decodable]()`
-    /// and `.task { await fetch() }`
+    /// A method to get JSON bank holidays from [gov.co.uk](https://www.gov.uk/bank-holidays.json).
+    ///
+    /// If unable to decode or no network will show an alert to user that unable to get Bank Holidays dates.
     func fetchBankHolidays() async {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yy-MM-dd"
@@ -182,7 +214,10 @@ struct CalendarView: View {
             print("Failed to fetch Bank Holiday data!")
         }
     }
-
+    
+    /// A method to ask permission and get iCalendar Events.
+    ///
+    /// If not granted access to event will not show in Calendar.
     func loadEvent() {
         let calendar = Calendar.current
         guard calendar.identifier == .gregorian else { return }
@@ -203,7 +238,10 @@ struct CalendarView: View {
             }
         }
     }
-
+    
+    /// A method to a new Ad Hoc Duty to calendar.
+    ///
+    /// This will add a default record to SwiftData and open `AddDutyDetailView`
     func addNewDuty() {
         var defaultBreakTime: Date {
             var components = DateComponents()
@@ -219,7 +257,10 @@ struct CalendarView: View {
 
         showAddAdHocDuty = true
     }
-
+    
+    /// A method to check that the new Ad Hoc Duty has a title.
+    ///
+    /// If no title will delete the record from SwiftData.
     func onDismiss() {
         if let newDuty {
             if newDuty.title.isEmpty {
@@ -229,7 +270,12 @@ struct CalendarView: View {
         }
         resetControlDate()
     }
-
+    
+    /// A method to get current month duties.
+    ///
+    /// An array of `DutyDetails` taken it account of Bank Holidays and Ad Hoc Duties.
+    /// - Precondition: If user select date in same month then will not run.
+    /// - Complexity: O(1)
     func getRotaDuties() async {
         guard !selectedDate.isSameMonth(as: controlDate) else { return }
         controlDate = selectedDate
@@ -279,10 +325,10 @@ struct CalendarView: View {
             }
         }
 
-        isChristmasNewYear = christmasNewYear(from: bankHolidaysInMonth)
+        christmasNewYear = christmasNewYear(from: bankHolidaysInMonth)
 
         // BANK HOLIDAYS
-        if bankHolidayRule, bankHolidaysInMonth.isNotEmpty, !isChristmasNewYear {
+        if bankHolidayRule, bankHolidaysInMonth.isNotEmpty, !christmasNewYear {
             for holiday in bankHolidaysInMonth {
                 let holidayIndex = holiday.dayDifference(from: startOfCalendarMonth)
                 if newDuties[holidayIndex].title.isNotEmpty, newDuties[holidayIndex].title != "Rest" {
@@ -330,7 +376,10 @@ struct CalendarView: View {
 
         dutyDetails = newDuties
     }
-
+    
+    /// A method to calculate if month is Christmas or New Year.
+    /// - Parameter dates: an array of Bank Holidays in the month.
+    /// - Returns: `true` if Bank Holidays contians Christmas or New Year.
     func christmasNewYear(from dates: [Date]) -> Bool {
         guard dates.isNotEmpty else { return false }
         guard bankHolidayRule else { return false }
@@ -341,17 +390,24 @@ struct CalendarView: View {
         }
         return false
     }
-
+    
+    /// A method to find to duty on a `selectedDate`
+    /// - Parameter dutyDetails: an array of `DutyDetail` for the month.
+    ///- Precondition: If the day index is less then total Duty Details array bail out.
     func getDayDuty(dutyDetails: [DutyDetail]) async {
         guard selectedDayIndex < dutyDetails.count else { return }
         let duty = dutyDetails[selectedDayIndex]
         dayDuty = duty
     }
-
+    
+    /// A method to reset the `controlDate` to `..distantPast`
     func resetControlDate() {
         controlDate = .distantPast
     }
-
+    
+    /// A method to refresh Calendar data.
+    ///
+    /// This will be called when the user move from the calendar to other tabs or the app goes from background to active scene phase.
     func refreshCalendar() {
         loadEvent()
         Task {
@@ -359,7 +415,9 @@ struct CalendarView: View {
             await getDayDuty(dutyDetails: dutyDetails)
         }
     }
-
+    
+    /// A method to delete old ad hoc duties for SwiftData.
+    /// - Parameter period: A period from user from a `.year, .sixMonth, .month, .never`
     func purgeAdHocDuties(for period: PurgePeriod) async {
         guard period != .never && adHocDuties.isNotEmpty else { return }
 
