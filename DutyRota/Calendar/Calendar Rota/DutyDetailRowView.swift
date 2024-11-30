@@ -11,7 +11,6 @@ import SwiftUI
 struct DutyDetailRowView: View {
     var dutyDetail: DutyDetail
     var adHocDuties: [AdHocDuty]
-//    @Binding var controlDate: Date
     @State private var showDetails = false
     var resetControlDate: () -> Void
 

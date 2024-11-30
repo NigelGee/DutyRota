@@ -284,7 +284,7 @@ struct CalendarView: View {
 
         for week in 0..<8 {
             let weekStartDate = startOfCalendarMonth.add(day: week * 7)
-            guard weekStartDate < endOfCalendarMonth else { break }
+            guard weekStartDate <= endOfCalendarMonth else { break }
 
             // ROTA
             guard let currentRota = rota.first(where: { weekStartDate.isDateInRange(start: $0.periodStart, end: $0.periodEnd) || weekStartDate.isSameDay(as: $0.periodStart) }) else {
@@ -412,6 +412,7 @@ struct CalendarView: View {
             await getRotaDuties()
             await getDayDuty(dutyDetails: dutyDetails)
         }
+        print(dutyDetails.count)
     }
     
     /// A method to delete old ad hoc duties for SwiftData.
