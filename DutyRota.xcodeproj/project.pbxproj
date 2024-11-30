@@ -59,7 +59,6 @@
 		8B7137F82B66D41900627BF6 /* SelectedDateModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137F72B66D41900627BF6 /* SelectedDateModifier.swift */; };
 		8B7137FC2B66D5CF00627BF6 /* CompactMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137FB2B66D5CF00627BF6 /* CompactMonthView.swift */; };
 		8B7137FE2B66D96D00627BF6 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137FD2B66D96D00627BF6 /* EventView.swift */; };
-		8B7138002B66DA6500627BF6 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137FF2B66DA6500627BF6 /* ButtonView.swift */; };
 		8B7B54D82CC7ED1B009C9A11 /* DutyDetailStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7B54D72CC7ED1B009C9A11 /* DutyDetailStartView.swift */; };
 		8BA02FFA2CC0127C00CBD32F /* GridFrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA02FF92CC0127C00CBD32F /* GridFrameView.swift */; };
 		8BA030022CC3E75500CBD32F /* DetailRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA030012CC3E75500CBD32F /* DetailRowView.swift */; };
@@ -146,7 +145,6 @@
 		8B7137FA2B66D52200627BF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8B7137FB2B66D5CF00627BF6 /* CompactMonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactMonthView.swift; sourceTree = "<group>"; };
 		8B7137FD2B66D96D00627BF6 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
-		8B7137FF2B66DA6500627BF6 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		8B7B54D72CC7ED1B009C9A11 /* DutyDetailStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutyDetailStartView.swift; sourceTree = "<group>"; };
 		8BA02FF92CC0127C00CBD32F /* GridFrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridFrameView.swift; sourceTree = "<group>"; };
 		8BA030012CC3E75500CBD32F /* DetailRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRowView.swift; sourceTree = "<group>"; };
@@ -205,6 +203,23 @@
 				8B7B54D72CC7ED1B009C9A11 /* DutyDetailStartView.swift */,
 			);
 			path = Duty;
+			sourceTree = "<group>";
+		};
+		8B2512D02CFB5889001BF39A /* Compact */ = {
+			isa = PBXGroup;
+			children = (
+				8B7137FB2B66D5CF00627BF6 /* CompactMonthView.swift */,
+				8B12FD1D2B6D972600A22940 /* MonthRowView.swift */,
+			);
+			path = Compact;
+			sourceTree = "<group>";
+		};
+		8B2512D12CFB58C6001BF39A /* Regular */ = {
+			isa = PBXGroup;
+			children = (
+				8BA6FB712B94E6B200DAD23D /* RegularMonthView.swift */,
+			);
+			path = Regular;
 			sourceTree = "<group>";
 		};
 		8B3FDFE32B867FDF00E2070F /* BankHoliday */ = {
@@ -321,10 +336,8 @@
 			isa = PBXGroup;
 			children = (
 				8B7137F12B66D37A00627BF6 /* CalendarView.swift */,
-				8B7137FF2B66DA6500627BF6 /* ButtonView.swift */,
-				8B7137FB2B66D5CF00627BF6 /* CompactMonthView.swift */,
-				8BA6FB712B94E6B200DAD23D /* RegularMonthView.swift */,
-				8B12FD1D2B6D972600A22940 /* MonthRowView.swift */,
+				8B2512D02CFB5889001BF39A /* Compact */,
+				8B2512D12CFB58C6001BF39A /* Regular */,
 				8B0CF44E2B99EA9F00F05261 /* DayEventView.swift */,
 				8BBB20432B977E76009C3DF0 /* DayDutiesRowView.swift */,
 				8BA6FB752B96435500DAD23D /* DayAdHocDutiesRowView.swift */,
@@ -528,7 +541,6 @@
 				8BA6FB762B96435500DAD23D /* DayAdHocDutiesRowView.swift in Sources */,
 				8B12FD642B70B35800A22940 /* EKEvent-Extension.swift in Sources */,
 				8B12FD5D2B70125900A22940 /* DutyDetail.swift in Sources */,
-				8B7138002B66DA6500627BF6 /* ButtonView.swift in Sources */,
 				8B168F2E2BA9381700A6FF47 /* EventDetailView.swift in Sources */,
 				8B3FE0232B88CE8F00E2070F /* Holiday.swift in Sources */,
 				8B6F5C032B6ABC5A003B54F5 /* EditAdHocDutyView.swift in Sources */,

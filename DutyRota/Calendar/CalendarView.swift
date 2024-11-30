@@ -70,18 +70,16 @@ struct CalendarView: View {
     @Query var duties: [Duty]
     @Query var rota: [Rota]
 
-    /**
-     A computed array that calculates the date in a month including days before the 1st of week.
-     - Returns: A `CalendarDate` array of all the dates in the month.
-    */
+    /// A computed array that calculates the date in a month including days before the 1st of week.
+    ///
+    /// Returns a `CalendarDate` array of all the dates in the month.
     var calendarDates: [CalendarDate] {
         selectedDate.datesOfMonth(with: startDayOfWeek.rawValue).map { CalendarDate(date: $0.startOfDay) }
     }
 
-    /**
-     A computed property that calculates the number index of selected date.
-     - Returns: An `Int` from the start of month to `selectedDate`.
-    */
+    /// A computed property that calculates the number index of selected date.
+    ///
+    /// Returns: An `Int` from the start of month to `selectedDate`.
     var selectedDayIndex: Int {
         selectedDate.dayDifference(from: calendarDates.first!.date)
     }
@@ -114,11 +112,11 @@ struct CalendarView: View {
                             dayDuty: dayDuty,
                             selectedDate: $selectedDate,
                             monthEvents: $monthEvents,
+                            events: $events,
+                            eventStore: eventStore,
                             adHocDuties: adHocDuties,
                             bankHolidays: bankHolidays,
                             dutyDetails: dutyDetails,
-                            events: $events,
-                            eventStore: eventStore,
                             loadEvent: loadEvent,
                             resetControlDate: resetControlDate
                         )
@@ -215,9 +213,9 @@ struct CalendarView: View {
         }
     }
     
-    /// A method to ask permission and get iCalendar Events.
+    /// Passed in method to ask permission and get iCalendar Events.
     ///
-    /// If not granted access to event will not show in Calendar.
+    /// - Important: If access not granted, iCalendar events will not show in Calendar.
     func loadEvent() {
         let calendar = Calendar.current
         guard calendar.identifier == .gregorian else { return }
@@ -393,14 +391,14 @@ struct CalendarView: View {
     
     /// A method to find to duty on a `selectedDate`
     /// - Parameter dutyDetails: an array of `DutyDetail` for the month.
-    ///- Precondition: If the day index is less then total Duty Details array bail out.
+    ///- Precondition: If the day index is less then total Duty Details array else bail out.
     func getDayDuty(dutyDetails: [DutyDetail]) async {
         guard selectedDayIndex < dutyDetails.count else { return }
         let duty = dutyDetails[selectedDayIndex]
         dayDuty = duty
     }
     
-    /// A method to reset the `controlDate` to `..distantPast`
+    /// A method to reset the `controlDate` to `.distantPast`
     func resetControlDate() {
         controlDate = .distantPast
     }

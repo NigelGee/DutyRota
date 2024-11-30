@@ -19,8 +19,8 @@ struct EventRowView: View {
                 .foregroundStyle(Color(cgColor: event.calendar.cgColor))
 
             if event.birthdayContactIdentifier != nil {
-                Image(systemName: "birthday.cake")
-                    .foregroundStyle(.red)
+                Image(systemName: "gift")
+                    .foregroundStyle(.pink)
             }
 
             VStack(alignment: .leading) {
