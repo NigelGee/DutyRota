@@ -29,6 +29,9 @@ struct CompactMonthView: View {
 
     /// An array of iCalendar events for on `selectedDate`.
     @Binding var events: [EKEvent]
+    
+    /// A property that when a iCalendar event is selected.
+    @State private var selectedEvent: EKEvent?
 
     /// An instance passed to view of `EKEventStore`.
     var eventStore: EKEventStore
@@ -119,11 +122,15 @@ struct CompactMonthView: View {
                     }
 
                     if events.isNotEmpty {
-                        EventView(events: $events, eventStore: eventStore, loadEvent: loadEvent)
+                        EventView(events: $events, eventStore: eventStore, selectedEvent: $selectedEvent, loadEvent: loadEvent)
                     }
                 }
                 .listStyle(.insetGrouped)
                 .scrollContentBackground(.hidden)
+                .sheet(item: $selectedEvent) { event in
+                    EventDetailView(event: event)
+//                    EventEditViewController(event: event, eventStore: eventStore, loadEvent: loadEvent)
+                }
             } else {
                 ContentUnavailableView("No Events", systemImage: "calendar")
             }

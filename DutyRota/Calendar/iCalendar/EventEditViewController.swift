@@ -37,6 +37,10 @@ struct EventEditViewController: UIViewControllerRepresentable {
             self.parent = controller
         }
 
+        deinit {
+            print("deinit \(self)")
+        }
+
         func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
             parent.loadEvent()
             parent.dismiss()

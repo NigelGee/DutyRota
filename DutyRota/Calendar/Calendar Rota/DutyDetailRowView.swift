@@ -100,7 +100,6 @@ struct DutyDetailRowView: View {
             } else {
                 DutySheetView(dutyDetail: dutyDetail)
             }
-
         }
     }
 }

@@ -412,7 +412,6 @@ struct CalendarView: View {
             await getRotaDuties()
             await getDayDuty(dutyDetails: dutyDetails)
         }
-        print(dutyDetails.count)
     }
     
     /// A method to delete old ad hoc duties for SwiftData.

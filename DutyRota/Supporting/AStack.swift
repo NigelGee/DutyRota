@@ -13,7 +13,11 @@ struct AStack<Content: View>: View {
     private var vAlignment: VerticalAlignment
     private var content: Content
 
-    init(spacing: CGFloat? = nil, vAlignment: VerticalAlignment = .center ,hAlignment: HorizontalAlignment = .center, @ViewBuilder content: () -> Content) {
+    init(spacing: CGFloat? = nil,
+         vAlignment: VerticalAlignment = .center,
+         hAlignment: HorizontalAlignment = .center,
+         @ViewBuilder content: () -> Content)
+    {
         self.spacing = spacing
         self.hAlignment = hAlignment
         self.vAlignment = vAlignment

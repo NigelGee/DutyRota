@@ -39,7 +39,6 @@ struct SelectedDate: ViewModifier {
                     today = .now
                 }
             }
-
     }
 }
 
