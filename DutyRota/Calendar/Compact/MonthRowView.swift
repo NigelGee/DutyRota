@@ -9,7 +9,10 @@ import EventKit
 import SwiftData
 import SwiftUI
 
+/// A view that has the calendar dates color and selected date circle.
 struct MonthRowView: View {
+
+    /// An array of iCalendar events for the month.
     var monthEvents: [EKEvent]
     var adHocDuties: [AdHocDuty]
     var dutyDetails: [DutyDetail]

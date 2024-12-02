@@ -80,7 +80,7 @@
 		8BF7C8A32B79481C00346B7A /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7C8A22B79481C00346B7A /* ColorPickerView.swift */; };
 		8BF7C8A52B794B1B00346B7A /* ColorPickerDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7C8A42B794B1B00346B7A /* ColorPickerDisplayView.swift */; };
 		8BF7C8A72B796B6E00346B7A /* EditDutyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7C8A62B796B6E00346B7A /* EditDutyDetailView.swift */; };
-		8BF7C8A92B79F8F700346B7A /* DutyBackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7C8A82B79F8F700346B7A /* DutyBackgroundColor.swift */; };
+		8BF7C8A92B79F8F700346B7A /* DutyBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7C8A82B79F8F700346B7A /* DutyBackground.swift */; };
 		8BF7C8CB2B7B767A00346B7A /* RotaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7C8CA2B7B767A00346B7A /* RotaView.swift */; };
 		8BF7C8CD2B7B768A00346B7A /* Rota.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7C8CC2B7B768A00346B7A /* Rota.swift */; };
 		8BF7C8CF2B7B76EC00346B7A /* RotaDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7C8CE2B7B76EC00346B7A /* RotaDetail.swift */; };
@@ -166,7 +166,7 @@
 		8BF7C8A22B79481C00346B7A /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		8BF7C8A42B794B1B00346B7A /* ColorPickerDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerDisplayView.swift; sourceTree = "<group>"; };
 		8BF7C8A62B796B6E00346B7A /* EditDutyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDutyDetailView.swift; sourceTree = "<group>"; };
-		8BF7C8A82B79F8F700346B7A /* DutyBackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutyBackgroundColor.swift; sourceTree = "<group>"; };
+		8BF7C8A82B79F8F700346B7A /* DutyBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutyBackground.swift; sourceTree = "<group>"; };
 		8BF7C8CA2B7B767A00346B7A /* RotaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotaView.swift; sourceTree = "<group>"; };
 		8BF7C8CC2B7B768A00346B7A /* Rota.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rota.swift; sourceTree = "<group>"; };
 		8BF7C8CE2B7B76EC00346B7A /* RotaDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotaDetail.swift; sourceTree = "<group>"; };
@@ -210,6 +210,7 @@
 			children = (
 				8B7137FB2B66D5CF00627BF6 /* CompactMonthView.swift */,
 				8B12FD1D2B6D972600A22940 /* MonthRowView.swift */,
+				8BF7C8A82B79F8F700346B7A /* DutyBackground.swift */,
 			);
 			path = Compact;
 			sourceTree = "<group>";
@@ -341,7 +342,6 @@
 				8B0CF44E2B99EA9F00F05261 /* DayEventView.swift */,
 				8BBB20432B977E76009C3DF0 /* DayDutiesRowView.swift */,
 				8BA6FB752B96435500DAD23D /* DayAdHocDutiesRowView.swift */,
-				8BF7C8A82B79F8F700346B7A /* DutyBackgroundColor.swift */,
 				8BBB20452B978492009C3DF0 /* DutySheetView.swift */,
 				8B7137F52B66D3D900627BF6 /* CalendarDate.swift */,
 				8B3FE0052B873CC400E2070F /* Calendar Rota */,
@@ -520,7 +520,7 @@
 				8B346AEA2B7FB94600A29C3C /* DayRotaView.swift in Sources */,
 				8BA6FB742B9630BF00DAD23D /* AStack.swift in Sources */,
 				8B12FD782B73809800A22940 /* EditDutyView.swift in Sources */,
-				8BF7C8A92B79F8F700346B7A /* DutyBackgroundColor.swift in Sources */,
+				8BF7C8A92B79F8F700346B7A /* DutyBackground.swift in Sources */,
 				8B3FE0292B8A513B00E2070F /* DutyDetailRowView.swift in Sources */,
 				8B6F5BCB2B696B8B003B54F5 /* AddNewEventView.swift in Sources */,
 				8B6F5BC32B67C803003B54F5 /* AdHocDuty.swift in Sources */,
