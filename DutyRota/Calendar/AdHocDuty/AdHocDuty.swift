@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class AdHocDuty {
+final class AdHocDuty {
     var id: UUID = UUID()
     var title: String = ""
     var route: String = ""

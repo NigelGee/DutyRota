@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class Duty {
+final class Duty {
     var periodStart: Date = Date.now
     var periodEnd: Date = Date.now
     @Relationship(deleteRule: .cascade, inverse: \DutyDetail.duty) var dutyDetails: [DutyDetail]?

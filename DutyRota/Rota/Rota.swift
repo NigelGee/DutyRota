@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class Rota {
+final class Rota {
     var periodStart: Date = Date.now
     var periodEnd: Date = Date.now
     var startRotaLine: Int = 0

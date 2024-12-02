@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class Holiday {
+final class Holiday {
     var start: Date = Date.now
     var end: Date = Date.now
 

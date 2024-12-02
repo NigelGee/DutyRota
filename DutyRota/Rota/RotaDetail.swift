@@ -13,7 +13,7 @@ enum ImportError: Error {
 }
 
 @Model
-class RotaDetail: Comparable {
+final class RotaDetail: Comparable {
     var line: Int = 0
     var sun: String = ""
     var mon: String = ""

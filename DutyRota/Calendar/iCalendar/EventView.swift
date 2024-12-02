@@ -19,14 +19,16 @@ struct EventView: View {
 
     var body: some View {
         ForEach(events) { event in
-            if event.calendar.isImmutable == false {
-                Button {
-                    selectedEvent = event
-                } label: {
-                    EventRowView(event: event)
-                        .contentShape(Rectangle())
-                }
-                .buttonStyle(.plain)
+//            if event.calendar.type == .calDAV || event.calendar.type == .local {
+                if event.calendar.isImmutable == false {
+                    Button {
+                        selectedEvent = event
+                    } label: {
+                        EventRowView(event: event)
+                            .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
+//                }
             } else {
                 EventRowView(event: event)
             }

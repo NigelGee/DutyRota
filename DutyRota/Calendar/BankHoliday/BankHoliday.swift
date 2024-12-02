@@ -21,7 +21,7 @@ struct EnglandAndWales: Codable {
 }
 
 @Observable
-class BankHolidayEvent: Codable {
+final class BankHolidayEvent: Codable {
     enum CodingKeys: String, CodingKey {
         case _title = "title"
         case _date = "date"

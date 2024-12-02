@@ -164,6 +164,14 @@ struct CalendarView: View {
                         }
 
                         Button {
+                            addNewDuty(isRestDay: true)
+                        } label: {
+                            Label("Rest Duty", systemImage: "chair.lounge")
+                        }
+
+                        Divider()
+
+                        Button {
                             showAddEvent = true
                         } label: {
                             Label("New Event", systemImage: "calendar")
@@ -238,22 +246,38 @@ struct CalendarView: View {
     }
     
     /// A method to a new Ad Hoc Duty to calendar.
-    ///
-    /// This will add a default record to SwiftData and open `AddDutyDetailView`
-    func addNewDuty() {
+    /// 
+    /// This will add a default record to SwiftData and open `EditDutyDetailView`
+    /// - Parameter isRestDay: If a Rest day Ad Hoc duty `true` Default: `false`
+    func addNewDuty(isRestDay: Bool = false) {
         var defaultBreakTime: Date {
             var components = DateComponents()
-            components.hour = 1
+            if isRestDay {
+                components.hour = 0
+                components.minute = 0
+            } else {
+                components.hour = 1
+            }
             components.minute = 0
             return Calendar.current.date(from: components) ?? Date.now
         }
 
-        let newDuty = AdHocDuty(title: "", route: "", start: selectedDate, end: selectedDate.addingTimeInterval(30_960), breakTime: defaultBreakTime)
-        modelContext.insert(newDuty)
+        let duty: AdHocDuty
+        if isRestDay {
+            duty = AdHocDuty(title: "Rest", route: "", start: selectedDate, end: selectedDate, breakTime: defaultBreakTime)
+        } else {
+            duty = AdHocDuty(title: "", route: "", start: selectedDate, end: selectedDate.addingTimeInterval(30_960), breakTime: defaultBreakTime)
+        }
 
-        self.newDuty = newDuty
+        modelContext.insert(duty)
 
-        showAddAdHocDuty = true
+        self.newDuty = duty
+
+        if isRestDay {
+            resetControlDate()
+        } else {
+            showAddAdHocDuty = true
+        }
     }
     
     /// A method to check that the new Ad Hoc Duty has a title.
@@ -366,7 +390,14 @@ struct CalendarView: View {
             for duty in duties {
                 let dutyIndex = duty.start.dayDifference(from: startOfCalendarMonth)
                 if dutyIndex >= 0 && dutyIndex < newDuties.count {
-                    let replacedDuty = DutyDetail(id: duty.id, title: duty.title, start: duty.start, end: duty.end, tod: duty.todDate, color: "dutyAdHoc", notes: duty.notes, route: duty.route, isAdHoc: true)
+                    let replacedDuty = DutyDetail(id: duty.id,
+                                                  title: duty.title,
+                                                  start: duty.start,
+                                                  end: duty.end,
+                                                  tod: duty.todDate,
+                                                  color: duty.title == "Rest" ? "dutySilver" : "dutyAdHoc",
+                                                  notes: duty.notes,
+                                                  route: duty.route, isAdHoc: true)
                     newDuties.replaceElement(at: dutyIndex, with: replacedDuty)
                 }
             }
