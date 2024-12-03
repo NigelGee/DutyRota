@@ -316,15 +316,19 @@ struct CalendarView: View {
                 newDuties.append(contentsOf: DutyDetail.emptyWeek)
                 continue
             }
-            let startRotaLine = currentRota.startRotaLine == 0 ? currentRota.unwrappedRotaDetails.map { $0.line }.min() ?? 0 : currentRota.startRotaLine
-            let weeksFromStartRotaLine = Int((weekStartDate.dayDifference(from: currentRota.periodStart.startOfDay)) / 7)
-            let minLineNumber = currentRota.unwrappedRotaDetails.map { $0.line }.min() ?? 0
 
+            guard currentRota.unwrappedRotaDetails.isNotEmpty else { continue }
+
+            let minLineNumber = currentRota.unwrappedRotaDetails.map { $0.line }.min() ?? 0
+            let startRotaLine = currentRota.startRotaLine == 0 ? minLineNumber : currentRota.startRotaLine
+            let weeksFromStartRotaLine = Int((weekStartDate.dayDifference(from: currentRota.periodStart.startOfDay)) / 7)
             let currentWeekLine = ((startRotaLine + weeksFromStartRotaLine - minLineNumber) % currentRota.unwrappedRotaDetails.count) + minLineNumber
+
             guard let rotaLineDetails = currentRota.unwrappedRotaDetails.first(where:  { $0.line == currentWeekLine }) else {
                 newRotaDuties.append(contentsOf: RotaDetail.emptyWeek)
                 continue
             }
+
             let weekRotaLines = RotaDetail.weekDuties(of: rotaLineDetails, for: startDayOfWeek)
             newRotaDuties.append(contentsOf: weekRotaLines)
 
@@ -397,7 +401,9 @@ struct CalendarView: View {
                                                   tod: duty.todDate,
                                                   color: duty.title == "Rest" ? "dutySilver" : "dutyAdHoc",
                                                   notes: duty.notes,
-                                                  route: duty.route, isAdHoc: true)
+                                                  route: duty.route, isAdHoc: true
+                    )
+
                     newDuties.replaceElement(at: dutyIndex, with: replacedDuty)
                 }
             }
