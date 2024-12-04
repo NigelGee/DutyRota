@@ -317,7 +317,11 @@ struct CalendarView: View {
                 continue
             }
 
-            guard currentRota.unwrappedRotaDetails.isNotEmpty else { continue }
+            guard currentRota.unwrappedRotaDetails.isNotEmpty else {
+                newRotaDuties.append(contentsOf: RotaDetail.emptyWeek)
+                newDuties.append(contentsOf: DutyDetail.emptyWeek)
+                continue
+            }
 
             let minLineNumber = currentRota.unwrappedRotaDetails.map { $0.line }.min() ?? 0
             let startRotaLine = currentRota.startRotaLine == 0 ? minLineNumber : currentRota.startRotaLine

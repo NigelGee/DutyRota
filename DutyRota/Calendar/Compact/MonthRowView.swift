@@ -14,17 +14,31 @@ struct MonthRowView: View {
 
     /// An array of iCalendar events for the month.
     var monthEvents: [EKEvent]
+
+    /// An array of Ad Hoc Duties for the month.
     var adHocDuties: [AdHocDuty]
+
+    /// An array of calculated `DutyDetails`.
     var dutyDetails: [DutyDetail]
+    
+    /// A property of `CalendarDate` of `selectedDay`.
     var day: CalendarDate
+    
+    /// A property of the first day of the selected calendar month.
+    ///
+    /// This could be before the 1st of month.
     var startDateOfCalendar: Date
-
+    
+    /// A `Binding` property of the selected Date.
     @Binding var selectedDate: Date
-
+    
+    /// An array of all the UK Bank Holidays.
     var bankHolidays: [BankHolidayEvent]
-
+    
+    /// A Swift date query of any vacation periods.
     @Query var holidays: [Holiday]
-
+    
+    /// A computed array of users vacation in individual dates.
     var holidayDates: [Date] {
         var newHolidayDates = [Date]()
         for holiday in holidays {
@@ -36,11 +50,15 @@ struct MonthRowView: View {
         }
         return newHolidayDates
     }
-
+    
+    /// A computed array of Ad Hoc duties for the month.
     var filteredDuties: [AdHocDuty] {
         adHocDuties.filter { $0.start.isDateInRange(start: selectedDate.startDateOfMonth, end: selectedDate.endDateOfMonth) && $0.overtime }
     }
-
+    
+    /// A computed property from the first date of month to the `selectedDate`.
+    ///
+    /// The first day might be before the first date of month.
     var dayIndex: Int {
         day.date.startOfDay.dayDifference(from: startDateOfCalendar)
     }
@@ -90,7 +108,10 @@ struct MonthRowView: View {
             )
         }
     }
-
+    
+    /// A method that deterimes the color of the background of date.
+    /// - Parameter dayIndex: The index of the day from first day of calendar.
+    /// - Returns: A String the represent the color of the day.
     func color(_ dayIndex: Int) -> String {
         guard dutyDetails.isNotEmpty else { return "dutyClear" }
         guard dayIndex < dutyDetails.count else { return "dutyClear"}
