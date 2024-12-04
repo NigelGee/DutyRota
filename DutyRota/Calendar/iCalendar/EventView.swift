@@ -10,7 +10,7 @@ import SwiftUI
 
 struct EventView: View {
     @Environment(\.dismiss) var dismiss
-    @Binding var events: [EKEvent]
+    var events: [EKEvent]
     var eventStore: EKEventStore
 
     /// A passed in property that when a iCalendar event is select
