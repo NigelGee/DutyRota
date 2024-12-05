@@ -10,24 +10,48 @@ import EventKitUI
 import SwiftData
 import SwiftUI
 
+///  A view that used when screen is regular that will show days with duty colors.
 struct RegularMonthView: View {
+
+    /// Stores the use preference of the first day of week to User Default.
     @AppStorage("startOFWeek") var startDayOfWeek = WeekDay.saturday
+
+    /// Stores the use preference of on if Bank Holidays duties change to User Default.
     @AppStorage("bankHolidayRule") var bankHolidayRule = true
-
+    
+    /// A passed in `Binding` property for the date that user select.
     @Binding var selectedDate: Date
-    var dutyDetails: [DutyDetail]
-    var bankHolidays: [BankHolidayEvent]
-    @Binding var monthEvents: [EKEvent]
-    var eventStore: EKEventStore
-    var loadEvent: () -> Void
-    var resetControlDate: () -> Void
 
+    /// A passed in array that hold duty details for the month.
+    var dutyDetails: [DutyDetail]
+
+    /// A passed in array of the Bank holidays.
+    var bankHolidays: [BankHolidayEvent]
+
+    /// An array of iCalendar events for on `selectedDate`.
+    @Binding var monthEvents: [EKEvent]
+    
+    /// An instance passed to view of `EKEventStore`.
+    var eventStore: EKEventStore
+
+    /// Passed in method to ask permission and get iCalendar Events.
+    ///
+    /// - Important: If access not granted, iCalendar events will not show in Calendar.
+    var loadEvent: () -> Void
+    
+    /// Passed in method to reset the `controlDate` to `.distantPast`.
+    var resetControlDate: () -> Void
+    
+    /// A property that a selected event to trigger a `EventDetailView(event: )`.
     @State private var event: EKEvent?
+
+    /// A property that a selected event to trigger a `EditAdHocDutyView(adHocDuty: , isEditing: )`.
     @State private var selectedDuty: AdHocDuty?
 
     @Query var adHocDuties: [AdHocDuty]
     @Query var holidays: [Holiday]
-
+    
+    /// A computed array of dates from vacation period.
     var holidayDates: [Date] {
         var newHolidayDates = [Date]()
         for holiday in holidays {
@@ -39,11 +63,13 @@ struct RegularMonthView: View {
         }
         return newHolidayDates
     }
-
+    
+    /// A computed array of `CalendarDate` of the current month.
     var calendarDates: [CalendarDate] {
         selectedDate.datesOfMonth(with: startDayOfWeek.rawValue).map { CalendarDate(date: $0) }
     }
-
+    
+    /// A computed array of `AdHocDuty` of the current month.
     var filteredDuties: [AdHocDuty] {
         adHocDuties.filter { $0.start.isDateInRange(start: selectedDate.startDateOfMonth, end: selectedDate.endDateOfMonth) }
     }
@@ -51,6 +77,7 @@ struct RegularMonthView: View {
     var body: some View {
         VStack(spacing: 2) {
             HStack {
+                // MARK: - Days of week.
                 ForEach(WeekDay.sortedWeekDays(startOn: startDayOfWeek, full: true), id: \.self) {
                     Text($0)
                         .frame(maxWidth: .infinity)
@@ -66,6 +93,7 @@ struct RegularMonthView: View {
                     ForEach(0..<calendarDates.count, id: \.self) { dayIndex in
                         let dayEvents = monthEvents.filter { $0.startDate.isSameDay(as: calendarDates[dayIndex].date)}
                         VStack(spacing: 2) {
+                            // MARK: - Dates of month.
                             if calendarDates[dayIndex].date >= selectedDate.startDateOfMonth {
                                 Button {
                                     selectedDate = calendarDates[dayIndex].date
@@ -78,13 +106,13 @@ struct RegularMonthView: View {
                                 }
                                 .padding(.vertical, 5)
                                 .buttonStyle(.plain)
-
+                                // MARK: - DUTIES (inc Ad Hoc duties that are not overtime)
                                 if dutyDetails.isNotEmpty {
                                     if dayIndex < dutyDetails.count {
                                         DayDutiesRowView(dutyDetail: dutyDetails[dayIndex], resetControlDate: resetControlDate)
                                     }
                                 }
-
+                                // MARK: - AD HOC DUTIES (If overtime)
                                 if (filteredDuties.contains { $0.start.isSameDay(as: calendarDates[dayIndex].date) && $0.overtime }) {
                                     let dayAdHocDuties = filteredDuties.filter { $0.start.isSameDay(as: calendarDates[dayIndex].date) }
                                     ForEach(dayAdHocDuties) { duty in
@@ -93,7 +121,7 @@ struct RegularMonthView: View {
                                         }
                                     }
                                 }
-
+                                // MARK: - iCAL EVENTS
                                 if dayEvents.isNotEmpty {
                                     ForEach(dayEvents) { dayEvent in
 //                                        if dayEvent.calendar.type == .calDAV || dayEvent.calendar.type == .local {
@@ -111,7 +139,9 @@ struct RegularMonthView: View {
                                     }
                                 }
                             } else {
+                                // MARK: - ALL LISTS ARE EMPTY
                                 Text("")
+                                    .frame(maxWidth: .infinity)
                             }
                             Spacer()
                         }

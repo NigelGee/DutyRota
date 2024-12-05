@@ -211,6 +211,8 @@
 				8B7137FB2B66D5CF00627BF6 /* CompactMonthView.swift */,
 				8B12FD1D2B6D972600A22940 /* MonthRowView.swift */,
 				8BF7C8A82B79F8F700346B7A /* DutyBackground.swift */,
+				8B3FE0282B8A513B00E2070F /* DutyDetailRowView.swift */,
+				8BBB20452B978492009C3DF0 /* DutySheetView.swift */,
 			);
 			path = Compact;
 			sourceTree = "<group>";
@@ -219,6 +221,9 @@
 			isa = PBXGroup;
 			children = (
 				8BA6FB712B94E6B200DAD23D /* RegularMonthView.swift */,
+				8BBB20432B977E76009C3DF0 /* DayDutiesRowView.swift */,
+				8BA6FB752B96435500DAD23D /* DayAdHocDutiesRowView.swift */,
+				8B0CF44E2B99EA9F00F05261 /* DayEventView.swift */,
 			);
 			path = Regular;
 			sourceTree = "<group>";
@@ -229,14 +234,6 @@
 				8B3FDFE42B86800300E2070F /* BankHoliday.swift */,
 			);
 			path = BankHoliday;
-			sourceTree = "<group>";
-		};
-		8B3FE0052B873CC400E2070F /* Calendar Rota */ = {
-			isa = PBXGroup;
-			children = (
-				8B3FE0282B8A513B00E2070F /* DutyDetailRowView.swift */,
-			);
-			path = "Calendar Rota";
 			sourceTree = "<group>";
 		};
 		8B4CFEF82CD7DC8B007C724F /* Tips */ = {
@@ -337,14 +334,9 @@
 			isa = PBXGroup;
 			children = (
 				8B7137F12B66D37A00627BF6 /* CalendarView.swift */,
+				8B7137F52B66D3D900627BF6 /* CalendarDate.swift */,
 				8B2512D02CFB5889001BF39A /* Compact */,
 				8B2512D12CFB58C6001BF39A /* Regular */,
-				8B0CF44E2B99EA9F00F05261 /* DayEventView.swift */,
-				8BBB20432B977E76009C3DF0 /* DayDutiesRowView.swift */,
-				8BA6FB752B96435500DAD23D /* DayAdHocDutiesRowView.swift */,
-				8BBB20452B978492009C3DF0 /* DutySheetView.swift */,
-				8B7137F52B66D3D900627BF6 /* CalendarDate.swift */,
-				8B3FE0052B873CC400E2070F /* Calendar Rota */,
 				8B6F5C2A2B6D9059003B54F5 /* AdHocDuty */,
 				8B6F5C292B6D902B003B54F5 /* iCalendar */,
 				8B3FDFE32B867FDF00E2070F /* BankHoliday */,

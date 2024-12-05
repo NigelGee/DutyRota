@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// A model that is able to identify a date.
 struct CalendarDate: Identifiable {
     let id = UUID()
     var date: Date

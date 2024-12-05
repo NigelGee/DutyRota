@@ -310,7 +310,7 @@ struct CalendarView: View {
             let weekStartDate = startOfCalendarMonth.add(day: week * 7)
             guard weekStartDate <= endOfCalendarMonth else { break }
 
-            // ROTA
+            // MARK: ROTA
             guard let currentRota = rota.first(where: { weekStartDate.isDateInRange(start: $0.periodStart, end: $0.periodEnd) || weekStartDate.isSameDay(as: $0.periodStart) }) else {
                 newRotaDuties.append(contentsOf: RotaDetail.emptyWeek)
                 newDuties.append(contentsOf: DutyDetail.emptyWeek)
@@ -336,7 +336,7 @@ struct CalendarView: View {
             let weekRotaLines = RotaDetail.weekDuties(of: rotaLineDetails, for: startDayOfWeek)
             newRotaDuties.append(contentsOf: weekRotaLines)
 
-            // DUTIES
+            // MARK: DUTIES
             guard let currentDuty = duties.first(where: { weekStartDate.isDateInRange(start: $0.periodStart, end: $0.periodEnd) || weekStartDate.isSameDay(as: $0.periodStart) }) else { continue }
 
             for line in weekRotaLines {
@@ -357,7 +357,7 @@ struct CalendarView: View {
 
         christmasNewYear = christmasNewYear(from: bankHolidaysInMonth)
 
-        // BANK HOLIDAYS
+        // MARK: BANK HOLIDAYS
         if bankHolidayRule, bankHolidaysInMonth.isNotEmpty, !christmasNewYear {
             for holiday in bankHolidaysInMonth {
                 let holidayIndex = holiday.dayDifference(from: startOfCalendarMonth)
@@ -392,7 +392,7 @@ struct CalendarView: View {
             }
         }
 
-        // AD HOC DUTIES
+        // MARK: AD HOC DUTIES
         if adHocDuties.isNotEmpty {
             let duties = adHocDuties.filter({ $0.start >= startOfCalendarMonth && $0.end <= endOfCalendarMonth && $0.overtime == false })
             for duty in duties {
