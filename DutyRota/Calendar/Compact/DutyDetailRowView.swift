@@ -17,9 +17,9 @@ struct DutyDetailRowView: View {
     /// An array of Ad Hoc Duties for the month.
     var adHocDuties: [AdHocDuty]
 
-    /// A property to show details of a duty
+    /// A property to show details of a duty.
     ///
-    /// if an Ad Hoc duty will show `EditAdHocDutyView`, if not show `DutySheetView`
+    /// if an Ad Hoc duty will show `EditAdHocDutyView`, if not show `DutySheetView`.
     @State private var showDetails = false
     var resetControlDate: () -> Void
     

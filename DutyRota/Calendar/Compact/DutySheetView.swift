@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/// A view that will show details of a duty.
+///
+/// This is read only. Duties can not be changed from here.
 struct DutySheetView: View {
     @Environment(\.dismiss) var dismiss
     var dutyDetail: DutyDetail
@@ -46,6 +49,6 @@ struct DutySheetView: View {
     }
 }
 
-#Preview {
-    DutySheetView(dutyDetail: .example)
-}
+//#Preview {
+//    DutySheetView(dutyDetail: .example)
+//}
