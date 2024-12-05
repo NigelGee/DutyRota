@@ -7,8 +7,13 @@
 
 import SwiftUI
 
+/// A view that show a Ad Hoc duty if it an overtime duty.
 struct DayAdHocDutiesRowView: View {
+
+    /// A passed in property of `AdHocDuty`.
     let duty: AdHocDuty
+    
+    /// A method that act on selected duty.
     let action: () -> Void
 
     var body: some View {

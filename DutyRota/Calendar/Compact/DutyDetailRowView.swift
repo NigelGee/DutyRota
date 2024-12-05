@@ -114,8 +114,8 @@ struct DutyDetailRowView: View {
     }
 }
 
-//#Preview {
-//    DutyDetailRowView(dutyDetail: .example, adHocDuties: []) { }
-//        .padding()
-//        .frame(height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
-//}
+#Preview {
+    DutyDetailRowView(dutyDetail: .example, adHocDuties: []) { }
+        .padding()
+        .frame(height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
+}

@@ -49,9 +49,9 @@ struct DutyBackground: View {
     }
 }
 
-//#Preview {
-//    ZStack {
-//        DutyBackground(for: "dutyBlue", isDay: true, isBankHoliday: false, isHoliday: true)
-//    }
-//    .frame(width: 100, height: 100)
-//}
+#Preview {
+    ZStack {
+        DutyBackground(for: "dutyBlue", isDay: true, isBankHoliday: false, isHoliday: true)
+    }
+    .frame(width: 100, height: 100)
+}

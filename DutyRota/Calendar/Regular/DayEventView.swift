@@ -8,7 +8,10 @@
 import EventKit
 import SwiftUI
 
+/// A view that show an iCal event.
 struct DayEventView: View {
+
+    /// A passed in property of iCal event.
     let event: EKEvent
 
     var body: some View {

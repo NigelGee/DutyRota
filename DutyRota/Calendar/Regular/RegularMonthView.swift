@@ -106,12 +106,14 @@ struct RegularMonthView: View {
                                 }
                                 .padding(.vertical, 5)
                                 .buttonStyle(.plain)
+
                                 // MARK: - DUTIES (inc Ad Hoc duties that are not overtime)
                                 if dutyDetails.isNotEmpty {
                                     if dayIndex < dutyDetails.count {
                                         DayDutiesRowView(dutyDetail: dutyDetails[dayIndex], resetControlDate: resetControlDate)
                                     }
                                 }
+
                                 // MARK: - AD HOC DUTIES (If overtime)
                                 if (filteredDuties.contains { $0.start.isSameDay(as: calendarDates[dayIndex].date) && $0.overtime }) {
                                     let dayAdHocDuties = filteredDuties.filter { $0.start.isSameDay(as: calendarDates[dayIndex].date) }
@@ -121,6 +123,7 @@ struct RegularMonthView: View {
                                         }
                                     }
                                 }
+
                                 // MARK: - iCAL EVENTS
                                 if dayEvents.isNotEmpty {
                                     ForEach(dayEvents) { dayEvent in

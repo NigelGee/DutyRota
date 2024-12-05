@@ -52,7 +52,7 @@ struct SettingsView: View {
                     }
                     .disabled(rotas.isNotEmpty)
                 } footer: {
-                    Text("You need to have no Rotas set to able to change the Start of Week.")
+                    Text("You need to have no rotas set to able to change the Start of Week.")
                 }
 
                 Section {
@@ -142,6 +142,6 @@ struct SettingsView: View {
     }
 }
 
-#Preview {
-    SettingsView()
-}
+//#Preview {
+//    SettingsView()
+//}

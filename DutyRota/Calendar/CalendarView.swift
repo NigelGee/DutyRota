@@ -65,6 +65,9 @@ struct CalendarView: View {
     
     /// A property that show `true` if the month is December or January to display warning text.
     @State private var christmasNewYear = false
+    
+    /// A property that shows `false` if access to iCal is available
+    @State private var isUnableAddEvent = true
 
     @Query(sort: \AdHocDuty.start) var adHocDuties: [AdHocDuty]
     @Query var duties: [Duty]
@@ -176,6 +179,7 @@ struct CalendarView: View {
                         } label: {
                             Label("New Event", systemImage: "calendar")
                         }
+                        .disabled(isUnableAddEvent)
                     }
                 }
 
@@ -238,6 +242,8 @@ struct CalendarView: View {
                 events = eventStore.events(matching: predicateDay)
 
                 monthEvents = eventStore.events(matching: predicateMonth)
+
+                isUnableAddEvent = false
 
             } else {
                 print("Error in loading Events")

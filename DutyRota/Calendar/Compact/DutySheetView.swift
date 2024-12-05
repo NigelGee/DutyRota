@@ -49,6 +49,6 @@ struct DutySheetView: View {
     }
 }
 
-//#Preview {
-//    DutySheetView(dutyDetail: .example)
-//}
+#Preview {
+    DutySheetView(dutyDetail: .example)
+}

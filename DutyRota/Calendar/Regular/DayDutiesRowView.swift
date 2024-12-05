@@ -8,14 +8,23 @@
 import SwiftData
 import SwiftUI
 
+/// A view that shows a duty or Ad Hoc duty.
 struct DayDutiesRowView: View {
+
+    /// A passed in array that hold duty details for the month.
     let dutyDetail: DutyDetail
+
+    /// A passed in method that will set the `controlDate` to `.distantPast`.
     var resetControlDate: () -> Void
 
     @Query var adHocDuties: [AdHocDuty]
-
+    
+    /// A property to show details of a duty.
+    ///
+    /// if an Ad Hoc duty will show `EditAdHocDutyView`, if not show `DutySheetView`.
     @State private var showDetail = false
-
+    
+    /// A computed property that works out if a duty is an Ad Hoc duty else `nil`.
     var filteredAdHocDuty: AdHocDuty? {
         if dutyDetail.isAdHoc {
             return adHocDuties.filter { $0.id == dutyDetail.id }.first
@@ -60,6 +69,6 @@ struct DayDutiesRowView: View {
     }
 }
 
-//#Preview {
-//    DayDutiesRowView(dutyDetail: DutyDetail.example, controlDate: .constant(.now))
-//}
+#Preview {
+    DayDutiesRowView(dutyDetail: DutyDetail.example) { }
+}
