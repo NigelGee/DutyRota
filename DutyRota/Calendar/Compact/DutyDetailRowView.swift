@@ -8,12 +8,22 @@
 import SwiftData
 import SwiftUI
 
+/// A View that duties are shown in the lists this includes rostered duties and Ad hoc.
 struct DutyDetailRowView: View {
+
+    /// An array of calculated `DutyDetails`
     var dutyDetail: DutyDetail
+    
+    /// An array of Ad Hoc Duties for the month.
     var adHocDuties: [AdHocDuty]
+
+    /// A property to show details of a duty
+    ///
+    /// if an Ad Hoc duty will show `EditAdHocDutyView`, if not show `DutySheetView`
     @State private var showDetails = false
     var resetControlDate: () -> Void
-
+    
+    /// A computed property to identify a Ad Hoc to be able to edit it.
     var filteredAdHocDuties: AdHocDuty? {
         if dutyDetail.isAdHoc {
             return adHocDuties.filter { $0.id == dutyDetail.id }.first
@@ -104,8 +114,8 @@ struct DutyDetailRowView: View {
     }
 }
 
-#Preview {
-    DutyDetailRowView(dutyDetail: .example, adHocDuties: []) { }
-        .padding()
-        .frame(height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
-}
+//#Preview {
+//    DutyDetailRowView(dutyDetail: .example, adHocDuties: []) { }
+//        .padding()
+//        .frame(height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
+//}
