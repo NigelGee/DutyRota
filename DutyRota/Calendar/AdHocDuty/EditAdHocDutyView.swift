@@ -8,15 +8,21 @@
 import SwiftData
 import SwiftUI
 
+/// A view that is able to Add/Edit an Ad Hoc duty.
 struct EditAdHocDutyView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var modelContext
-
+    
+    /// A property that if user deletes a Ad Hoc duty that need to confirm that want to.
+    ///
+    /// Stop accidentally taps on "Delete" button.
     @State private var confirmDelete = false
-
+    
+    /// A `Binding` property of Ad Hoc Duty.
     @Bindable var adHocDuty: AdHocDuty
     var isEditing: Bool
-
+    
+    /// A computed property to show disable the "Add" button if not meet requirements.
     var disableSave: Bool {
         if adHocDuty.start < adHocDuty.end && adHocDuty.title.isNotEmpty {
             return false
@@ -103,7 +109,8 @@ struct EditAdHocDutyView: View {
             }
         }
     }
-
+    
+    /// A method to delete the duty from persistent data if user "Cancel" the request.
     func deleteDuty() {
         let object = adHocDuty
         modelContext.delete(object)
