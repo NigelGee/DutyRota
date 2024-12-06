@@ -8,6 +8,8 @@
 import SwiftUI
 
 /// A view shows Ad Hoc duties.
+///
+/// - Important: This will only be shown if the `overtime` is `true`.
 struct AdHocDutyView: View {
     @Environment(\.modelContext) var modelContext
     

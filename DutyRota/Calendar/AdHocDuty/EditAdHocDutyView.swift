@@ -43,9 +43,9 @@ struct EditAdHocDutyView: View {
                 }
                 
                 Section {
-                    DatePicker("Sign On", selection: $adHocDuty.start)
-                    DatePicker("Sign Off", selection: $adHocDuty.end)
-                    
+                    DatePicker("Sign On", selection: $adHocDuty.start, displayedComponents: adHocDuty.title == "Rest" ? [.date] : [.date, .hourAndMinute])
+                    DatePicker("Sign Off", selection: $adHocDuty.end, displayedComponents: adHocDuty.title == "Rest" ? [.date] : [.date, .hourAndMinute])
+
                     DatePicker("Break", selection: $adHocDuty.breakTime, displayedComponents: .hourAndMinute)
 
                     VStack(alignment: .leading) {

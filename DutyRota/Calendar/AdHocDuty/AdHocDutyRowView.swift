@@ -7,7 +7,10 @@
 
 import SwiftUI
 
+/// A view that show the details of a Ad Hoc Duty
 struct AdHocDutyRowView: View {
+
+    /// A property passed in of an Ad Hoc duty
     var duty: AdHocDuty
 
     var body: some View {

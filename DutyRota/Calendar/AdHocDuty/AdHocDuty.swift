@@ -8,6 +8,7 @@
 import Foundation
 import SwiftData
 
+/// A persistence model of Ad Hoc duty.
 @Model
 final class AdHocDuty {
     var id: UUID = UUID()
@@ -27,7 +28,8 @@ final class AdHocDuty {
         self.end = end
         self.breakTime = breakTime
     }
-
+    
+    /// A computed property that calculates the total spread of a duty. Returns as a `String` format.
     var spread: String {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute]
@@ -36,7 +38,8 @@ final class AdHocDuty {
 
         return formatter.string(from: newSpread) ?? "Spread"
     }
-
+    
+    /// A computed property that calculates the time on duty of a duty. Returns as a `String` format.
     var tod: String {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute]
@@ -48,7 +51,8 @@ final class AdHocDuty {
 
         return formatter.string(from: newTOD) ?? "Time"
     }
-
+    
+    /// A computed property that calculates the time on duty of a duty. Returns as a `Date` format.
     var todDate: Date {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute]
