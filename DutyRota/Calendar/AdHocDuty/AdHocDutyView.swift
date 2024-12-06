@@ -7,12 +7,14 @@
 
 import SwiftUI
 
+/// A view shows Ad Hoc duties.
 struct AdHocDutyView: View {
     @Environment(\.modelContext) var modelContext
-
-    var filteredDuties: [AdHocDuty]
     
-    @State private var showEditAdHocView = false
+    /// A computed array of `AdHocDuty` for the `selectedDate`.
+    var filteredDuties: [AdHocDuty]
+
+    /// A property that will selected Ad Hoc Duty and trigger a `EditAdHocDutyView`.
     @State private var selectedDuty: AdHocDuty?
 
     var body: some View {

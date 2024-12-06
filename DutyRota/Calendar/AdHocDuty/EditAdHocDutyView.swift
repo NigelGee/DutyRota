@@ -68,6 +68,7 @@ struct EditAdHocDutyView: View {
                     }
                 }
             }
+            .disabled(adHocDuty.title == "Rest")
             .navigationTitle(isEditing ? "Edit Ad-Hoc Duty" : "Add Ad-Hoc Duty")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden()

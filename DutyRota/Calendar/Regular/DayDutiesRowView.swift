@@ -48,6 +48,7 @@ struct DayDutiesRowView: View {
                                 .bold()
                             Text(dutyDetail.end, format: .dateTime.hour().minute())
                         }
+                        .isPresented(for: dutyDetail.title != "Rest")
                     }
                     .font(.system(size: 12))
                     .padding(5)

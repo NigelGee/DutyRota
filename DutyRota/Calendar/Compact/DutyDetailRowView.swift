@@ -58,47 +58,57 @@ struct DutyDetailRowView: View {
 
                     }
 
-                    ViewThatFits {
-                        HStack {
-                            Text("TOD: **\(dutyDetail.tod.formattedTime)**")
-                            Spacer()
-                            Text("Spread: **\(dutyDetail.dutySpread)**")
-                            Spacer()
-                            Text("Break: **\(dutyDetail.dutyBreakTime)**")
-                            Spacer()
-                        }
+                    if dutyDetail.title == "Rest" {
+                        Text("Enjoy your day!")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    } else {
+                        ViewThatFits {
+                            HStack {
+                                Text("TOD: **\(dutyDetail.tod.formattedTime)**")
+                                Spacer()
+                                Text("Spread: **\(dutyDetail.dutySpread)**")
+                                Spacer()
+                                Text("Break: **\(dutyDetail.dutyBreakTime)**")
+                                Spacer()
+                            }
 
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text("TOD:")
-                                Text(dutyDetail.tod.formattedTime)
-                                    .bold()
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Text("TOD:")
+                                    Text(dutyDetail.tod.formattedTime)
+                                        .bold()
+                                }
+                                Spacer()
+                                VStack(alignment: .leading) {
+                                    Text("Spread:")
+                                    Text(dutyDetail.dutySpread)
+                                        .bold()
+                                }
+                                Spacer()
+                                VStack(alignment: .leading) {
+                                    Text("Break:")
+                                    Text(dutyDetail.dutyBreakTime)
+                                        .bold()
+                                }
+                                Spacer()
                             }
-                            Spacer()
-                            VStack(alignment: .leading) {
-                                Text("Spread:")
-                                Text(dutyDetail.dutySpread)
-                                    .bold()
-                            }
-                            Spacer()
-                            VStack(alignment: .leading) {
-                                Text("Break:")
-                                Text(dutyDetail.dutyBreakTime)
-                                    .bold()
-                            }
-                            Spacer()
                         }
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
                     }
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
                 }
 
                 Spacer()
 
-                VStack {
-                    Text(dutyDetail.start.formattedTime)
-                    Text(dutyDetail.end.formattedTime)
-                        .foregroundStyle(.secondary)
+                if dutyDetail.title == "Rest" {
+                    Text("all-day")
+                } else {
+                    VStack {
+                        Text(dutyDetail.start.formattedTime)
+                        Text(dutyDetail.end.formattedTime)
+                            .foregroundStyle(.secondary)
+                    }
                 }
 
             }
