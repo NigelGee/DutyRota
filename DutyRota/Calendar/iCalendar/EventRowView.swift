@@ -8,7 +8,10 @@
 import EventKit
 import SwiftUI
 
+/// A view thaT show an event details row.
 struct EventRowView: View {
+
+    /// A property of an event.
     let event: EKEvent
 
     var body: some View {

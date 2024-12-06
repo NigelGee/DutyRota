@@ -20,7 +20,6 @@ struct EventView: View {
 
     /// A passed in property that when a iCalendar event is select
     @Binding var selectedEvent: EKEvent?
-    var loadEvent: () -> Void
 
     var body: some View {
         ForEach(events) { event in

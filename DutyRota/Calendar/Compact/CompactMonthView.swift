@@ -122,7 +122,7 @@ struct CompactMonthView: View {
                     }
 
                     if events.isNotEmpty {
-                        EventView(events: events, eventStore: eventStore, selectedEvent: $selectedEvent, loadEvent: loadEvent)
+                        EventView(events: events, eventStore: eventStore, selectedEvent: $selectedEvent)
                     }
                 }
                 .listStyle(.insetGrouped)
