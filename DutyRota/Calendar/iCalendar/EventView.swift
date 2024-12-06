@@ -8,8 +8,13 @@
 import EventKit
 import SwiftUI
 
+/// A view that show iCal Events for a `selectedDate`.
+///
+/// An event can only be edited if the event `isImmutable`.
 struct EventView: View {
     @Environment(\.dismiss) var dismiss
+
+    /// An array passed in of Event for the day.
     var events: [EKEvent]
     var eventStore: EKEventStore
 
