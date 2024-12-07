@@ -8,14 +8,16 @@
 import EventKit
 import SwiftUI
 
+/// A view that shows iCal events in detail.
 struct EventDetailView: View {
     @Environment(\.dismiss) var dismiss
+
+    /// A passed in property of the selected iCal event.
     let event: EKEvent
 
     var body: some View {
         NavigationStack {
             List {
-
                 if let location = event.location {
                     Text(location)
                         .foregroundStyle(.red)
@@ -35,7 +37,6 @@ struct EventDetailView: View {
                             LabeledContent("To:", value: event.endDate.formatted(date: .abbreviated, time: .shortened))
                         }
                     }
-
 
                     HStack {
                         Text("Calendar:")
@@ -77,7 +78,10 @@ struct EventDetailView: View {
             }
         }
     }
-
+    
+    /// A method to convert `EKAlarm` to `String` format.
+    /// - Parameter alarm: An Alarm time taken from `EKEvent`.
+    /// - Returns: A `String` format to able to display the alarm time.
     func text(_ alarm: EKAlarm) -> String {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.month, .weekOfMonth, .day, .hour, .minute, .second]
