@@ -8,6 +8,10 @@
 import EventKitUI
 import SwiftUI
 
+/// A View to show the native Event View Controller
+///
+/// This is not working as getting dealloc message and crashes on real devices.
+/// Revisit if API changes.
 struct EventEditViewController: UIViewControllerRepresentable {
     @Environment(\.dismiss) var dismiss
 

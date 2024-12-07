@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// A model to decode Bank holidays from [Gov.co.uk](https://www.gov.uk/bank-holidays.json).
 struct BankHoliday: Codable {
     private enum CodingKeys: String, CodingKey {
       case englandAndWales = "england-and-wales"
@@ -20,6 +21,8 @@ struct EnglandAndWales: Codable {
   var events: [BankHolidayEvent]
 }
 
+
+/// A Observable model to able to read Bank Holidays.
 @Observable
 final class BankHolidayEvent: Codable {
     enum CodingKeys: String, CodingKey {
