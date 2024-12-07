@@ -400,7 +400,7 @@ struct CalendarView: View {
 
         // MARK: AD HOC DUTIES
         if adHocDuties.isNotEmpty {
-            let duties = adHocDuties.filter({ $0.start >= startOfCalendarMonth && $0.end <= endOfCalendarMonth && $0.overtime == false })
+            let duties = adHocDuties.filter({ $0.start >= startOfCalendarMonth && $0.end <= endOfCalendarMonth.endOfDay && $0.overtime == false })
             for duty in duties {
                 let dutyIndex = duty.start.dayDifference(from: startOfCalendarMonth)
                 if dutyIndex >= 0 && dutyIndex < newDuties.count {
@@ -411,7 +411,8 @@ struct CalendarView: View {
                                                   tod: duty.todDate,
                                                   color: duty.title == "Rest" ? "dutySilver" : "dutyAdHoc",
                                                   notes: duty.notes,
-                                                  route: duty.route, isAdHoc: true
+                                                  route: duty.route,
+                                                  isAdHoc: true
                     )
 
                     newDuties.replaceElement(at: dutyIndex, with: replacedDuty)

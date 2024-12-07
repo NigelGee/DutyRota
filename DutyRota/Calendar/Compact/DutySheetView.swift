@@ -39,7 +39,7 @@ struct DutySheetView: View {
                     }
                 }
             }
-            .font(.title3)
+            .font(.title2)
             .navigationTitle("Duty Detail")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
