@@ -267,8 +267,8 @@
 				8B7137FD2B66D96D00627BF6 /* EventView.swift */,
 				8B12FD652B70BBE700A22940 /* EventRowView.swift */,
 				8B6F5BCA2B696B8B003B54F5 /* AddNewEventView.swift */,
-				8B12FD612B704DF200A22940 /* EventEditViewController.swift */,
 				8B168F2D2BA9381700A6FF47 /* EventDetailView.swift */,
+				8B12FD612B704DF200A22940 /* EventEditViewController.swift */,
 			);
 			path = iCalendar;
 			sourceTree = "<group>";

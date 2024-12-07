@@ -8,17 +8,18 @@
 import EventKit
 import SwiftUI
 
+/// a view that able to add a quick iCal event.
 struct AddNewEventView: View {
     @Environment(\.dismiss) var dismiss
     var eventStore: EKEventStore
+
+    /// A passed in method to run `loadEvent` so when added will show in calendar.
     var loadEvent: () -> Void
 
     @State private var title = ""
-
     @State private var isAllDay = false
     @State private var startDate: Date
     @State private var endDate: Date
-
     @State private var notes = ""
 
     init(eventStore: EKEventStore, selectedDate: Date, loadEvent: @escaping () -> Void) {
@@ -68,7 +69,8 @@ struct AddNewEventView: View {
             }
         }
     }
-
+    
+    /// A method to create and add a event to iCal.
     func createCalendarEvent() {
         eventStore.requestFullAccessToEvents { granted, error in
             if granted && error == nil {
