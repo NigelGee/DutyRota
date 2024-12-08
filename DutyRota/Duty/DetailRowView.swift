@@ -7,7 +7,10 @@
 
 import SwiftUI
 
+/// A view that shows a grid row for a duty details.
 struct DetailRowView: View {
+
+    /// A passed in `DutyDetail`.
     let dutyDetail: DutyDetail
     
     var body: some View {

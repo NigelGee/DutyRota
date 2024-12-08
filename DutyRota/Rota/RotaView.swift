@@ -25,7 +25,6 @@ struct RotaView: View {
     /// if `true` then `periodEnd` id set to `.distantFuture`
     @State private var isEnd = true
 
-    /// <#Description#>
     @State private var isEdit = false
     @State private var isPeriodEndDateError = false
 
