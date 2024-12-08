@@ -7,10 +7,16 @@
 
 import SwiftUI
 
+/// A view that show the edit of a duty period.
 struct EditDutyView: View {
     @Bindable var duty: Duty
-
+    
+    /// A passed in property that will show a "End" or a `Date`.
+    ///
+    /// If true then `periodEnd` will be set to `.distantFuture`.
     @Binding var isEnd: Bool
+
+    /// A property to show the right Nav title.
     @Binding var isEdit: Bool
 
     var body: some View {
@@ -31,7 +37,8 @@ struct EditDutyView: View {
             Spacer()
         }
     }
-
+    
+    /// A method that will set the duty end period to either `.distantFuture` if `isEnd` is `true` or to today date if `false`.
     func onChangeEndDate() {
         if isEnd {
             duty.periodEnd = .distantFuture

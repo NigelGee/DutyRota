@@ -22,7 +22,7 @@ struct DutyView: View {
     /// If true then `periodEnd` will be set to `.distantFuture`.
     @State private var isEnd = true
 
-    /// A property to show the right Nav title in `EditDutyView`
+    /// A property to show the right Nav title in `EditDutyView`.
     @State private var isEdit = false
 
     /// A property to show an alert if unable to edit the period.
