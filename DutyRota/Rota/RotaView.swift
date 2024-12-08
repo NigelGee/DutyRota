@@ -9,14 +9,23 @@ import SwiftData
 import SwiftUI
 import TipKit
 
+/// A view that  shows Rotas periods
 struct RotaView: View {
     @Query(sort: \Rota.periodStart) var rotas: [Rota]
     @Environment(\.modelContext) var modelContext
-
+    
+    /// A property that determines if a "tip" on how to change a period.
     private let swipeActionTip = SwipeActionTip()
-
+    
+    /// A binding property that will show a `EditRotaView` sheet.
     @State private var rota: Rota?
+
+    /// A binding property that can be toggled to show end date
+    ///
+    /// if `true` then `periodEnd` id set to `.distantFuture`
     @State private var isEnd = true
+
+    /// <#Description#>
     @State private var isEdit = false
     @State private var isPeriodEndDateError = false
 
