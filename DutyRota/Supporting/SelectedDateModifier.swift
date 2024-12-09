@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SelectedDate: ViewModifier {
+fileprivate struct SelectedDate: ViewModifier {
     @Environment(\.scenePhase) var scenePhase
     @State private var today = Date.now
 
@@ -46,26 +46,7 @@ extension View {
     func selected(date date1: Date, sameAs date2: Date, bgColor: String) -> some View {
         modifier(SelectedDate(date1: date1, date2: date2, bgColor: bgColor))
     }
-
-    func todayTextTint(date1: Date, date2: Date, bgColor: String, today: Binding<Date>) -> some View {
-        modifier(TodayTextTint(date1: date1, date2: date2, bgColor: bgColor, today: today))
-    }
 }
 
 
-struct TodayTextTint: ViewModifier {
-    let date1: Date
-    let date2: Date
-    let bgColor: String
-    @Binding var today: Date
 
-    func body(content: Content) -> some View {
-        if date2.isSameDay(as: today) {
-            content
-                .foregroundStyle(.red)
-        } else {
-            content
-                .textTint(bgColorOf: Color(bgColor))
-        }
-    }
-}

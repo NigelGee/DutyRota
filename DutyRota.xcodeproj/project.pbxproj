@@ -60,6 +60,7 @@
 		8B7137FC2B66D5CF00627BF6 /* CompactMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137FB2B66D5CF00627BF6 /* CompactMonthView.swift */; };
 		8B7137FE2B66D96D00627BF6 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7137FD2B66D96D00627BF6 /* EventView.swift */; };
 		8B7B54D82CC7ED1B009C9A11 /* DutyDetailStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7B54D72CC7ED1B009C9A11 /* DutyDetailStartView.swift */; };
+		8B7E89E42D06363600C58221 /* TodayTextTint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7E89E32D06363600C58221 /* TodayTextTint.swift */; };
 		8BA02FFA2CC0127C00CBD32F /* GridFrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA02FF92CC0127C00CBD32F /* GridFrameView.swift */; };
 		8BA030022CC3E75500CBD32F /* DetailRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA030012CC3E75500CBD32F /* DetailRowView.swift */; };
 		8BA030042CC6B68C00CBD32F /* RotaStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA030032CC6B68C00CBD32F /* RotaStartView.swift */; };
@@ -146,6 +147,7 @@
 		8B7137FB2B66D5CF00627BF6 /* CompactMonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactMonthView.swift; sourceTree = "<group>"; };
 		8B7137FD2B66D96D00627BF6 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		8B7B54D72CC7ED1B009C9A11 /* DutyDetailStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DutyDetailStartView.swift; sourceTree = "<group>"; };
+		8B7E89E32D06363600C58221 /* TodayTextTint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTextTint.swift; sourceTree = "<group>"; };
 		8BA02FF92CC0127C00CBD32F /* GridFrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridFrameView.swift; sourceTree = "<group>"; };
 		8BA030012CC3E75500CBD32F /* DetailRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRowView.swift; sourceTree = "<group>"; };
 		8BA030032CC6B68C00CBD32F /* RotaStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotaStartView.swift; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				8BB6C6072CF4DDF500250CF4 /* VortexEffectView.swift */,
 				8B12FDE92B77A07600A22940 /* ExportDocument.swift */,
 				8B7137F72B66D41900627BF6 /* SelectedDateModifier.swift */,
+				8B7E89E32D06363600C58221 /* TodayTextTint.swift */,
 				8BF7C8A22B79481C00346B7A /* ColorPickerView.swift */,
 				8BF7C8A42B794B1B00346B7A /* ColorPickerDisplayView.swift */,
 				8B7137F32B66D39800627BF6 /* Date-Helper.swift */,
@@ -508,6 +511,7 @@
 				8B12FD6E2B71725B00A22940 /* DutyDetailView.swift in Sources */,
 				8B12FD7A2B74BEF200A22940 /* AddDutyDetailView.swift in Sources */,
 				8B12FD6C2B7155ED00A22940 /* DutyView.swift in Sources */,
+				8B7E89E42D06363600C58221 /* TodayTextTint.swift in Sources */,
 				8B617D232CD0F6B6004CC465 /* Array - Replace.swift in Sources */,
 				8B346AEA2B7FB94600A29C3C /* DayRotaView.swift in Sources */,
 				8BA6FB742B9630BF00DAD23D /* AStack.swift in Sources */,

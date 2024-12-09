@@ -15,19 +15,26 @@ struct EditDutyDetailView: View {
     @State private var showColorPicker = false
     @State private var showDeleteAlert = false
 
+    var isDisabled: Bool {
+        dutyDetail.title == "Rest" || dutyDetail.title == "Spare" || dutyDetail.title == ""
+    }
+
     var body: some View {
         VStack {
-            LabeledContent("Duty:") {
-                TextField("Duty", text: $dutyDetail.title)
-                    .textFieldStyle(.roundedBorder)
-                    .multilineTextAlignment(.trailing)
-                    .frame(width: 72)
-                    .bold()
-            }
+            Group {
+                LabeledContent("Duty:") {
+                    TextField("Duty", text: $dutyDetail.title)
+                        .textFieldStyle(.roundedBorder)
+                        .multilineTextAlignment(.trailing)
+                        .frame(width: 72)
+                        .bold()
+                }
 
-            DatePicker("Sign On:", selection: $dutyDetail.start, displayedComponents: .hourAndMinute)
-            DatePicker("Sign Off:", selection: $dutyDetail.end, displayedComponents: .hourAndMinute)
-            DatePicker("Time On Duty:", selection: $dutyDetail.tod, displayedComponents: .hourAndMinute)
+                DatePicker("Sign On:", selection: $dutyDetail.start, displayedComponents: .hourAndMinute)
+                DatePicker("Sign Off:", selection: $dutyDetail.end, displayedComponents: .hourAndMinute)
+                DatePicker("Time On Duty:", selection: $dutyDetail.tod, displayedComponents: .hourAndMinute)
+            }
+            .disabled(isDisabled)
 
             HStack {
                 Text("Duty Colour:")
@@ -66,6 +73,7 @@ struct EditDutyDetailView: View {
                 showDeleteAlert.toggle()
             }
             .tint(.red)
+            .disabled(isDisabled)
         }
         .alert("Are You Sure?", isPresented: $showDeleteAlert) {
             Button("Cancel", role: .cancel) { }

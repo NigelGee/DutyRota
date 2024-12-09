@@ -7,13 +7,25 @@
 
 import SwiftUI
 
+/// A view that allows user to create and add a duty.
 struct AddDutyDetailView: View {
-    @Bindable var duty: Duty
 
+    /// A binding duty period.
+    @Bindable var duty: Duty
+    
+    /// A property that holds name title of duty.
     @State private var title = ""
+
+    /// A property that holds the start/sign on time of a duty.
     @State private var start = Date.zeroTime
+
+    /// A property that holds the end/sign off time of a duty.
     @State private var end = Date.zeroTime
+
+    /// A property that holds the time on duty of a duty.
     @State private var tod = Date.zeroTime
+
+    /// A property that holds user nites of a duty.
     @State private var notes: String = ""
     @State private var showAlert = false
     @State private var selectedColor: String

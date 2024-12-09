@@ -22,9 +22,9 @@ struct EditAdHocDutyView: View {
     @Bindable var adHocDuty: AdHocDuty
     var isEditing: Bool
     
-    /// A computed property to show disable the "Add" button if not meet requirements.
+    /// A computed property to show disable the "Add/Done" button if not meet requirements.
     var disableSave: Bool {
-        if adHocDuty.start < adHocDuty.end && adHocDuty.title.isNotEmpty {
+        if adHocDuty.title == "Rest" || (adHocDuty.start < adHocDuty.end && adHocDuty.title.isNotEmpty) {
             return false
         }
         return true
@@ -33,33 +33,36 @@ struct EditAdHocDutyView: View {
     var body: some View {
         NavigationStack {
             Form {
-                HStack {
-                    Text("Duty:")
-                    
-                    TextField("Duty", text: $adHocDuty.title)
-                        .textFieldStyle(.roundedBorder)
-                        .multilineTextAlignment(.center)
-                }
-                
-                HStack {
-                    Text("Route:")
-                    TextField("Route", text: $adHocDuty.route)
-                        .textFieldStyle(.roundedBorder)
-                        .multilineTextAlignment(.center)
-                }
-                
-                Section {
-                    DatePicker("Sign On", selection: $adHocDuty.start, displayedComponents: adHocDuty.title == "Rest" ? [.date] : [.date, .hourAndMinute])
-                    DatePicker("Sign Off", selection: $adHocDuty.end, displayedComponents: adHocDuty.title == "Rest" ? [.date] : [.date, .hourAndMinute])
+                Group {
+                    HStack {
+                        Text("Duty:")
 
-                    DatePicker("Break", selection: $adHocDuty.breakTime, displayedComponents: .hourAndMinute)
+                        TextField("Duty", text: $adHocDuty.title)
+                            .textFieldStyle(.roundedBorder)
+                            .multilineTextAlignment(.center)
+                    }
 
-                    VStack(alignment: .leading) {
-                        Toggle("Overtime", isOn: $adHocDuty.overtime)
-                        Text(adHocDuty.overtime ? "This will not replace any existing duty" : "This will replace any existing duty")
-                            .font(.footnote)
+                    HStack {
+                        Text("Route:")
+                        TextField("Route", text: $adHocDuty.route)
+                            .textFieldStyle(.roundedBorder)
+                            .multilineTextAlignment(.center)
+                    }
+
+                    Section {
+                        DatePicker("Sign On", selection: $adHocDuty.start, displayedComponents: adHocDuty.title == "Rest" ? [.date] : [.date, .hourAndMinute])
+                        DatePicker("Sign Off", selection: $adHocDuty.end, displayedComponents: adHocDuty.title == "Rest" ? [.date] : [.date, .hourAndMinute])
+
+                        DatePicker("Break", selection: $adHocDuty.breakTime, displayedComponents: .hourAndMinute)
+
+                        VStack(alignment: .leading) {
+                            Toggle("Overtime", isOn: $adHocDuty.overtime)
+                            Text(adHocDuty.overtime ? "This will not replace any existing duty" : "This will replace any existing duty")
+                                .font(.footnote)
+                        }
                     }
                 }
+                .disabled(adHocDuty.title == "Rest")
 
                 Section {
                     TextField("Notes", text: $adHocDuty.notes, axis: .vertical)
@@ -74,7 +77,6 @@ struct EditAdHocDutyView: View {
                     }
                 }
             }
-            .disabled(adHocDuty.title == "Rest")
             .navigationTitle(isEditing ? "Edit Ad-Hoc Duty" : "Add Ad-Hoc Duty")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden()
