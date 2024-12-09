@@ -91,16 +91,17 @@ struct RegularMonthView: View {
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
                     ForEach(0..<calendarDates.count, id: \.self) { dayIndex in
-                        let dayEvents = monthEvents.filter { $0.startDate.isSameDay(as: calendarDates[dayIndex].date)}
+                        let calendarDate = calendarDates[dayIndex].date
+                        let dayEvents = monthEvents.filter { $0.startDate.isSameDay(as: calendarDate)}
                         VStack(spacing: 2) {
                             // MARK: - Dates of month.
-                            if calendarDates[dayIndex].date >= selectedDate.startDateOfMonth {
+                            if calendarDate >= selectedDate.startDateOfMonth {
                                 Button {
-                                    selectedDate = calendarDates[dayIndex].date
+                                    selectedDate = calendarDate
                                 } label: {
                                     VStack {
-                                        Text(calendarDates[dayIndex].date, format: .dateTime.day())
-                                            .selected(date: selectedDate, sameAs: calendarDates[dayIndex].date, bgColor: "dutyClear")
+                                        Text(calendarDate, format: .dateTime.day())
+                                            .selected(date: selectedDate, sameAs: calendarDate, bgColor: "dutyClear")
                                             .bold()
                                     }
                                 }
@@ -115,8 +116,8 @@ struct RegularMonthView: View {
                                 }
 
                                 // MARK: - AD HOC DUTIES (If overtime)
-                                if (filteredDuties.contains { $0.start.isSameDay(as: calendarDates[dayIndex].date) && $0.overtime }) {
-                                    let dayAdHocDuties = filteredDuties.filter { $0.start.isSameDay(as: calendarDates[dayIndex].date) }
+                                if (filteredDuties.contains { $0.start.isSameDay(as: calendarDate) && $0.overtime }) {
+                                    let dayAdHocDuties = filteredDuties.filter { $0.start.isSameDay(as: calendarDate) }
                                     ForEach(dayAdHocDuties) { duty in
                                         DayAdHocDutiesRowView(duty: duty) {
                                             selectedDuty = duty
@@ -154,10 +155,11 @@ struct RegularMonthView: View {
                         }
                         .background {
                             Group {
-                                if bankHolidays.contains(where: { $0.date == calendarDates[dayIndex].date }) {
+                                if bankHolidays.contains(where: { $0.date == calendarDate }) {
                                     RoundedRectangle(cornerRadius: 5)
                                         .stroke(.yellow, lineWidth: 3)
-                                } else if holidayDates.contains(where: { $0 == calendarDates[dayIndex].date }) {
+                                } else if holidayDates.contains(where: { $0 == calendarDate })
+                                            && calendarDate >= selectedDate.startDateOfMonth {
                                     RoundedRectangle(cornerRadius: 5)
                                         .stroke(.red, lineWidth: 3)
                                 } else {
