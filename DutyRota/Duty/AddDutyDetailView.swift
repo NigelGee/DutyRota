@@ -25,10 +25,16 @@ struct AddDutyDetailView: View {
     /// A property that holds the time on duty of a duty.
     @State private var tod = Date.zeroTime
 
-    /// A property that holds user nites of a duty.
+    /// A property that holds user notes of a duty.
     @State private var notes: String = ""
+
+    /// A property that will show an alert if user add a duty with the same title as one already exists.
     @State private var showAlert = false
+
+    /// A property that has a color string that is the user default unless the user changes the color.
     @State private var selectedColor: String
+
+    /// A property to show `ColorPickerView` when `true`
     @State private var showColorPicker = false
 
     init(duty: Duty, selectedColor: String) {
@@ -111,7 +117,10 @@ struct AddDutyDetailView: View {
             }
         }
     }
-
+    
+    /// This is to add a new duty details to current duty period.
+    ///
+    /// This will reset `title` to empty and trigger alert if title already exist.
     func addDuty() {
         guard !duty.unwrappedDutyDetails.map(\.title).contains(title) else {
             showAlert = true
