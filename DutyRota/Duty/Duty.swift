@@ -8,6 +8,7 @@
 import Foundation
 import SwiftData
 
+/// A persistence model for a duty period.
 @Model
 final class Duty {
     var periodStart: Date = Date.now
@@ -19,7 +20,8 @@ final class Duty {
         self.periodEnd = periodEnd
         self.dutyDetails = []
     }
-
+    
+    /// An array of the non optional `DutyDetail`.
     var unwrappedDutyDetails: [DutyDetail] {
         dutyDetails ?? []
     }
