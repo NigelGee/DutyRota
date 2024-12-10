@@ -7,14 +7,24 @@
 
 import SwiftUI
 
+/// A view that able user to edit a duty.
 struct EditDutyDetailView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var modelContext
-    @Bindable var dutyDetail: DutyDetail
-    @Bindable var duty: Duty
-    @State private var showColorPicker = false
-    @State private var showDeleteAlert = false
 
+    /// A property that duty details to be edited.
+    @Bindable var dutyDetail: DutyDetail
+
+    /// The property that the detail duty belongs to.
+    @Bindable var duty: Duty
+
+    /// A property that will show the `ColorPickerView`
+    @State private var showColorPicker = false
+
+    /// A property that will get user to confirm to delete a duty detail.
+    @State private var showDeleteAlert = false
+    
+    /// A computed property that make "Rest", "Spare" and "" not be editable expect for color and notes.
     var isDisabled: Bool {
         dutyDetail.title == "Rest" || dutyDetail.title == "Spare" || dutyDetail.title == ""
     }
@@ -84,7 +94,8 @@ struct EditDutyDetailView: View {
             Text("This will permanently delete the duty.")
         }
     }
-
+    
+    /// A method that delete the duty detail from persistence data.
     func deleteDuty() {
         modelContext.delete(dutyDetail)
         duty.dutyDetails?.removeAll(where: { $0 == dutyDetail })
