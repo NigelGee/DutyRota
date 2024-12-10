@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A view that shows instructions on setting up Duty details.
 struct DutyDetailStartView: View {
     var body: some View {
         ScrollView {
