@@ -20,12 +20,15 @@ struct RotaView: View {
     /// A binding property that will show a `EditRotaView` sheet.
     @State private var rota: Rota?
 
-    /// A binding property that can be toggled to show end date
+    /// A binding property that can be toggled to show end date.
     ///
-    /// if `true` then `periodEnd` id set to `.distantFuture`
+    /// if `true` then `periodEnd` id set to `.distantFuture`.
     @State private var isEnd = true
-
+    
+    /// A property that show if a rota is being edit or new rota.
     @State private var isEdit = false
+
+    /// A property that will be `true` if one of the duty period has "End" set.
     @State private var isPeriodEndDateError = false
 
     var body: some View {
@@ -90,7 +93,10 @@ struct RotaView: View {
             }
         }
     }
-
+    
+    /// A method that add a new period.
+    ///
+    /// Bail out if a duty period is set to "End".
     func addNewRota() {
         var startDate = Date.now
 
@@ -108,7 +114,9 @@ struct RotaView: View {
         modelContext.insert(object)
         rota = object
     }
-
+    
+    /// A method to edit a duty period.
+    /// - Parameter rota: The period to be edit.
     func editRota(_ rota: Rota) {
         if rota.periodEnd == .distantFuture {
             isEnd = true
@@ -118,7 +126,11 @@ struct RotaView: View {
         isEdit = true
         self.rota = rota
     }
-
+    
+    /// A method to swipe to delete a duty period.
+    ///
+    /// This will delete all the details in the period as well.
+    /// - Parameter indexSet: The index of row.
     func deleteRota(_ indexSet: IndexSet) {
         for item in indexSet {
             let object = rotas[item]

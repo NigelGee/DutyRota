@@ -253,7 +253,6 @@
 			children = (
 				8B6F5C222B6C2CB8003B54F5 /* SettingsView.swift */,
 				8B3FE0262B89FFC700E2070F /* EditHolidayView.swift */,
-				8B6F5C242B6C30E9003B54F5 /* WeekDay - Enum.swift */,
 				8B3FDF892B80C93100E2070F /* ImportExportView.swift */,
 				8B3FE0242B88D2C000E2070F /* SetUpView.swift */,
 				8BA6FB4E2B8E021700DAD23D /* setup.json */,
@@ -349,6 +348,7 @@
 		8BF7C8C42B7B6FBE00346B7A /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
+				8B6F5C242B6C30E9003B54F5 /* WeekDay - Enum.swift */,
 				8BB6C6022CF4B28600250CF4 /* PurgePeriod.swift */,
 				8B2512B42CFA364F001BF39A /* IsPresentedModifier.swift */,
 				8BB6C6072CF4DDF500250CF4 /* VortexEffectView.swift */,
