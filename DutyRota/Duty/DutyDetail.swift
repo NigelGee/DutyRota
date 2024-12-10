@@ -8,6 +8,7 @@
 import Foundation
 import SwiftData
 
+/// A persistence model for a detail of a duty.
 @Model
 final class DutyDetail: Comparable {
     var id: UUID = UUID()
@@ -32,7 +33,8 @@ final class DutyDetail: Comparable {
         self.route = route
         self.isAdHoc = isAdHoc
     }
-
+    
+    /// A computed property to calculate the time from the start of duty to end of duty.
     var dutySpread: String {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute]
@@ -50,6 +52,7 @@ final class DutyDetail: Comparable {
         return time == "0" ? "00:00" : time
     }
 
+    /// A computed property to calculate the time of the meal break of duty.
     var dutyBreakTime: String {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute]
@@ -73,7 +76,10 @@ final class DutyDetail: Comparable {
 
         return time == "0" ? "00:00" : time
     }
-
+    
+    /// A method that will make a CSV file of duty details.
+    /// - Parameter dutyDetails: <#dutyDetails description#>
+    /// - Returns: <#description#>
     static func makeExportFile(from dutyDetails: [DutyDetail]) -> ExportDocument {
         var payLoad = "Duty, Sign On, Sign Off, TOD\n"
         for detail in dutyDetails {
@@ -81,6 +87,14 @@ final class DutyDetail: Comparable {
         }
 
         return ExportDocument(payLoad: payLoad)
+    }
+
+
+    /// A method that will return a Error if duty number is not found from Rota.
+    /// - Parameter dutyNumber: <#dutyNumber description#>
+    /// - Returns: <#description#>
+    static func dutyError(for dutyNumber: String) -> DutyDetail {
+        DutyDetail(title: "Error for \(dutyNumber)", start: .zeroTime, end: .zeroTime, tod: .zeroTime, color: "dutyError")
     }
 
     static func <(lhs: DutyDetail, rhs: DutyDetail) -> Bool {
@@ -97,8 +111,4 @@ final class DutyDetail: Comparable {
     static let example = DutyDetail(title: "701", start: .now, end: .now, tod: .now, color: "dutyGreen")
     static let spare = DutyDetail(title: "Spare", start: .zeroTime, end: .zeroTime, tod: .zeroTime)
     static let loading = DutyDetail(title: "LOADING", start: .zeroTime, end: .zeroTime, tod: .zeroTime, color: "dutyClear")
-
-    static func dutyError(for dutyNumber: String) -> DutyDetail {
-        DutyDetail(title: "Error for \(dutyNumber)", start: .zeroTime, end: .zeroTime, tod: .zeroTime, color: "dutyError")
-    }
 }
